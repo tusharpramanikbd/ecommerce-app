@@ -1,0 +1,68 @@
+{
+  "product_items": [
+    {
+      "name":"Canon 700D",
+      "product_description":"Digital single lense reflex",
+      "price": 25000.00,
+      "rating":3.5,
+      "image":"canon.jpg",
+      "quantity":1
+    },
+    {
+      "name":"Nikon D5600",
+      "product_description":"DSLR",
+      "price": 35000.00,
+      "rating":3,
+      "image":"nikon.jpg",
+      "quantity":1
+    },
+    {
+      "name":"Sony A68M",
+      "product_description":"Digital Camera",
+      "price":20000.00,
+      "rating":2,
+      "image":"sony.jpg",
+      "quantity":1
+    },
+    {
+      "name":"FujiFilm X-T20",
+      "product_description":"Digital Camera",
+      "price":21000.00,
+      "rating":3,
+      "image":"fujifilm.jpg",
+      "quantity":1
+    },
+    {
+      "name":"Canon 700D",
+      "product_description":"Digital single lense reflex",
+      "price": 25000.00,
+      "rating":3.5,
+      "image":"canon.jpg",
+      "quantity":1
+    },
+    {
+      "name":"Nikon D5600",
+      "product_description":"DSLR",
+      "price": 35000.00,
+      "rating":3,
+      "image":"nikon.jpg",
+      "quantity":1
+    },
+    {
+      "name":"Sony A68M",
+      "product_description":"Digital Camera",
+      "price":20000.00,
+      "rating":2,
+      "image":"sony.jpg",
+      "quantity":1
+    },
+    {
+      "name":"FujiFilm X-T20",
+      "product_description":"Digital Camera",
+      "price":21000.00,
+      "rating":3,
+      "image":"fujifilm.jpg",
+      "quantity":1
+    }
+  ]
+}

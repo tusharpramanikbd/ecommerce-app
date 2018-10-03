@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_item_product_add_to_cart"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="Add To Cart" />
+    <!--<item-->
+        <!--android:id="@+id/menu_item_product_details"-->
+        <!--android:icon="@drawable/ic_menu_camera"-->
+        <!--android:title="Details" />-->
+    <item
+        android:id="@+id/menu_item_product_share"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="Share" />
+
+</menu>
