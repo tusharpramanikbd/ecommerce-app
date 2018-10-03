@@ -1,106 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activity.LoginActivity"
-    android:orientation="vertical">
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight=".3">
-
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:text="Skip"
-            android:layout_gravity="right"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight=".1">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight=".3">
+            android:layout_weight=".35">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:text="Skip"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"/>
+
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_weight=".1"
-            android:weightSum="5">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Login"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:textSize="35sp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="40dp" />
-
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/etEmailorUserName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email or User name"
-                android:layout_marginBottom="40dp" />
-
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-                android:layout_marginBottom="40dp" />
-
-            <android.support.v7.widget.AppCompatButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Login"
-                android:textAllCaps="false"
-                android:textSize="25sp"
-                android:layout_marginBottom="40dp"
-                android:textColor="@color/white"
-                android:background="@drawable/custom_button"/>
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="40dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight=".3">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight=".1"
+                android:weightSum="5"
+                android:layout_marginTop="20dp">
 
                 <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textSize="35sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/etEmailorUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="New User ?"
-                    android:layout_weight=".6"/>
+                    android:hint="Email or User name"
+                    android:layout_marginBottom="20dp" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:layout_marginBottom="20dp"
+                    android:inputType="textPassword"/>
 
                 <android.support.v7.widget.AppCompatButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Register"
+                    android:text="Login"
                     android:textAllCaps="false"
-                    android:layout_weight=".3"
-                    android:textColor="@color/ash"
-                    android:background="@drawable/custom_button_with_border"/>
+                    android:textSize="25sp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/custom_button"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="New User ?"
+                        android:layout_weight=".6"/>
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btnRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Register"
+                        android:textAllCaps="false"
+                        android:layout_weight=".3"
+                        android:padding="5dp"
+                        android:textColor="@color/ash"
+                        android:background="@drawable/custom_button_with_border"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight=".3">
+
             </LinearLayout>
 
         </LinearLayout>
@@ -109,24 +124,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight=".3">
+            android:layout_weight=".35">
 
         </LinearLayout>
 
-
-
-
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight=".3">
-
-
-    </LinearLayout>
-
-
-
-</LinearLayout>
