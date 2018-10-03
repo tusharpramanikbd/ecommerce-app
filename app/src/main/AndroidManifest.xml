@@ -16,16 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.SplashScreenActivity"
-            android:theme="@style/SplashTheme"
             android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme"
             tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,21 +31,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".CartActivity" />
-
         <activity android:name=".ProductDetails" />
-
         <activity android:name=".MyOrdersActivity" />
-
         <activity android:name=".OrderDetailsActivity" />
-
         <activity android:name=".ShippingAndBillingAddressActivity" />
-
         <activity android:name=".PaymentMethodsActivity" />
-
         <activity android:name=".CartSummaryActivity" />
-
+        <activity android:name=".Activity.LoginActivity"></activity>
     </application>
 
 </manifest>
