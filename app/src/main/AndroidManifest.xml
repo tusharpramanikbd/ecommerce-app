@@ -39,7 +39,8 @@
         <activity android:name=".PaymentMethodsActivity" />
         <activity android:name=".CartSummaryActivity" />
         <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.SignUpActivity"></activity>
+        <activity android:name=".Activity.SignUpActivity" />
+        <activity android:name=".Activity.DressViewActivity"></activity>
     </application>
 
 </manifest>

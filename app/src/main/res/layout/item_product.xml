@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view_productName"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -43,7 +44,8 @@
                 android:id="@+id/ivMenuButton"
                 app:srcCompat="@drawable/ic_product_menu_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                tools:ignore="VectorDrawableCompat" />
         </LinearLayout>
 
         <LinearLayout
