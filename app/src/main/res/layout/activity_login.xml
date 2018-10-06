@@ -92,7 +92,7 @@
                         android:layout_weight=".3"
                         android:padding="5dp"
                         android:textColor="@color/ash"
-                        android:background="@drawable/custom_button_with_border"/>
+                        android:background="@drawable/custom_rect_button_with_border"/>
                 </LinearLayout>
 
             </LinearLayout>

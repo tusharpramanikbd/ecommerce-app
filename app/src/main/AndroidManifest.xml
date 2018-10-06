@@ -40,7 +40,11 @@
         <activity android:name=".CartSummaryActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.SignUpActivity" />
-        <activity android:name=".Activity.DressViewActivity"></activity>
+        <activity
+            android:name=".Activity.DressViewActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.MenuItemsActivity" />
+        <activity android:name=".Activity.MyProfileActivity"></activity>
     </application>
 
 </manifest>

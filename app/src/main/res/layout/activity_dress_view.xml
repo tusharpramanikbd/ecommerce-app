@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.DressViewActivity"
-    android:padding="5dp">
+    tools:context=".Activity.DressViewActivity">
+
+    <include
+        android:id="@+id/top_bar"
+        layout="@layout/top_search_bar" />
+
+    <LinearLayout
+        android:id="@+id/devider_layout"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        android:background="@color/purple"
+        android:layout_below="@id/top_bar">
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/category_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/devider_layout"
+        android:text="Category Name 01"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+    <!--<include-->
+        <!--android:id="@+id/bottomBar"-->
+        <!--layout="@layout/bottom_price_bar" />-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewDress"
+        android:layout_below="@id/category_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-    </android.support.v7.widget.RecyclerView>
-
-</LinearLayout>
+</RelativeLayout>
