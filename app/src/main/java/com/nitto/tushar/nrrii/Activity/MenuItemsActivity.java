@@ -10,7 +10,7 @@ import com.nitto.tushar.nrrii.R;
 
 public class MenuItemsActivity extends AppCompatActivity {
 
-    private LinearLayout layoutMyProfile;
+    private LinearLayout layoutMyProfile, orderList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,14 @@ public class MenuItemsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MenuItemsActivity.this, MyProfileActivity.class) );
+            }
+        });
+
+        orderList = findViewById(R.id.orderList);
+        orderList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuItemsActivity.this, ProductDetailsActivity.class) );
             }
         });
     }

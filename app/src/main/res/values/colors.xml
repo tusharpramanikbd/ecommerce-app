@@ -12,4 +12,8 @@
     <color name="black">#212121</color>
     <color name="red">#DD0000</color>
 
+
+    <color name="green">#008000</color>
+    <color name="orange">#FF8C00</color>
+
 </resources>
