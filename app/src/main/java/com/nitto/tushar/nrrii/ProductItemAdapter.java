@@ -2,15 +2,11 @@ package com.nitto.tushar.nrrii;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,8 +20,6 @@ import com.nitto.tushar.nrrii.Entity.ProductItem;
 import com.nitto.tushar.nrrii.Services.CartService;
 import com.nitto.tushar.nrrii.Services.ProductService;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -118,7 +112,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
     }
 
     private void goToProductDetails(ProductItem productItem) {
-        Intent intent = new Intent(context, ProductDetails.class);
+        Intent intent = new Intent(context, ProductDetail.class);
         //intent.putExtra("product_id", itemId);
         ProductService.getInstance().insertProductItem(productItem);
         context.startActivity(intent);

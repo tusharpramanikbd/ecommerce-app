@@ -1,33 +1,18 @@
 package com.nitto.tushar.nrrii;
 
 import android.app.Activity;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.nitto.tushar.nrrii.Database.AppDatabase;
 import com.nitto.tushar.nrrii.Entity.ProductItem;
 import com.nitto.tushar.nrrii.Services.ProductService;
-import com.nitto.tushar.nrrii.Utils.DatabaseInitializer;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-public class ProductDetails extends Activity implements View.OnClickListener {
+public class ProductDetail extends Activity implements View.OnClickListener {
     private View llAllReviews;
     private AppCompatImageView
             ivProductImage,
@@ -56,7 +41,7 @@ public class ProductDetails extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_details);
+        setContentView(R.layout.activity_product_detail);
         initializeUI();
         populateProductItemView();
     }

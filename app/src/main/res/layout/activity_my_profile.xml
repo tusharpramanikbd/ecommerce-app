@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,7 +49,8 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:weightSum="3"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -88,15 +90,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_marginTop="30dp">
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical">
 
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="120dp"
@@ -108,13 +110,13 @@
                     android:id="@+id/tvFullName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Name" />
+                    android:hint="Your Full Name" />
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/etFullName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
+                    android:hint="Your Full Name"
                     android:visibility="gone"
                     android:textSize="12sp"/>
 
@@ -122,10 +124,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical">
 
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="120dp"
@@ -136,23 +139,24 @@
                     android:id="@+id/tvAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="21" />
+                    android:hint="Your Age" />
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/etAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="21"
+                    android:hint="Your Age"
                     android:visibility="gone"
                     android:textSize="12sp"/>
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical">
 
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="120dp"
@@ -163,23 +167,24 @@
                     android:id="@+id/tvGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Female" />
+                    android:hint="Your Gender" />
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/etGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Female"
+                    android:hint="Your Gender"
                     android:visibility="gone"
                     android:textSize="12sp"/>
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical">
 
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="120dp"
@@ -190,23 +195,24 @@
                     android:id="@+id/tvContactNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="01746941437" />
+                    android:hint="Your Contact Number" />
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/etContactNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="01746941437"
+                    android:hint="Your Contact Number"
                     android:visibility="gone"
                     android:textSize="12sp"/>
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical">
 
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="120dp"
@@ -217,23 +223,24 @@
                     android:id="@+id/tvEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="tusharpramanikbd@gmail.com" />
+                    android:hint="example@gmail.com" />
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/etEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="tusharpramanikbd@gmail.com"
+                    android:hint="example@gmail.com"
                     android:visibility="gone"
                     android:textSize="12sp"/>
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical">
 
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="120dp"
@@ -244,13 +251,14 @@
                     android:id="@+id/tvAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Uttara, Dhaka."/>
+
+                    android:hint="Your Home Address"/>
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/etAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Uttara, Dhaka."
+                    android:hint="Your Home Address"
                     android:visibility="gone"
                     android:textSize="12sp"/>
 
@@ -270,7 +278,8 @@
                     android:text="Done"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:background="@drawable/custom_rect_button_ash" />
+                    android:background="@drawable/custom_rect_button_ash"
+                    android:visibility="invisible"/>
 
             </LinearLayout>
 

@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CartActivity" />
-        <activity android:name=".ProductDetails" />
+        <activity android:name=".ProductDetail" />
         <activity android:name=".MyOrdersActivity" />
         <activity android:name=".OrderDetailsActivity" />
         <activity android:name=".ShippingAndBillingAddressActivity" />
@@ -44,7 +44,8 @@
             android:name=".Activity.DressViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.MenuItemsActivity" />
-        <activity android:name=".Activity.MyProfileActivity"></activity>
+        <activity android:name=".Activity.MyProfileActivity" />
+        <activity android:name=".Activity.ProductDetailsActivity"></activity>
     </application>
 
 </manifest>
