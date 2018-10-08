@@ -14,7 +14,7 @@ import com.nitto.tushar.nrrii.Entity.ProductItem;
 /**
  * Created by masud on 2/17/2018.
  */
-@Database(entities = {ProductItem.class, OrderItem.class}, version = 11,exportSchema = false)
+@Database(entities = {ProductItem.class, OrderItem.class}, version = 12,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase{
     private static volatile AppDatabase INSTANCE;
 

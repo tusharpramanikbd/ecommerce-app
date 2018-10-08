@@ -1,23 +1,20 @@
-package com.nitto.tushar.nrrii;
+package com.nitto.tushar.nrrii.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.nitto.tushar.nrrii.Entity.OrderItem;
+import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterOrder;
+import com.nitto.tushar.nrrii.R;
 import com.nitto.tushar.nrrii.Services.OrderService;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class MyOrdersActivity extends AppCompatActivity implements OrderService.OnUpdateUIListener{
@@ -25,7 +22,7 @@ public class MyOrdersActivity extends AppCompatActivity implements OrderService.
 
     ArrayList<OrderItem> orderItems = new ArrayList<>();
     private RecyclerView recyclerView;
-    private MyRecyclerViewAdapter myRecyclerViewAdapter;
+    private RecyclerViewAdapterOrder myRecyclerViewAdapter;
     private LinearLayoutManager linearLayoutManager;
 
     @Override
@@ -42,7 +39,7 @@ public class MyOrdersActivity extends AppCompatActivity implements OrderService.
 
     public void initializeUI(){
         OrderService.getInstance().AddOnUpdateUIListener(this);
-        orderItems = OrderService.getInstance().getAllOrderByDeliveredTo("01746941437");
+        //orderItems = OrderService.getInstance().getAllOrderByDeliveredTo("01746941437");
 //        if(orderItems != null){
 //            OrderItem orderItem = new OrderItem();
 //            orderItem.setDeliveredTo("01746941437");
@@ -55,6 +52,12 @@ public class MyOrdersActivity extends AppCompatActivity implements OrderService.
 //            orderItem.setShopId("420");
 //            orderItem.setShopName("Fordo Shop");
 //            orderItems.add(orderItem);
+        orderItems.add(new OrderItem(2, "2/5/18", true));
+        orderItems.add(new OrderItem(1, "8/8/18", false));
+        orderItems.add(new OrderItem(3, "22/6/18", true));
+        orderItems.add(new OrderItem(5, "2/8/18", false));
+        orderItems.add(new OrderItem(2, "6/6/18", true));
+        orderItems.add(new OrderItem(3, "5/5/18", true));
             initRecyclerView();
 //        }
     }
@@ -84,7 +87,7 @@ public class MyOrdersActivity extends AppCompatActivity implements OrderService.
 
     private void initRecyclerView(){
         recyclerView = findViewById(R.id.recyclerView);
-        myRecyclerViewAdapter = new MyRecyclerViewAdapter(this, orderItems);
+        myRecyclerViewAdapter = new RecyclerViewAdapterOrder(this, orderItems);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(myRecyclerViewAdapter);

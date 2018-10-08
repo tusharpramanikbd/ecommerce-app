@@ -3,7 +3,6 @@ package com.nitto.tushar.nrrii;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,8 +21,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.nitto.tushar.nrrii.Activity.MyOrdersActivity;
 import com.nitto.tushar.nrrii.Services.CartService;
-import com.nitto.tushar.nrrii.Services.OrderService;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;

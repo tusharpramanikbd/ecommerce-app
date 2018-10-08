@@ -168,81 +168,81 @@ public class CartSummaryActivity extends AppCompatActivity {
 
     }
 
-    private void storeOrderToDb() {
-        ArrayList<ProductItem> productItems;
+//    private void storeOrderToDb() {
+//        ArrayList<ProductItem> productItems;
+//
+//        productItems = CartService.getInstance().getProductCart();
+//
+//        String tmpOrderNumber = OrderService.getInstance().getLastOrderNumberById("01746941437");
+//
+//        if(tmpOrderNumber == null){
+//            tmpOrderNumber = "1";
+//        }
+//        else {
+//            int tmpNumber = Integer.parseInt(tmpOrderNumber);
+//            tmpNumber++;
+//            tmpOrderNumber = String.valueOf(tmpNumber);
+//        }
+//
+//        OrderItem orderItem = new OrderItem();
+//        //orderItem.setDeliveredTo("01746941437");
+//        orderItem.setOrderComplete(false);
+//        orderItem.setOrderDate(Calendar.getInstance().getTime().toString());
+//        //orderItem.setOrderDescription(getProductDescription(productItems));
+//        //orderItem.setOrderPrice(CartService.getInstance().getTotalPrice());
+//        orderItem.setQuantity(productItems.size());
+//        orderItem.setOrderNumber(tmpOrderNumber);
+//        //orderItem.setShopId("420");
+//        //orderItem.setShopName("Fordo Shop");
+//
+//        OrderService.getInstance().insertOrderInDB(orderItem);
+//
+//        CartService.getInstance().deleteAllCartItem();
+//
+//        //sendOrderToServer(orderItem);
+//
+//    }
 
-        productItems = CartService.getInstance().getProductCart();
-
-        String tmpOrderNumber = OrderService.getInstance().getLastOrderNumberById("01746941437");
-
-        if(tmpOrderNumber == null){
-            tmpOrderNumber = "1";
-        }
-        else {
-            int tmpNumber = Integer.parseInt(tmpOrderNumber);
-            tmpNumber++;
-            tmpOrderNumber = String.valueOf(tmpNumber);
-        }
-
-        OrderItem orderItem = new OrderItem();
-        orderItem.setDeliveredTo("01746941437");
-        orderItem.setOrderComplete(false);
-        orderItem.setOrderDate(Calendar.getInstance().getTime().toString());
-        orderItem.setOrderDescription(getProductDescription(productItems));
-        orderItem.setOrderPrice(CartService.getInstance().getTotalPrice());
-        orderItem.setQuantity(productItems.size());
-        orderItem.setOrderNumber(tmpOrderNumber);
-        orderItem.setShopId("420");
-        orderItem.setShopName("Fordo Shop");
-
-        OrderService.getInstance().insertOrderInDB(orderItem);
-
-        CartService.getInstance().deleteAllCartItem();
-
-        sendOrderToServer(orderItem);
-
-    }
-
-    private void sendOrderToServer(OrderItem orderItem) {
-
-        ApiSendOrder apiSendOrder = RetrofitInstance.getInstance().create(ApiSendOrder.class);
-        JSONObject jsonObject = new JSONObject();
-        try
-        {
-            jsonObject.put("orderNumber", orderItem.getOrderNumber());
-            jsonObject.put("orderDescription", orderItem.getOrderDescription());
-            jsonObject.put("orderPrice", String.valueOf(orderItem.getOrderPrice()));
-            jsonObject.put("quantity", String.valueOf(orderItem.getQuantity()));
-            jsonObject.put("orderDate", orderItem.getOrderDate());
-            jsonObject.put("isOrderComplete", String.valueOf(orderItem.isOrderComplete()));
-            jsonObject.put("shopId", orderItem.getShopId());
-            jsonObject.put("shopName", orderItem.getShopName());
-            jsonObject.put("deliveredTo", orderItem.getDeliveredTo());
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-        }
-
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jsonObject.toString());
-
-        Call<ResponseBody> result = apiSendOrder.sendOrder(body);
-        result.enqueue(new Callback<ResponseBody>()
-        {
-            @Override
-            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response)
-            {
-                Toast.makeText(CartSummaryActivity.this, "Order Send Successfully", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t)
-            {
-                Toast.makeText(CartSummaryActivity.this, "Failed to send image message", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void sendOrderToServer(OrderItem orderItem) {
+//
+//        ApiSendOrder apiSendOrder = RetrofitInstance.getInstance().create(ApiSendOrder.class);
+//        JSONObject jsonObject = new JSONObject();
+//        try
+//        {
+//            jsonObject.put("orderNumber", orderItem.getOrderNumber());
+//            jsonObject.put("orderDescription", orderItem.getOrderDescription());
+//            jsonObject.put("orderPrice", String.valueOf(orderItem.getOrderPrice()));
+//            jsonObject.put("quantity", String.valueOf(orderItem.getQuantity()));
+//            jsonObject.put("orderDate", orderItem.getOrderDate());
+//            jsonObject.put("isOrderComplete", String.valueOf(orderItem.isOrderComplete()));
+//            jsonObject.put("shopId", orderItem.getShopId());
+//            jsonObject.put("shopName", orderItem.getShopName());
+//            jsonObject.put("deliveredTo", orderItem.getDeliveredTo());
+//        }
+//        catch (JSONException e)
+//        {
+//            e.printStackTrace();
+//        }
+//
+//        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jsonObject.toString());
+//
+//        Call<ResponseBody> result = apiSendOrder.sendOrder(body);
+//        result.enqueue(new Callback<ResponseBody>()
+//        {
+//            @Override
+//            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response)
+//            {
+//                Toast.makeText(CartSummaryActivity.this, "Order Send Successfully", Toast.LENGTH_SHORT).show();
+//
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t)
+//            {
+//                Toast.makeText(CartSummaryActivity.this, "Failed to send image message", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     private String getProductDescription(ArrayList<ProductItem> productItems){
         StringBuilder productDescription= new StringBuilder();

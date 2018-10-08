@@ -62,29 +62,29 @@ public class OrderService {
         });
     }
 
-    public ArrayList<OrderItem> getAllOrderByDeliveredTo(String deliveredTo)
-    {
-        ArrayList<OrderItem> tmpOrderItemsList = new ArrayList<>();
+//    public ArrayList<OrderItem> getAllOrderByDeliveredTo(String deliveredTo)
+//    {
+//        ArrayList<OrderItem> tmpOrderItemsList = new ArrayList<>();
+//
+//        for (int i=0; i<orderItemsList.size();i++)
+//        {
+//            if(orderItemsList.get(i).getDeliveredTo().equals(deliveredTo))
+//            {
+//                tmpOrderItemsList.add(orderItemsList.get(i));
+//            }
+//        }
+//
+//        return tmpOrderItemsList;
+//    }
 
-        for (int i=0; i<orderItemsList.size();i++)
-        {
-            if(orderItemsList.get(i).getDeliveredTo().equals(deliveredTo))
-            {
-                tmpOrderItemsList.add(orderItemsList.get(i));
-            }
-        }
-
-        return tmpOrderItemsList;
-    }
-
-    public String getLastOrderNumberById(String id){
-        for (int i = orderItemsList.size()-1; i>=0; i--){
-            if(orderItemsList.get(i).getDeliveredTo().equals(id)){
-                return orderItemsList.get(i).getOrderNumber();
-            }
-        }
-        return null;
-    }
+//    public String getLastOrderNumberById(String id){
+//        for (int i = orderItemsList.size()-1; i>=0; i--){
+//            if(orderItemsList.get(i).getDeliveredTo().equals(id)){
+//                return orderItemsList.get(i).getOrderNumber();
+//            }
+//        }
+//        return null;
+//    }
 
     public void insertOrderInDB(final OrderItem orderItem) {
         OrderListDataRepository.InsertOrder(orderItem, new OrderListDataRepository.OrderInsertionDoneListener() {

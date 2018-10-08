@@ -8,7 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapter;
+import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterDress;
 import com.nitto.tushar.nrrii.Entity.Dress;
 import com.nitto.tushar.nrrii.R;
 
@@ -43,7 +43,7 @@ public class DressViewActivity extends AppCompatActivity {
         dressArrayList.add(new Dress("7000", "7000"));
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
-        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this,dressArrayList);
+        RecyclerViewAdapterDress myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(myAdapter);
     }

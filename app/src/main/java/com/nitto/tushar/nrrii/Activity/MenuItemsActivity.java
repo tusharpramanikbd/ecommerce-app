@@ -29,7 +29,7 @@ public class MenuItemsActivity extends AppCompatActivity {
         orderList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MenuItemsActivity.this, ProductDetailsActivity.class) );
+                startActivity(new Intent(MenuItemsActivity.this, MyOrdersActivity.class) );
             }
         });
     }

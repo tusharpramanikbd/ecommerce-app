@@ -11,14 +11,11 @@ public class OrderItem
     @PrimaryKey(autoGenerate = true)
     private long oid;
 
+    @ColumnInfo(name = "orderTitle")
+    private String orderTitle;
+
     @ColumnInfo(name = "orderNumber")
     private String orderNumber;
-
-    @ColumnInfo(name = "order_description")
-    private String orderDescription;
-
-    @ColumnInfo(name = "order_price")
-    private double orderPrice;
 
     @ColumnInfo(name = "products_quantity")
     private int quantity;
@@ -29,33 +26,16 @@ public class OrderItem
     @ColumnInfo(name = "order_status")
     private boolean isOrderComplete;
 
-    @ColumnInfo(name = "shop_id")
-    private String shopId;
-
-    @ColumnInfo(name = "shop_name")
-    private String shopName;
-
-    @ColumnInfo(name = "delivered_to")
-    private String deliveredTo;
-
 
     public OrderItem()
     {
     }
 
     @Ignore
-    public OrderItem(long oid, String orderNumber, String orderDescription, double orderPrice, int quantity, String orderDate, boolean isOrderComplete, String shopId, String shopName, String deliveredTo)
-    {
-        this.oid = oid;
-        this.orderNumber = orderNumber;
-        this.orderDescription = orderDescription;
-        this.orderPrice = orderPrice;
+    public OrderItem(int quantity, String orderDate, boolean isOrderComplete) {
         this.quantity = quantity;
         this.orderDate = orderDate;
         this.isOrderComplete = isOrderComplete;
-        this.shopId = shopId;
-        this.shopName = shopName;
-        this.deliveredTo = deliveredTo;
     }
 
     public long getOid()
@@ -76,26 +56,6 @@ public class OrderItem
     public void setOrderNumber(String orderNumber)
     {
         this.orderNumber = orderNumber;
-    }
-
-    public String getOrderDescription()
-    {
-        return orderDescription;
-    }
-
-    public void setOrderDescription(String orderDescription)
-    {
-        this.orderDescription = orderDescription;
-    }
-
-    public double getOrderPrice()
-    {
-        return orderPrice;
-    }
-
-    public void setOrderPrice(double orderPrice)
-    {
-        this.orderPrice = orderPrice;
     }
 
     public int getQuantity()
@@ -128,33 +88,11 @@ public class OrderItem
         isOrderComplete = orderComplete;
     }
 
-    public String getShopId()
-    {
-        return shopId;
+    public String getOrderTitle() {
+        return orderTitle;
     }
 
-    public void setShopId(String shopId)
-    {
-        this.shopId = shopId;
-    }
-
-    public String getShopName()
-    {
-        return shopName;
-    }
-
-    public void setShopName(String shopName)
-    {
-        this.shopName = shopName;
-    }
-
-    public String getDeliveredTo()
-    {
-        return deliveredTo;
-    }
-
-    public void setDeliveredTo(String deliveredTo)
-    {
-        this.deliveredTo = deliveredTo;
+    public void setOrderTitle(String orderTitle) {
+        this.orderTitle = orderTitle;
     }
 }

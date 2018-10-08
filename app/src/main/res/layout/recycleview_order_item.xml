@@ -9,49 +9,104 @@
         android:id="@+id/profile_list_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@mipmap/rifat_vais_wife_sample"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Here is product title"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of order: "
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/orderDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="07/10/18"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item: "
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/itemQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textSize="12sp"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" sets"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="1.3"
+            android:gravity="center_vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Order Id:"
-                    android:id="@+id/tv_order_id"
-                    android:textColor="#000"
-                    android:textSize="15sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"/>
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Order Status:"
-                    android:id="@+id/tv_order_status"
-                    android:textColor="#000"
-                    android:textSize="15sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="10dp"/>
-
-            </LinearLayout>
-
-            <android.support.v7.widget.AppCompatButton
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Details"
-                android:textAllCaps="false"
-                android:textSize="15dp"
-                android:layout_marginTop="5dp"
-                android:id="@+id/btn_details"/>
+                android:text="Status: "
+                android:textStyle="bold"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/deliverStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivered"
+                android:textSize="12sp"/>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -59,7 +114,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorAsh"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:background="@color/colorAsh"/>
+
 </LinearLayout>

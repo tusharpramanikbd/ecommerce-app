@@ -1,25 +1,29 @@
 package com.nitto.tushar.nrrii.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nitto.tushar.nrrii.Activity.ProductDetailsActivity;
 import com.nitto.tushar.nrrii.Entity.Dress;
 import com.nitto.tushar.nrrii.R;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class RecyclerViewAdapterDress extends RecyclerView.Adapter<RecyclerViewAdapterDress.MyViewHolder> {
 
     private Context mContext;
     private ArrayList<Dress> dressArrayList;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<Dress> dressArrayList) {
+
+    public RecyclerViewAdapterDress(Context mContext, ArrayList<Dress> dressArrayList) {
         this.mContext = mContext;
         this.dressArrayList = dressArrayList;
     }
@@ -44,6 +48,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.tvPromotionalPrice.setText(dressArrayList.get(position).getPromotionalPrice());
 
+        holder.dressCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, ProductDetailsActivity.class) );
+            }
+        });
     }
 
     @Override
@@ -54,10 +64,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         AppCompatTextView tvActualPrice, tvPromotionalPrice, tvActualPriceBDT;
+        private CardView dressCardView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
+            dressCardView = itemView.findViewById(R.id.dressCardView);
             tvActualPrice = itemView.findViewById(R.id.tvActualPrice);
             tvPromotionalPrice = itemView.findViewById(R.id.tvPromotionalPrice);
             tvActualPriceBDT = itemView.findViewById(R.id.tvActualPriceBDT);
