@@ -49,7 +49,8 @@
         <activity android:name=".Activity.CheckoutActivity" />
         <activity android:name=".Activity.ShippingAddressActivity" />
         <activity android:name=".Activity.PaymentMethodActivity" />
-        <activity android:name=".Activity.CongratulationScreenActivity"></activity>
+        <activity android:name=".Activity.CongratulationScreenActivity" />
+        <activity android:name=".Activity.ResetPasswordActivity"></activity>
     </application>
 
 </manifest>
