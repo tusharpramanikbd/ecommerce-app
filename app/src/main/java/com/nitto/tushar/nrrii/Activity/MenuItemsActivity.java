@@ -10,7 +10,7 @@ import com.nitto.tushar.nrrii.R;
 
 public class MenuItemsActivity extends AppCompatActivity {
 
-    private LinearLayout layoutMyProfile, orderList;
+    private LinearLayout layoutMyProfile, orderList, btnSettings, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,22 @@ public class MenuItemsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MenuItemsActivity.this, MyOrdersActivity.class) );
+            }
+        });
+
+        btnSettings = findViewById(R.id.btnSettings);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuItemsActivity.this, ResetPasswordActivity.class) );
+            }
+        });
+
+        btnLogout = findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuItemsActivity.this, LoginActivity.class) );
             }
         });
     }

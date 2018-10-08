@@ -31,18 +31,12 @@ public class CheckoutActivity extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CheckoutActivity.this, ShippingAddressActivity.class) );
+                startActivity(new Intent(CheckoutActivity.this, LoggedInShippingAddressActivity.class) );
             }
         });
 
         cartItems = new ArrayList<>();
 
-        cartItems.add(new CartItem(2, 5000, "M", "Green"));
-        cartItems.add(new CartItem(1, 6000, "L", "Black"));
-        cartItems.add(new CartItem(3, 7000, "XL", "Red"));
-        cartItems.add(new CartItem(2, 5000, "M", "Green"));
-        cartItems.add(new CartItem(1, 6000, "L", "Black"));
-        cartItems.add(new CartItem(3, 7000, "XL", "Red"));
         cartItems.add(new CartItem(2, 5000, "M", "Green"));
         cartItems.add(new CartItem(1, 6000, "L", "Black"));
         cartItems.add(new CartItem(3, 7000, "XL", "Red"));
