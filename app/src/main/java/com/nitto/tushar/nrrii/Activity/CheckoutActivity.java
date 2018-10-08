@@ -1,10 +1,13 @@
 package com.nitto.tushar.nrrii.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterCheckout;
@@ -17,11 +20,20 @@ import java.util.ArrayList;
 public class CheckoutActivity extends AppCompatActivity {
 
     private ArrayList<CartItem> cartItems;
+    private AppCompatButton btnContinue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+
+        btnContinue = findViewById(R.id.btnContinue);
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CheckoutActivity.this, ShippingAddressActivity.class) );
+            }
+        });
 
         cartItems = new ArrayList<>();
 
