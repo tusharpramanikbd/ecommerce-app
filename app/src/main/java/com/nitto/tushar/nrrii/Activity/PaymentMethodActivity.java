@@ -1,7 +1,9 @@
 package com.nitto.tushar.nrrii.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +15,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
 
     private AppCompatSpinner paymentSpinner;
     private LinearLayout cardPaymentLayout, bkashPaymentLayout;
+    private AppCompatButton btnDone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,15 @@ public class PaymentMethodActivity extends AppCompatActivity {
         cardPaymentLayout = findViewById(R.id.cardPaymentLayout);
         bkashPaymentLayout = findViewById(R.id.bkashPaymentLayout);
         paymentSpinner = findViewById(R.id.paymentSpinner);
+        btnDone = findViewById(R.id.btnDone);
+
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PaymentMethodActivity.this, CongratulationScreenActivity.class) );
+
+            }
+        });
 
         paymentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
