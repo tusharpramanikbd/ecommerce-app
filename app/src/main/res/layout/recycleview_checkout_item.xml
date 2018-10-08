@@ -58,7 +58,7 @@
                 android:layout_height="20dp"
                 android:orientation="vertical"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/bg_rounded_corner_search_background_stroked_ash">
+                android:background="@drawable/bg_square_corner_search_background_stroked_ash">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="20dp"

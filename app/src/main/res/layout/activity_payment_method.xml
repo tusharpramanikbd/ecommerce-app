@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.PaymentMethodActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Payment Method"
+            android:layout_marginRight="10dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_rounded_corner_search_background_stroked_ash">
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/paymentSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/array_name" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp">
+
+        <LinearLayout
+            android:id="@+id/cardPaymentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Card Number"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="CCV"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"/>
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="DD/YY"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Card Holder Name"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bkashPaymentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bkash Number : "
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="01746941437"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please Submit TrxID After Payment"
+                android:textStyle="bold"
+                android:layout_marginBottom="30dp"/>
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="TrxID"/>
+
+        </LinearLayout>
+
+
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:textAllCaps="false"
+            android:background="@drawable/custom_button_purple"
+            android:minHeight="0dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

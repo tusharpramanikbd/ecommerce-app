@@ -47,7 +47,8 @@
         <activity android:name=".Activity.MyProfileActivity" />
         <activity android:name=".Activity.ProductDetailsActivity" />
         <activity android:name=".Activity.CheckoutActivity" />
-        <activity android:name=".Activity.ShippingAddressActivity"></activity>
+        <activity android:name=".Activity.ShippingAddressActivity" />
+        <activity android:name=".Activity.PaymentMethodActivity"></activity>
     </application>
 
 </manifest>
