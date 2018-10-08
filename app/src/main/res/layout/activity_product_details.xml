@@ -127,7 +127,7 @@
                     android:text="Favorite"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:background="@drawable/custom_button"
+                    android:background="@drawable/custom_button_purple"
                     android:minHeight="0dp"/>
 
             </LinearLayout>
@@ -335,7 +335,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/bg_rounded_corner_search_background_stroked_gray">
+                    android:background="@drawable/bg_rounded_corner_search_background_stroked_purple">
 
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="wrap_content"

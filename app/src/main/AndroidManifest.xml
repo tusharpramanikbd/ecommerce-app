@@ -45,7 +45,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.MenuItemsActivity" />
         <activity android:name=".Activity.MyProfileActivity" />
-        <activity android:name=".Activity.ProductDetailsActivity"></activity>
+        <activity android:name=".Activity.ProductDetailsActivity" />
+        <activity android:name=".Activity.CheckoutActivity"></activity>
     </application>
 
 </manifest>

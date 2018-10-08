@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class DressViewActivity extends AppCompatActivity {
 
     private ArrayList<Dress> dressArrayList;
-    private AppCompatButton btn_berger;
+    private AppCompatButton btn_berger, btnCartBag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,14 @@ public class DressViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DressViewActivity.this, MenuItemsActivity.class) );
+            }
+        });
+
+        btnCartBag = findViewById(R.id.btnCartBag);
+        btnCartBag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DressViewActivity.this, CheckoutActivity.class) );
             }
         });
 
