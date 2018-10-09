@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         tvSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, DressViewActivity.class) );
+                startActivity(new Intent(LoginActivity.this, ProductCategoryActivity.class) );
             }
         });
     }
