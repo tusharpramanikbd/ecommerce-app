@@ -38,6 +38,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="114dp">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Regular View"
+                    android:textAllCaps="false"
+                    android:rotation="-90"
+                    android:layout_marginBottom="42dp"
+                    android:layout_marginTop="30dp" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="360 View"
+                    android:textAllCaps="false"
+                    android:rotation="-90"
+                    android:layout_marginLeft="9dp"/>
+
+            </LinearLayout>
+
+
         </RelativeLayout>
 
         <LinearLayout
@@ -283,11 +309,16 @@
                     android:text="Details"
                     android:textStyle="bold"/>
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                <com.borjabravo.readmoretextview.ReadMoreTextView
+                    android:id="@+id/text_view"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:text="Lorem Ipsum is simply dummy text of the printing and type setting industry." />
+                    android:text="Lorem Ipsum is simply dummy text of the printing and type setting industry."
+                    app:trimExpandedText="Read more"
+                    app:trimCollapsedText="Show less"
+                    app:trimMode="trimModeLength"
+                    app:trimLength="30"
+                    app:colorClickableText="@color/black"/>
 
             </LinearLayout>
 
@@ -313,63 +344,125 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="20dp">
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="20dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/profile_image"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@mipmap/rifat_vais_wife_sample"
-                    app:civ_border_width="2dp"
-                    app:civ_border_color="#9357C1"
-                    android:layout_gravity="center_vertical"/>
+                <include
+                    android:id="@+id/reviewList"
+                    layout="@layout/review_item" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnReadMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Read More"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:background="@drawable/custom_rect_button_ash"
+                android:minHeight="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="20dp"
-                    android:orientation="vertical"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/bg_rounded_corner_search_background_stroked_purple">
+                    android:id="@+id/reviewItem"
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@mipmap/rifat_vais_wife_sample"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#9357C1"
+                        android:layout_gravity="center_vertical"/>
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="20dp"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/bg_rounded_corner_search_background_stroked_purple">
+
+                        <android.support.v7.widget.AppCompatEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="12sp"
+                            android:background="@null"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lorem Ipsum is simply dummy text"
-                        android:layout_gravity="center"
-                        android:textSize="12sp"
-                        android:background="@null"/>
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical">
+
+                        <android.support.v7.widget.AppCompatRatingBar
+                            android:id="@+id/rbRatingBar"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_gravity="center_vertical">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp">
 
-                    <android.support.v7.widget.AppCompatRatingBar
-                        android:id="@+id/rbRatingBar"
-                        style="?android:attr/ratingBarStyleSmall"
+                    <android.support.v7.widget.AppCompatButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:rating="3" />
+                        android:text="Send"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:background="@drawable/custom_rect_button_ash"
+                        android:minHeight="0dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginBottom="10dp" />
 
                 </LinearLayout>
 
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="More Items"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"/>
 
-
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewDress"
+                    android:layout_below="@id/category_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 
         </LinearLayout>
-
-
 
     </LinearLayout>
 

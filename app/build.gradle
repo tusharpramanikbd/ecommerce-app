@@ -47,4 +47,7 @@ dependencies {
 
     //Circle Imageview
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //Read More Text
+    implementation 'com.borjabravo:readmoretextview:2.1.0'
 }
