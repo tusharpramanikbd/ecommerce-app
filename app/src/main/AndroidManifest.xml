@@ -34,7 +34,6 @@
         <activity android:name=".CartActivity" />
         <activity android:name=".ProductDetail" />
         <activity android:name=".Activity.MyOrdersActivity" />
-        <activity android:name=".Activity.OrderDetailsActivity" />
         <activity android:name=".ShippingAndBillingAddressActivity" />
         <activity android:name=".PaymentMethodsActivity" />
         <activity android:name=".CartSummaryActivity" />
@@ -44,7 +43,8 @@
             android:name=".Activity.DressViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.MenuItemsActivity" />
-        <activity android:name=".Activity.MyProfileActivity" />
+        <activity android:name=".Activity.MyProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.ProductDetailsActivity" />
         <activity android:name=".Activity.CheckoutActivity" />
         <activity android:name=".Activity.ShippingAddressActivity" />

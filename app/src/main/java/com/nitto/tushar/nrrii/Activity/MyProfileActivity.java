@@ -1,45 +1,60 @@
 package com.nitto.tushar.nrrii.Activity;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.nitto.tushar.nrrii.R;
 
 public class MyProfileActivity extends AppCompatActivity {
 
-    private AppCompatTextView tvEditProfile, tvFullName, tvAge, tvGender, tvContactNumber, tvEmail, tvAddress;
+    private AppCompatTextView tvFullName, tvAge, tvGender, tvContactNumber, tvEmail, tvAddress;
     private AppCompatEditText etFullName, etAge, etGender, etContactNumber, etEmail, etAddress;
     private AppCompatButton btnDone;
+    private FloatingActionButton btnEditProfile;
+    private LinearLayout div1, div2, div3, div4, div5, div6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_profile);
+        setContentView(R.layout.activity_my_profile_new);
 
-        tvEditProfile = findViewById(R.id.tvEditProfile);
         tvFullName = findViewById(R.id.tvFullName);
         tvAge = findViewById(R.id.tvAge);
         tvGender = findViewById(R.id.tvGender);
         tvContactNumber = findViewById(R.id.tvContactNumber);
         tvEmail = findViewById(R.id.tvEmail);
         tvAddress = findViewById(R.id.tvAddress);
+
         etFullName = findViewById(R.id.etFullName);
         etAge = findViewById(R.id.etAge);
         etGender = findViewById(R.id.etGender);
         etContactNumber = findViewById(R.id.etContactNumber);
         etEmail = findViewById(R.id.etEmail);
         etAddress = findViewById(R.id.etAddress);
+
         btnDone = findViewById(R.id.btnDone);
+        btnEditProfile = findViewById(R.id.fabEditProfile);
+
+        div1 = findViewById(R.id.divider1);
+        div2 = findViewById(R.id.divider2);
+        div3 = findViewById(R.id.divider3);
+        div4 = findViewById(R.id.divider4);
+        div5 = findViewById(R.id.divider5);
+        div6 = findViewById(R.id.divider6);
 
 
-        tvEditProfile.setOnClickListener(new View.OnClickListener() {
+
+
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvEditProfile.setVisibility(View.INVISIBLE);
+                btnEditProfile.setVisibility(View.INVISIBLE);
 
                 tvFullName.setVisibility(View.GONE);
                 tvAge.setVisibility(View.GONE);
@@ -47,6 +62,13 @@ public class MyProfileActivity extends AppCompatActivity {
                 tvContactNumber.setVisibility(View.GONE);
                 tvEmail.setVisibility(View.GONE);
                 tvAddress.setVisibility(View.GONE);
+
+                div1.setVisibility(View.GONE);
+                div2.setVisibility(View.GONE);
+                div3.setVisibility(View.GONE);
+                div4.setVisibility(View.GONE);
+                div5.setVisibility(View.GONE);
+                div6.setVisibility(View.GONE);
 
                 etFullName.setVisibility(View.VISIBLE);
                 etAge.setVisibility(View.VISIBLE);
@@ -65,7 +87,7 @@ public class MyProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 btnDone.setVisibility(View.GONE);
 
-                tvEditProfile.setVisibility(View.VISIBLE);
+                btnEditProfile.setVisibility(View.VISIBLE);
 
                 tvFullName.setVisibility(View.VISIBLE);
                 tvAge.setVisibility(View.VISIBLE);
@@ -80,10 +102,14 @@ public class MyProfileActivity extends AppCompatActivity {
                 etContactNumber.setVisibility(View.GONE);
                 etEmail.setVisibility(View.GONE);
                 etAddress.setVisibility(View.GONE);
+
+                div1.setVisibility(View.VISIBLE);
+                div2.setVisibility(View.VISIBLE);
+                div3.setVisibility(View.VISIBLE);
+                div4.setVisibility(View.VISIBLE);
+                div5.setVisibility(View.VISIBLE);
+                div6.setVisibility(View.VISIBLE);
             }
         });
-
-
-
     }
 }

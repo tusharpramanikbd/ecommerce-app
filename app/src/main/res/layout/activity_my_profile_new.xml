@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".Activity.MenuItemsActivity"
+    android:background="@mipmap/colors_skirt">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight=".8">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_gravity="bottom"
+                android:gravity="bottom">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/ivPromotionalProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@mipmap/buildings_1"
+                    android:scaleType="centerCrop" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@mipmap/path_3"
+                    android:scaleType="centerCrop" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fabEditProfile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignBottom="@id/ivPromotionalProduct"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="10dp"
+                    app:backgroundTint="@color/white"
+                    android:src="@drawable/ic_edit"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:src="@mipmap/rifat_vais_wife_sample"
+                        app:civ_border_width="0dp"
+                        app:civ_border_color="#9357C1"
+                        android:layout_marginTop="10dp"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your Name"
+                        android:textSize="23sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/full_name" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvFullName"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Tushar Pramanik" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/etFullName"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Tushar Pramanik"
+                    android:visibility="gone"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                android:background="@color/colorAsh"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Age:" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvAge"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="25" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/etAge"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="25"
+                    android:visibility="gone"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                android:background="@color/colorAsh"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Gender:" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvGender"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Male" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/etGender"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Male"
+                    android:visibility="gone"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                android:background="@color/colorAsh"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Contact No:" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvContactNumber"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="+8801746941437" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/etContactNumber"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="+8801746941437"
+                    android:visibility="gone"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                android:background="@color/colorAsh"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Email:" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="tusharpramanikbd@gmail.com" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="tusharpramanikbd@gmail.com"
+                    android:visibility="gone"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                android:background="@color/colorAsh"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Address:" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Your Home Address" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Your Home Address"
+                    android:visibility="gone"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/divider6"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                android:background="@color/colorAsh"/>
+
+            <LinearLayout
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:layout_marginBottom="10dp">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:background="@drawable/custom_button_purple"
+                    android:minHeight="0dp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

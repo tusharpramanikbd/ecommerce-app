@@ -26,8 +26,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ArrayList<Dress> dressArrayList;
     private AppCompatButton btnReadMore;
 
-    private LayoutInflater linf;
-    private LinearLayout rr;
+    private LayoutInflater inflater;
+    private LinearLayout linearLayout;
 
     private LinearLayout layoutReview, reviewItem;
 
@@ -76,11 +76,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
         btnReadMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                linf = (LayoutInflater) getApplicationContext().getSystemService(
+                inflater = (LayoutInflater) getApplicationContext().getSystemService(
                         Context.LAYOUT_INFLATER_SERVICE);
-                linf = LayoutInflater.from(ProductDetailsActivity.this);
+                inflater = LayoutInflater.from(ProductDetailsActivity.this);
 
-                rr = (LinearLayout) findViewById(R.id.layoutReview);
+                linearLayout = findViewById(R.id.layoutReview);
 
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -88,8 +88,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 layoutParams.setMargins(0, 0, 0, 30);
 
                 for (int i = 1; i < 4; i++) {
-                    final View v1 = linf.inflate(R.layout.review_item, null);
-                    rr.addView(v1, layoutParams);
+                    final View v1 = inflater.inflate(R.layout.review_item, null);
+                    linearLayout.addView(v1, layoutParams);
                 }
             }
         });
@@ -99,10 +99,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         dressArrayList.add(new Dress("6000", "5000"));
         dressArrayList.add(new Dress("7000", "5000"));
         dressArrayList.add(new Dress("8000", "4000"));
-        dressArrayList.add(new Dress("9000", "4000"));
-        dressArrayList.add(new Dress("9000", "8000"));
-        dressArrayList.add(new Dress("8000", "7000"));
-        dressArrayList.add(new Dress("7000", "7000"));
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
         RecyclerViewAdapterDress myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
