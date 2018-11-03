@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -14,10 +15,11 @@ import com.nitto.tushar.nrrii.R;
 public class MyProfileActivity extends AppCompatActivity {
 
     private AppCompatTextView tvFullName, tvAge, tvGender, tvContactNumber, tvEmail, tvAddress;
-    private AppCompatEditText etFullName, etAge, etGender, etContactNumber, etEmail, etAddress;
+    private AppCompatEditText etFullName, etAge, etContactNumber, etEmail, etAddress;
     private AppCompatButton btnDone;
     private FloatingActionButton btnEditProfile;
     private LinearLayout div1, div2, div3, div4, div5, div6;
+    private AppCompatSpinner genderSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +35,11 @@ public class MyProfileActivity extends AppCompatActivity {
 
         etFullName = findViewById(R.id.etFullName);
         etAge = findViewById(R.id.etAge);
-        etGender = findViewById(R.id.etGender);
         etContactNumber = findViewById(R.id.etContactNumber);
         etEmail = findViewById(R.id.etEmail);
         etAddress = findViewById(R.id.etAddress);
+
+        genderSpinner = findViewById(R.id.genderSpinner);
 
         btnDone = findViewById(R.id.btnDone);
         btnEditProfile = findViewById(R.id.fabEditProfile);
@@ -72,10 +75,11 @@ public class MyProfileActivity extends AppCompatActivity {
 
                 etFullName.setVisibility(View.VISIBLE);
                 etAge.setVisibility(View.VISIBLE);
-                etGender.setVisibility(View.VISIBLE);
                 etContactNumber.setVisibility(View.VISIBLE);
                 etEmail.setVisibility(View.VISIBLE);
                 etAddress.setVisibility(View.VISIBLE);
+
+                genderSpinner.setVisibility(View.VISIBLE);
 
                 btnDone.setVisibility(View.VISIBLE);
             }
@@ -98,10 +102,11 @@ public class MyProfileActivity extends AppCompatActivity {
 
                 etFullName.setVisibility(View.GONE);
                 etAge.setVisibility(View.GONE);
-                etGender.setVisibility(View.GONE);
                 etContactNumber.setVisibility(View.GONE);
                 etEmail.setVisibility(View.GONE);
                 etAddress.setVisibility(View.GONE);
+
+                genderSpinner.setVisibility(View.GONE);
 
                 div1.setVisibility(View.VISIBLE);
                 div2.setVisibility(View.VISIBLE);
