@@ -12,8 +12,22 @@
         android:orientation="vertical"
         tools:context=".Activity.CheckoutActivity">
 
+        <include
+            android:id="@+id/top_bar"
+            layout="@layout/top_search_bar" />
+
+        <LinearLayout
+            android:id="@+id/devider_layout"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:background="@color/purple"
+            android:layout_below="@id/top_bar">
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/topLayout"
+            android:layout_below="@id/devider_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -28,126 +42,170 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/middleLayout"
-            android:layout_below="@id/topLayout"
+            android:id="@+id/layout_subtotal"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:orientation="vertical"
-            android:background="@color/colorAsh"/>
-
-        <LinearLayout
-            android:layout_below="@id/middleLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_below="@id/topLayout"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
 
-            <LinearLayout
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sub Total: "
+                android:textStyle="bold"
+                android:textSize="12sp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/subtotalPrice"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sub Total: "
-                        android:textStyle="bold"
-                        android:textSize="12sp"/>
-
-                    <android.support.v7.widget.AppCompatTextView
-                        android:id="@+id/productQuantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="17000 BDT"
-                        android:textSize="12sp"
-                        android:layout_marginLeft="6dp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Discount: "
-                        android:textStyle="bold"
-                        android:textSize="12sp"/>
-
-                    <android.support.v7.widget.AppCompatTextView
-                        android:id="@+id/productPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2000 BDT"
-                        android:textSize="12sp"
-                        android:layout_marginLeft="11dp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
-
-                    <android.support.v7.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Total: "
-                        android:textStyle="bold"
-                        android:textSize="12sp"/>
-
-                    <android.support.v7.widget.AppCompatTextView
-                        android:id="@+id/productSize"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="15000 BDT"
-                        android:textSize="12sp"
-                        android:layout_marginLeft="30dp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center">
-
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/btnContinue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Continue"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:minHeight="0dp"
-                        android:background="@drawable/custom_button_purple"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
+                android:layout_height="wrap_content"
+                android:text="17000 BDT"
+                android:textSize="12sp"
+                android:gravity="end"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/divider_1"
+            android:layout_below="@id/layout_subtotal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            android:background="@color/ash"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_discount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/divider_1"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discount: "
+                android:textStyle="bold"
+                android:textSize="12sp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/discountPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="17000 BDT"
+                android:textSize="12sp"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/divider_2"
+            android:layout_below="@id/layout_discount"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            android:background="@color/ash"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_deliveryCharge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/divider_2"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Charge: "
+                android:textStyle="bold"
+                android:textSize="12sp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/deliveryChargePrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="17000 BDT"
+                android:textSize="12sp"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/divider_3"
+            android:layout_below="@id/layout_deliveryCharge"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            android:background="@color/ash"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_totalPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/divider_3"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total: "
+                android:textStyle="bold"
+                android:textSize="12sp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/totalPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="17000 BDT"
+                android:textSize="12sp"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_continue"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/layout_totalPrice"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_continue"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button_purple"
+                android:minHeight="0dp"
+                android:text="Continue"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
 
 
     </RelativeLayout>

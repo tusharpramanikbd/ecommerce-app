@@ -30,7 +30,7 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycleview_checkout_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycleview_checkout_item_new, parent, false);
         return new ViewHolder(view);
     }
 
@@ -48,10 +48,6 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
         holder.productSize.setText(String.valueOf(cartItem.getProductSize()));
 
         holder.productColor.setText(String.valueOf(cartItem.getProductColor()));
-
-        if(position == cartItems.size()-1){
-            holder.checkoutDevider.setVisibility(View.INVISIBLE);
-        }
     }
 
     @Override
@@ -62,8 +58,6 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         AppCompatTextView productPrice, productQuantity, productSize, productColor;
-        LinearLayout checkoutDevider;
-
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -71,7 +65,6 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
             this.productQuantity = itemView.findViewById(R.id.productQuantity);
             this.productSize = itemView.findViewById(R.id.productSize);
             this.productColor = itemView.findViewById(R.id.productColor);
-            this.checkoutDevider = itemView.findViewById(R.id.checkoutDevider);
         }
     }
 }

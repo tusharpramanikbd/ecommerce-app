@@ -27,7 +27,7 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        btnContinue = findViewById(R.id.btnContinue);
+        btnContinue = findViewById(R.id.btn_continue);
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,9 +37,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
         cartItems = new ArrayList<>();
 
-        cartItems.add(new CartItem(2, 5000, "M", "Green"));
-        cartItems.add(new CartItem(1, 6000, "L", "Black"));
-        cartItems.add(new CartItem(3, 7000, "XL", "Red"));
         cartItems.add(new CartItem(2, 5000, "M", "Green"));
         cartItems.add(new CartItem(1, 6000, "L", "Black"));
         cartItems.add(new CartItem(3, 7000, "XL", "Red"));
