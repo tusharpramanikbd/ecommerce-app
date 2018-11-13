@@ -1,0 +1,58 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/rectangle">
+
+    <LinearLayout
+        android:id="@+id/profile_list_item"
+        android:layout_width="300dp"
+        android:layout_height="260dp"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/pattern"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Congratulation"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:textStyle="bold"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Successfully Done !"
+            android:textSize="25sp"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To trac your order &amp; save your informations"
+            android:textSize="12sp"
+            android:layout_gravity="center_horizontal"
+            tools:ignore="HardcodedText"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_button_purple"
+            android:minHeight="0dp"
+            android:text="Signup now"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

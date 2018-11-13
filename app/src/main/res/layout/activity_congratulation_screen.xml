@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.CongratulationScreenActivity"
     android:orientation="vertical"
-    android:layout_marginTop="50dp">
+    android:background="@mipmap/rectangle">
 
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
