@@ -3,61 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <!--<group android:checkableBehavior="single">-->
-        <!--<item-->
-            <!--android:id="@+id/nav_camera"-->
-            <!--android:icon="@drawable/ic_menu_camera"-->
-            <!--android:title="Import" />-->
-        <!--<item-->
-            <!--android:id="@+id/nav_gallery"-->
-            <!--android:icon="@drawable/ic_menu_gallery"-->
-            <!--android:title="Gallery" />-->
-        <!--<item-->
-            <!--android:id="@+id/nav_slideshow"-->
-            <!--android:icon="@drawable/ic_menu_slideshow"-->
-            <!--android:title="Slideshow" />-->
-        <!--<item-->
-            <!--android:id="@+id/nav_manage"-->
-            <!--android:icon="@drawable/ic_menu_manage"-->
-            <!--android:title="Tools" />-->
-    <!--</group>-->
-
-    <!--<item android:title="Communicate">-->
-        <!--<menu>-->
-            <!--<item-->
-                <!--android:id="@+id/nav_share"-->
-                <!--android:icon="@drawable/ic_menu_share"-->
-                <!--android:title="Share" />-->
-            <!--<item-->
-                <!--android:id="@+id/nav_send"-->
-                <!--android:icon="@drawable/ic_menu_send"-->
-                <!--android:title="Send" />-->
-        <!--</menu>-->
-    <!--</item>-->
-
     <item
-        android:id="@+id/menu_my_orders"
-        android:icon="@drawable/ic_menu_send"
-        android:title="My Orders"/>
+        android:id="@+id/menu_my_profile"
+        android:icon="@mipmap/profile"
+        android:title="My Profile"/>
     <item
-        android:id="@+id/menu_shopping_cart"
-        android:icon="@drawable/ic_menu_send"
-        android:title="Shopping Cart"/>
+        android:id="@+id/menu_categary"
+        android:icon="@mipmap/category"
+        android:title="Category"/>
     <item
-        android:id="@+id/menu_my_favorites"
-        android:icon="@drawable/ic_menu_send"
-        android:title="My Favorites"/>
+        android:id="@+id/menu_orders"
+        android:icon="@mipmap/offer"
+        android:title="Orders"/>
     <item
-        android:id="@+id/menu_browse"
-        android:icon="@drawable/ic_menu_send"
-        android:title="Browse"/>
+        android:id="@+id/menu_cart"
+        android:icon="@mipmap/shopping_black_cart"
+        android:title="Cart"/>
     <item
-        android:id="@+id/menu_notifications"
-        android:icon="@drawable/ic_menu_send"
-        android:title="Notifications"/>
+        android:id="@+id/menu_settings"
+        android:icon="@mipmap/settings"
+        android:title="Settings"/>
     <item
-        android:id="@+id/menu_order_history"
-        android:icon="@drawable/ic_menu_send"
-        android:title="Order History"/>
+        android:id="@+id/menu_logout"
+        android:icon="@mipmap/logoutprofile"
+        android:title="Logout"/>
 
 </menu>

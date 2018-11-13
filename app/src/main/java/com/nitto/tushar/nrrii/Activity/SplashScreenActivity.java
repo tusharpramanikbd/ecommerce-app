@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.nitto.tushar.nrrii.MainActivity;
 import com.nitto.tushar.nrrii.R;
 import com.nitto.tushar.nrrii.ShippingAndBillingAddressActivity;
 

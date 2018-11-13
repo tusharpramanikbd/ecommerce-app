@@ -37,25 +37,29 @@
         <activity android:name=".ShippingAndBillingAddressActivity" />
         <activity android:name=".PaymentMethodsActivity" />
         <activity android:name=".CartSummaryActivity" />
-        <activity android:name=".Activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activity.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.DressViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.MenuItemsActivity" />
-        <activity android:name=".Activity.MyProfileActivity"
+        <activity
+            android:name=".Activity.MyProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.ProductDetailsActivity" />
-        <activity android:name=".Activity.CheckoutActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activity.CheckoutActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.ShippingAddressActivity" />
         <activity android:name=".Activity.PaymentMethodActivity" />
         <activity android:name=".Activity.CongratulationScreenActivity" />
         <activity android:name=".Activity.ResetPasswordActivity" />
         <activity android:name=".Activity.LoggedInShippingAddressActivity" />
-        <activity android:name=".Activity.ProductCategoryActivity"></activity>
+        <activity android:name=".Activity.ProductCategoryActivity" />
     </application>
 
 </manifest>

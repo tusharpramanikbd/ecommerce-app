@@ -18,5 +18,6 @@
 
     <color name="transparent_black">#66000000</color>
     <color name="transparent_purple">#41ac13c3</color>
+    <color name="darkGray">#6c6c6c6c</color>
 
 </resources>

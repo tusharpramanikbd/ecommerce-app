@@ -4,11 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activity.DressViewActivity">
 
-    <include
-        android:id="@+id/top_bar"
-        layout="@layout/top_search_bar" />
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/viewTotal"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_alignParentTop="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <!--<android.support.v7.widget.AppCompatButton-->
+                    <!--android:id="@+id/btn_berger"-->
+                    <!--android:layout_width="32dp"-->
+                    <!--android:layout_height="32dp"-->
+                    <!--android:background="@mipmap/berger_menu"/>-->
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnCartBag"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@mipmap/shopping_black_cart"
+                    android:layout_marginStart="230dp"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/devider_layout"
@@ -16,7 +56,7 @@
         android:layout_height="1dp"
         android:orientation="horizontal"
         android:background="@color/purple"
-        android:layout_below="@id/top_bar">
+        android:layout_below="@id/appBarLayout">
     </LinearLayout>
 
     <android.support.v7.widget.AppCompatTextView
