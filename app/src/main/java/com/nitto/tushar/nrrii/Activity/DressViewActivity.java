@@ -27,9 +27,9 @@ public class DressViewActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
     private ArrayList<Dress> dressArrayList;
-    private AppCompatButton btn_berger, btnCartBag;
-    ActionBarDrawerToggle toggle;
-    private LinearLayout layoutMyProfile, orderList, btnSettings, btnLogout;
+    private AppCompatButton btnCartBag;
+    private ActionBarDrawerToggle toggle;
+    private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,35 +44,17 @@ public class DressViewActivity extends AppCompatActivity {
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         increaseHamburgerSize();
-//        toggle.setDrawerIndicatorEnabled(false);
-//        toggle.setHomeAsUpIndicator(R.mipmap.berger_menu);
-        //toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.colorPrimary));
-//        toggle.setDrawerArrowDrawable(R.drawable.berger_menu);
-//        toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openDrawer();
-//            }
-//        });
+
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-//        btn_berger = findViewById(R.id.btn_berger);
-//        btn_berger.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //startActivity(new Intent(DressViewActivity.this, MenuItemsActivity.class) );
-//                openDrawer();
-//            }
-//        });
-
-//        btnCartBag = findViewById(R.id.btnCartBag);
-//        btnCartBag.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(DressViewActivity.this, CheckoutActivity.class) );
-//            }
-//        });
+        btnCartBag = findViewById(R.id.btnCartBag);
+        btnCartBag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DressViewActivity.this, CheckoutActivity.class) );
+            }
+        });
 
         dressArrayList = new ArrayList<>();
         dressArrayList.add(new Dress("5000", "4000"));
@@ -94,39 +76,47 @@ public class DressViewActivity extends AppCompatActivity {
         layoutMyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(DressViewActivity.this, MyProfileActivity.class) );
-                //closeDrawerWithOutAnimation();
             }
         });
 
-        orderList = findViewById(R.id.orderList);
-        orderList.setOnClickListener(new View.OnClickListener() {
+        layoutCategory = findViewById(R.id.layoutCategory);
+        layoutCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DressViewActivity.this, ProductCategoryActivity.class) );
+            }
+        });
+
+        layoutOrders = findViewById(R.id.layoutOrders);
+        layoutOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DressViewActivity.this, MyOrdersActivity.class) );
-                //closeDrawerWithOutAnimation();
-
             }
         });
 
-        btnSettings = findViewById(R.id.btnSettings);
-        btnSettings.setOnClickListener(new View.OnClickListener() {
+        layoutCart = findViewById(R.id.layoutCart);
+        layoutCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DressViewActivity.this, CheckoutActivity.class) );
+            }
+        });
+
+        layoutSettings = findViewById(R.id.layoutSettings);
+        layoutSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DressViewActivity.this, ResetPasswordActivity.class) );
-                //closeDrawerWithOutAnimation();
-
             }
         });
 
-        btnLogout = findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(new View.OnClickListener() {
+        layoutLogout = findViewById(R.id.layoutLogout);
+        layoutLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DressViewActivity.this, LoginActivity.class) );
-                //closeDrawerWithOutAnimation();
-
             }
         });
 

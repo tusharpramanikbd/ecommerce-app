@@ -50,7 +50,8 @@
         <activity
             android:name=".Activity.MyProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.ProductDetailsActivity" />
+        <activity android:name=".Activity.ProductDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Activity.CheckoutActivity"
             android:theme="@style/AppTheme.NoActionBar" />

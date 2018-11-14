@@ -1,426 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     tools:context=".Activity.ProductDetailsActivity">
 
     <LinearLayout
+        android:id="@+id/viewBottomBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <include
+            layout="@layout/bottom_price_bar" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Title of the product"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold"/>
+    </LinearLayout>
 
-        </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_above="@id/viewBottomBar">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="114dp">
-
-                <android.support.v7.widget.AppCompatButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Regular View"
-                    android:textAllCaps="false"
-                    android:rotation="-90"
-                    android:layout_marginBottom="42dp"
-                    android:layout_marginTop="30dp" />
-
-                <android.support.v7.widget.AppCompatButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="360 View"
-                    android:textAllCaps="false"
-                    android:rotation="-90"
-                    android:layout_marginLeft="9dp"/>
-
-            </LinearLayout>
-
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            android:layout_marginTop="10dp"
-            android:baselineAligned="false">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:theme="@style/AppTheme.AppBarOverlay">
 
-            </LinearLayout>
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/white"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+                    <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/viewTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="?actionBarSize"
+                        android:layout_alignParentTop="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <!--<android.support.v7.widget.AppCompatButton-->
+                        <!--android:id="@+id/btn_berger"-->
+                        <!--android:layout_width="32dp"-->
+                        <!--android:layout_height="32dp"-->
+                        <!--android:background="@mipmap/berger_menu"/>-->
+
+                        <!--<android.support.v7.widget.AppCompatButton-->
+                        <!--android:id="@+id/btnCartBag"-->
+                        <!--android:layout_width="32dp"-->
+                        <!--android:layout_height="32dp"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:background="@mipmap/shopping_black_cart"-->
+                        <!--android:layout_marginStart="230dp"/>-->
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.AppBarLayout>
 
             <LinearLayout
+                android:id="@+id/devider_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="1dp"
                 android:orientation="horizontal"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:layout_gravity="center">
-
-                <LinearLayout
-                    android:layout_width="12dp"
-                    android:layout_height="12dp">
-
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/ivWalkThroughCircle1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_circle_ash_selected"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="10dp"
-                    android:layout_height="5dp"></LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:gravity="center"
-                    android:layout_gravity="center">
-
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/ivWalkThroughCircle2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_circle_ash"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="10dp"
-                    android:layout_height="5dp"></LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:gravity="center"
-                    android:layout_gravity="center">
-
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/ivWalkThroughCircle3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_circle_ash"/>
-
-                </LinearLayout>
-
+                android:background="@color/purple"
+                android:layout_below="@id/appBarLayout">
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <android.support.v7.widget.AppCompatButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Favorite"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:background="@drawable/custom_button_purple"
-                    android:minHeight="0dp"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:gravity="center_vertical">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:text="Price:"
-                    android:textStyle="bold"/>
-
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tvFullName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="4000"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:gravity="center_vertical">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:text="Size:"
-                    android:textStyle="bold"/>
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tvAge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="S  M  L  XL"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:gravity="center_vertical">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:text="Color:"
-                    android:textStyle="bold"/>
+                android:layout_below="@id/devider_layout">
 
                 <LinearLayout
-                    android:layout_width="12dp"
-                    android:layout_height="12dp">
-
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/ivDressColor1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_circle_green"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="10dp"
-                    android:layout_height="5dp"></LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:gravity="center"
-                    android:layout_gravity="center">
-
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/ivDressColor2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_circle_orange"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="10dp"
-                    android:layout_height="5dp"></LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:gravity="center"
-                    android:layout_gravity="center">
-
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/ivDressColor3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_circle_purple"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="10dp"
-                    android:layout_height="5dp"></LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:gravity="center"
-                    android:layout_gravity="center">
-
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/ivDressColor4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_circle_red"
-                        />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Details"
-                    android:textStyle="bold"/>
-
-                <com.borjabravo.readmoretextview.ReadMoreTextView
-                    android:id="@+id/text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lorem Ipsum is simply dummy text of the printing and type setting industry."
-                    app:trimExpandedText="Read more"
-                    app:trimCollapsedText="Show less"
-                    app:trimMode="trimModeLength"
-                    app:trimLength="30"
-                    app:colorClickableText="@color/black"/>
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Title of the product"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp">
+                </LinearLayout>
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reviews"
-                    android:textStyle="bold"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp">
 
-                <LinearLayout
-                    android:layout_width="52dp"
-                    android:layout_height="1dp"
-                    android:orientation="vertical"
-                    android:background="@color/colorAsh"/>
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="114dp">
 
-            <LinearLayout
-                android:id="@+id/layoutReview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="20dp">
+                        <android.support.v7.widget.AppCompatButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Regular View"
+                            android:textAllCaps="false"
+                            android:rotation="-90"
+                            android:layout_marginBottom="42dp"
+                            android:layout_marginTop="30dp" />
 
-                <include
-                    android:id="@+id/reviewList"
-                    layout="@layout/review_item" />
+                        <android.support.v7.widget.AppCompatButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="360 View"
+                            android:textAllCaps="false"
+                            android:rotation="-90"
+                            android:layout_marginLeft="9dp"/>
 
-            </LinearLayout>
+                    </LinearLayout>
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btnReadMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Read More"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:background="@drawable/custom_rect_button_ash"
-                android:minHeight="0dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                </RelativeLayout>
 
                 <LinearLayout
-                    android:id="@+id/reviewItem"
-                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="20dp">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/profile_image"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@mipmap/rifat_vais_wife_sample"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="#9357C1"
-                        android:layout_gravity="center_vertical"/>
+                    android:weightSum="3"
+                    android:layout_marginTop="10dp"
+                    android:baselineAligned="false">
 
                     <LinearLayout
-                        android:layout_width="200dp"
-                        android:layout_height="20dp"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/bg_rounded_corner_search_background_stroked_purple">
-
-                        <android.support.v7.widget.AppCompatEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textSize="12sp"
-                            android:background="@null"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="12dp"
+                            android:layout_height="12dp">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/ivWalkThroughCircle1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ic_circle_ash_selected"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="5dp"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:gravity="center"
+                            android:layout_gravity="center">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/ivWalkThroughCircle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ic_circle_ash"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="5dp"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:gravity="center"
+                            android:layout_gravity="center">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/ivWalkThroughCircle3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ic_circle_ash"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_gravity="center_vertical">
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-                        <android.support.v7.widget.AppCompatRatingBar
-                            android:id="@+id/rbRatingBar"
-                            style="?android:attr/ratingBarStyleSmall"
+                        <android.support.v7.widget.AppCompatButton
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="Favorite"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:background="@drawable/custom_button_purple"
+                            android:minHeight="0dp"/>
 
                     </LinearLayout>
 
@@ -428,42 +238,312 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp">
+                    android:layout_marginTop="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="Price:"
+                            android:textStyle="bold"/>
+
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tvFullName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="4000"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="Size:"
+                            android:textStyle="bold"/>
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tvAge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="S  M  L  XL"
+                            android:textStyle="bold"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="Color:"
+                            android:textStyle="bold"/>
+
+                        <LinearLayout
+                            android:layout_width="12dp"
+                            android:layout_height="12dp">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/ivDressColor1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ic_circle_green"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="5dp"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:gravity="center"
+                            android:layout_gravity="center">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/ivDressColor2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ic_circle_orange"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="5dp"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:gravity="center"
+                            android:layout_gravity="center">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/ivDressColor3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ic_circle_purple"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="5dp"></LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:gravity="center"
+                            android:layout_gravity="center">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/ivDressColor4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ic_circle_red"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginBottom="10dp">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Details"
+                            android:textStyle="bold"/>
+
+                        <com.borjabravo.readmoretextview.ReadMoreTextView
+                            android:id="@+id/text_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lorem Ipsum is simply dummy text of the printing and type setting industry."
+                            app:trimExpandedText="Read more"
+                            app:trimCollapsedText="Show less"
+                            app:trimMode="trimModeLength"
+                            app:trimLength="30"
+                            app:colorClickableText="@color/black"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginBottom="10dp">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Reviews"
+                            android:textStyle="bold"/>
+
+                        <LinearLayout
+                            android:layout_width="52dp"
+                            android:layout_height="1dp"
+                            android:orientation="vertical"
+                            android:background="@color/colorAsh"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutReview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="20dp">
+
+                        <include
+                            android:id="@+id/reviewList"
+                            layout="@layout/review_item" />
+
+                    </LinearLayout>
 
                     <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btnReadMore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Send"
+                        android:text="Read More"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:background="@drawable/custom_rect_button_ash"
                         android:minHeight="0dp"
-                        android:layout_marginLeft="50dp"
+                        android:layout_gravity="center"
                         android:layout_marginBottom="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/reviewItem"
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="20dp">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                android:id="@+id/profile_image"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:src="@mipmap/rifat_vais_wife_sample"
+                                app:civ_border_width="2dp"
+                                app:civ_border_color="#9357C1"
+                                android:layout_gravity="center_vertical"/>
+
+                            <LinearLayout
+                                android:layout_width="200dp"
+                                android:layout_height="20dp"
+                                android:orientation="vertical"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/bg_rounded_corner_search_background_stroked_purple">
+
+                                <android.support.v7.widget.AppCompatEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:textSize="12sp"
+                                    android:background="@null"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center_vertical">
+
+                                <android.support.v7.widget.AppCompatRatingBar
+                                    android:id="@+id/rbRatingBar"
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp">
+
+                            <android.support.v7.widget.AppCompatButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Send"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:background="@drawable/custom_rect_button_ash"
+                                android:minHeight="0dp"
+                                android:layout_marginLeft="50dp"
+                                android:layout_marginBottom="10dp" />
+
+                        </LinearLayout>
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="More Items"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginBottom="10dp"/>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recyclerViewDress"
+                            android:layout_below="@id/category_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="More Items"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="10dp"/>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerViewDress"
-                    android:layout_below="@id/category_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
-</ScrollView>
+</RelativeLayout>
