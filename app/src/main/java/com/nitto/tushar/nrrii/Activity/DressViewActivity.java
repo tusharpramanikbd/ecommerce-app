@@ -160,7 +160,7 @@ public class DressViewActivity extends AppCompatActivity {
 
     public class HamburgerDrawable extends DrawerArrowDrawable{
 
-        public HamburgerDrawable(Context context){
+        HamburgerDrawable(Context context){
             super(context);
             setColor(context.getResources().getColor(R.color.colorPrimary));
         }

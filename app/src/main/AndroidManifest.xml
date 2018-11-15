@@ -60,7 +60,8 @@
         <activity android:name=".Activity.CongratulationScreenActivity" />
         <activity android:name=".Activity.ResetPasswordActivity" />
         <activity android:name=".Activity.LoggedInShippingAddressActivity" />
-        <activity android:name=".Activity.ProductCategoryActivity" />
+        <activity android:name=".Activity.ProductCategoryActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
