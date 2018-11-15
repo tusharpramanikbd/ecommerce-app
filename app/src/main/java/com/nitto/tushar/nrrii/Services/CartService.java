@@ -15,6 +15,7 @@ import java.util.List;
 
 public class CartService {
 
+    //Listener.........................
     public interface OnUpdateUIListener {
         void onItemPriceUpdated(double totalPriceBeforeChange);
     }
@@ -28,6 +29,8 @@ public class CartService {
     public void RemoveOnUpdateUIListener(OnUpdateUIListener listener) {
         this.updateUIListeners.remove(listener);
     }
+    //..................................
+
 
 
     private static CartService CartServiceInstance;

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderService {
+
     private ArrayList<OrderItem> orderItemsList;
     private OrderItem orderItem;
 
@@ -28,6 +29,8 @@ public class OrderService {
     }
 
 
+
+
     private static OrderService orderService = new OrderService();
 
     public static OrderService getInstance() {
@@ -37,7 +40,6 @@ public class OrderService {
                 orderService = new OrderService();
             }
         }
-
         return orderService;
     }
 
