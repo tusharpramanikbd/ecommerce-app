@@ -17,9 +17,9 @@
         android:gravity="center_horizontal">
 
         <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/dressCover"
             android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:background="@mipmap/rifat_vais_wife_sample"/>
+            android:layout_height="200dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,14 +44,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5000"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:textStyle="bold"/>
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvActualPriceBDT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" BDT"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:textStyle="bold"/>
 
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -65,14 +67,16 @@
                         android:layout_height="wrap_content"
                         android:text="5000"
                         android:textSize="12sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:visibility="invisible"/>
 
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" BDT"
                         android:textSize="12sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:visibility="invisible"/>
 
                 </LinearLayout>
 
@@ -81,7 +85,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="5dp">
+                    android:layout_marginBottom="5dp"
+                    android:visibility="invisible">
 
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -120,7 +125,8 @@
                 android:textColor="@color/white"
                 android:background="@drawable/custom_button_oval"
                 android:enabled="false"
-                android:layout_marginRight="2dp"/>
+                android:layout_marginRight="2dp"
+                android:visibility="invisible"/>
 
 
 

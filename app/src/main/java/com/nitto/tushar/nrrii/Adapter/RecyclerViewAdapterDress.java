@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import com.nitto.tushar.nrrii.Activity.ProductDetailsActivity;
 import com.nitto.tushar.nrrii.Entity.Dress;
 import com.nitto.tushar.nrrii.R;
+import com.nitto.tushar.nrrii.Services.ProductService;
 
 import java.util.ArrayList;
 
@@ -39,18 +41,20 @@ public class RecyclerViewAdapterDress extends RecyclerView.Adapter<RecyclerViewA
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
+        holder.dressCover.setImageResource(dressArrayList.get(position).getDressCoverPhoto());
         holder.tvActualPrice.setText(dressArrayList.get(position).getActualPrice());
-        holder.tvActualPrice.setPaintFlags(holder.tvActualPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        //holder.tvActualPrice.setPaintFlags(holder.tvActualPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-        holder.tvActualPriceBDT.setPaintFlags(holder.tvActualPriceBDT.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        //holder.tvActualPriceBDT.setPaintFlags(holder.tvActualPriceBDT.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
         holder.tvPromotionalPrice.setText(dressArrayList.get(position).getPromotionalPrice());
 
         holder.dressCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProductService.getInstance().setDressForDetails(dressArrayList.get(position).getDressId());
                 mContext.startActivity(new Intent(mContext, ProductDetailsActivity.class) );
             }
         });
@@ -65,6 +69,7 @@ public class RecyclerViewAdapterDress extends RecyclerView.Adapter<RecyclerViewA
 
         AppCompatTextView tvActualPrice, tvPromotionalPrice, tvActualPriceBDT;
         private CardView dressCardView;
+        AppCompatImageView dressCover;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -73,6 +78,7 @@ public class RecyclerViewAdapterDress extends RecyclerView.Adapter<RecyclerViewA
             tvActualPrice = itemView.findViewById(R.id.tvActualPrice);
             tvPromotionalPrice = itemView.findViewById(R.id.tvPromotionalPrice);
             tvActualPriceBDT = itemView.findViewById(R.id.tvActualPriceBDT);
+            dressCover = itemView.findViewById(R.id.dressCover);
 
         }
     }

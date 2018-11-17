@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +24,7 @@ import com.nitto.tushar.nrrii.Adapter.MyPagerAdapter;
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterDress;
 import com.nitto.tushar.nrrii.Entity.Dress;
 import com.nitto.tushar.nrrii.R;
+import com.nitto.tushar.nrrii.Services.ProductService;
 
 import java.util.ArrayList;
 
@@ -39,9 +41,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
+    private AppCompatTextView tvPrice;
 
 
-    private int[] images = {R.mipmap.rifat_vais_wife_sample, R.mipmap.rifat_vais_wife_sample, R.mipmap.rifat_vais_wife_sample};
+    //private int[] images = {R.mipmap.rifat_vais_wife_sample, R.mipmap.rifat_vais_wife_sample, R.mipmap.rifat_vais_wife_sample};
 
     private AppCompatImageView
             ivWalkThroughCircle1,
@@ -70,7 +73,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         this.ivWalkThroughCircle3 = findViewById(R.id.ivWalkThroughCircle3);
 
         mPeger = findViewById(R.id.viewpager);
-        myPagerAdapter = new MyPagerAdapter(images, this);
+        myPagerAdapter = new MyPagerAdapter(ProductService.getInstance().getDressDetails().getDressImages(), this);
         mPeger.setAdapter(myPagerAdapter);
 
         mPeger.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -92,6 +95,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+        tvPrice = findViewById(R.id.tvPrice);
+        tvPrice.setText(ProductService.getInstance().getDressDetails().getActualPrice());
 
         btnReadMore = findViewById(R.id.btnReadMore);
 
@@ -117,10 +123,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
 
         dressArrayList = new ArrayList<>();
-        dressArrayList.add(new Dress("5000", "4000"));
-        dressArrayList.add(new Dress("6000", "5000"));
-        dressArrayList.add(new Dress("7000", "5000"));
-        dressArrayList.add(new Dress("8000", "4000"));
+        dressArrayList.addAll(ProductService.getInstance().getAllDress());
+        for (int i=0; i<this.dressArrayList.size(); i++){
+            if(this.dressArrayList.get(i).getDressId().equals(ProductService.getInstance().getDressDetails().getDressId())){
+                dressArrayList.remove(i);
+            }
+        }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
         RecyclerViewAdapterDress myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
@@ -203,7 +211,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
             closeDrawer();
         } else {
             super.onBackPressed();
+            finish();
         }
+
     }
 
     @Override

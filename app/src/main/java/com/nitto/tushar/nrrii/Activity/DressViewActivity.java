@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterDress;
 import com.nitto.tushar.nrrii.Entity.Dress;
 import com.nitto.tushar.nrrii.R;
+import com.nitto.tushar.nrrii.Services.ProductService;
 
 import java.util.ArrayList;
 
@@ -57,14 +58,7 @@ public class DressViewActivity extends AppCompatActivity {
         });
 
         dressArrayList = new ArrayList<>();
-        dressArrayList.add(new Dress("5000", "4000"));
-        dressArrayList.add(new Dress("6000", "5000"));
-        dressArrayList.add(new Dress("7000", "5000"));
-        dressArrayList.add(new Dress("8000", "4000"));
-        dressArrayList.add(new Dress("9000", "4000"));
-        dressArrayList.add(new Dress("9000", "8000"));
-        dressArrayList.add(new Dress("8000", "7000"));
-        dressArrayList.add(new Dress("7000", "7000"));
+        dressArrayList.addAll(ProductService.getInstance().getAllDress());
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
         RecyclerViewAdapterDress myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
