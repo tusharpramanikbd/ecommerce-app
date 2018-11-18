@@ -15,7 +15,7 @@ public class CongratulationScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_congratulation_screen);
+        setContentView(R.layout.activity_congratulation_screen_new);
 
         btnSignupNow = findViewById(R.id.btnSignupNow);
         btnSignupNow.setOnClickListener(new View.OnClickListener() {
