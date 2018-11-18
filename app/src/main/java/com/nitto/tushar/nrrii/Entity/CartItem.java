@@ -2,7 +2,9 @@ package com.nitto.tushar.nrrii.Entity;
 
 public class CartItem {
 
+    private String productId;
     private String productTitle;
+    private int productPhoto;
     private int productQuantity;
     private int productPrice;
     private String productSize;
@@ -11,11 +13,39 @@ public class CartItem {
     public CartItem() {
     }
 
-    public CartItem(int productQuantity, int productPrice, String productSize, String productColor) {
+    public CartItem(String productId,int productPhoto,int productQuantity, int productPrice, String productSize, String productColor) {
+        this.productId = productId;
+        this.productPhoto = productPhoto;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
         this.productSize = productSize;
         this.productColor = productColor;
+    }
+
+    public CartItem(String productId, String productTitle, int productPhoto, int productQuantity, int productPrice, String productSize, String productColor) {
+        this.productId = productId;
+        this.productTitle = productTitle;
+        this.productPhoto = productPhoto;
+        this.productQuantity = productQuantity;
+        this.productPrice = productPrice;
+        this.productSize = productSize;
+        this.productColor = productColor;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public int getProductPhoto() {
+        return productPhoto;
+    }
+
+    public void setProductPhoto(int productPhoto) {
+        this.productPhoto = productPhoto;
     }
 
     public String getProductTitle() {

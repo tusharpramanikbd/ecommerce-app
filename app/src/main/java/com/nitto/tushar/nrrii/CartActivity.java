@@ -84,12 +84,12 @@ public class CartActivity extends AppCompatActivity implements CartService.OnUpd
         this.cartItemListAdapter.SetOnDeleteCartItemListener(new CartItemListAdapter.OnDeleteCartItemListener() {
             @Override
             public void onDeleteCartItem(int productUID) {
-                new DeleteCartItem(productUID).execute();
+                //new DeleteCartItem(productUID).execute();
             }
         });
 
         this.lvCartItems.setAdapter(cartItemListAdapter);
-        getCartItems();
+        //getCartItems();
         setListViewHeightBasedOnChildren(this.lvCartItems);
     }
 
@@ -114,11 +114,11 @@ public class CartActivity extends AppCompatActivity implements CartService.OnUpd
         listView.setLayoutParams(params);
     }
 
-    private void getCartItems() {
-        this.productItems.addAll(CartService.getInstance().getProductCart());
-        this.refreshTotalPriceInUI();
-        this.cartItemListAdapter.notifyDataSetChanged();
-    }
+//    private void getCartItems() {
+//        this.productItems.addAll(CartService.getInstance().getProductCart());
+//        this.refreshTotalPriceInUI();
+//        this.cartItemListAdapter.notifyDataSetChanged();
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -145,35 +145,35 @@ public class CartActivity extends AppCompatActivity implements CartService.OnUpd
         this.tvTotalAmount.setText(String.valueOf(totalPriceBeforeChange));
     }
 
-    @SuppressLint("StaticFieldLeak")
-    class DeleteCartItem extends AsyncTask<Void, Void, Void> {
-        private int uid;
-
-        DeleteCartItem(int uid) {
-            this.uid = uid;
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            // TODO Auto-generated method stub
-            CartService.getInstance().deleteCartItem(uid);
-            return null;
-        }
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    productItems.clear();
-                    productItems.addAll(CartService.getInstance().getProductCart());
-                    cartItemListAdapter.notifyDataSetChanged();
-                    refreshTotalPriceInUI();
-                    setListViewHeightBasedOnChildren(lvCartItems);
-                }
-            });
-        }
-    }
+//    @SuppressLint("StaticFieldLeak")
+//    class DeleteCartItem extends AsyncTask<Void, Void, Void> {
+//        private int uid;
+//
+//        DeleteCartItem(int uid) {
+//            this.uid = uid;
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//
+//            CartService.getInstance().deleteCartItem(uid);
+//            return null;
+//        }
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            super.onPostExecute(result);
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    productItems.clear();
+//                    productItems.addAll(CartService.getInstance().getProductCart());
+//                    cartItemListAdapter.notifyDataSetChanged();
+//                    refreshTotalPriceInUI();
+//                    setListViewHeightBasedOnChildren(lvCartItems);
+//                }
+//            });
+//        }
+//    }
 
     private void refreshTotalPriceInUI() {
         this.tvTotalAmount.setText(String.valueOf(CartService.getInstance().getTotalPrice()));

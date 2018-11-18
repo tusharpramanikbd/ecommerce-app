@@ -89,13 +89,13 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
     }
 
     private void addProductToCartIfNotExists(ProductItem productItem) {
-        if(!CartService.getInstance().isAvailableInCart(productItem)) {
-            productItem.setQuantity(1);
-            CartService.getInstance().addToCart(productItem);
-            Toast.makeText(context, "\"" + productItem.getName() + "\" added to cart", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Already added to cart", Toast.LENGTH_SHORT).show();
-        }
+//        if(!CartService.getInstance().isAvailableInCart(productItem)) {
+//            productItem.setQuantity(1);
+//            CartService.getInstance().addToCart(productItem);
+//            Toast.makeText(context, "\"" + productItem.getName() + "\" added to cart", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(context, "Already added to cart", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     private void loadImageWithGlide(ViewHolder holder, String img){

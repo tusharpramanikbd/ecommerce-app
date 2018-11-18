@@ -152,9 +152,9 @@ public class CartSummaryActivity extends AppCompatActivity {
     }
 
     private void getCartItems() {
-        this.productItems.addAll(CartService.getInstance().getProductCart());
-        this.refreshTotalPriceInUI();
-        this.cartItemListAdapter.notifyDataSetChanged();
+//        this.productItems.addAll(CartService.getInstance().getProductCart());
+//        this.refreshTotalPriceInUI();
+//        this.cartItemListAdapter.notifyDataSetChanged();
     }
 
     private void refreshTotalPriceInUI() {

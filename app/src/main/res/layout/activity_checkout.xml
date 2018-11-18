@@ -1,252 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true">
+    tools:context=".Activity.CheckoutActivity"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".Activity.CheckoutActivity">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/viewTotal"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                app:popupTheme="@style/AppTheme.PopupOverlay" >
+                android:layout_height="?actionBarSize"
+                android:layout_alignParentTop="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/viewTotal"
-                    android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    android:layout_alignParentTop="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
+                <!--<android.support.v7.widget.AppCompatButton-->
+                <!--android:id="@+id/btn_berger"-->
+                <!--android:layout_width="32dp"-->
+                <!--android:layout_height="32dp"-->
+                <!--android:background="@mipmap/berger_menu"/>-->
 
-                    <!--<android.support.v7.widget.AppCompatButton-->
-                    <!--android:id="@+id/btn_berger"-->
+                <!--<android.support.v7.widget.AppCompatButton-->
+                    <!--android:id="@+id/btnCartBag"-->
                     <!--android:layout_width="32dp"-->
                     <!--android:layout_height="32dp"-->
-                    <!--android:background="@mipmap/berger_menu"/>-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:background="@mipmap/shopping_black_cart"-->
+                    <!--android:layout_marginStart="230dp"/>-->
 
-                    <!--<android.support.v7.widget.AppCompatButton-->
-                        <!--android:id="@+id/btnCartBag"-->
-                        <!--android:layout_width="32dp"-->
-                        <!--android:layout_height="32dp"-->
-                        <!--android:layout_gravity="center_vertical"-->
-                        <!--android:background="@mipmap/shopping_black_cart"-->
-                        <!--android:layout_marginStart="230dp"/>-->
+            </LinearLayout>
 
-                </LinearLayout>
+        </android.support.v7.widget.Toolbar>
 
-            </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
 
-        </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:id="@+id/devider_layout"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        android:background="@color/purple"
+        android:layout_below="@id/appBarLayout">
+    </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/devider_layout"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:orientation="horizontal"
-            android:background="@color/purple"
-            android:layout_below="@id/appBarLayout">
-        </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@id/devider_layout">
 
-        <LinearLayout
-            android:id="@+id/topLayout"
-            android:layout_below="@id/devider_layout"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerViewCart"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_margin="8dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_subtotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/topLayout"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sub Total: "
-                android:textStyle="bold"
-                android:textSize="12sp"/>
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/subtotalPrice"
+            <LinearLayout
+                android:id="@+id/topLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="17000 BDT"
-                android:textSize="12sp"
-                android:gravity="end"/>
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"/>
 
-        <LinearLayout
-            android:id="@+id/divider_1"
-            android:layout_below="@id/layout_subtotal"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:orientation="vertical"
-            android:background="@color/ash"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layout_discount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/divider_1"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Discount: "
-                android:textStyle="bold"
-                android:textSize="12sp"/>
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/discountPrice"
+            <LinearLayout
+                android:id="@+id/layout_subtotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="17000 BDT"
-                android:textSize="12sp"
-                android:gravity="end"/>
+                android:orientation="horizontal"
+                android:layout_below="@id/topLayout"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
 
-        </LinearLayout>
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sub Total: "
+                    android:textStyle="bold"
+                    android:textSize="12sp"/>
 
-        <LinearLayout
-            android:id="@+id/divider_2"
-            android:layout_below="@id/layout_discount"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:orientation="vertical"
-            android:background="@color/ash"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/subtotalPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="17000 BDT"
+                    android:textSize="12sp"
+                    android:gravity="end"/>
 
-        <LinearLayout
-            android:id="@+id/layout_deliveryCharge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/divider_2"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp">
+            </LinearLayout>
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Delivery Charge: "
-                android:textStyle="bold"
-                android:textSize="12sp"/>
+            <LinearLayout
+                android:id="@+id/divider_1"
+                android:layout_below="@id/layout_subtotal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                android:background="@color/ash"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/deliveryChargePrice"
+            <LinearLayout
+                android:id="@+id/layout_discount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="17000 BDT"
-                android:textSize="12sp"
-                android:gravity="end"/>
+                android:orientation="horizontal"
+                android:layout_below="@id/divider_1"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
 
-        </LinearLayout>
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discount: "
+                    android:textStyle="bold"
+                    android:textSize="12sp"/>
 
-        <LinearLayout
-            android:id="@+id/divider_3"
-            android:layout_below="@id/layout_deliveryCharge"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:orientation="vertical"
-            android:background="@color/ash"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/discountPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0.0 BDT"
+                    android:textSize="12sp"
+                    android:gravity="end"/>
 
-        <LinearLayout
-            android:id="@+id/layout_totalPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/divider_3"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp">
+            </LinearLayout>
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total: "
-                android:textStyle="bold"
-                android:textSize="12sp"/>
+            <LinearLayout
+                android:id="@+id/divider_2"
+                android:layout_below="@id/layout_discount"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                android:background="@color/ash"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/totalPrice"
+            <LinearLayout
+                android:id="@+id/layout_deliveryCharge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="17000 BDT"
-                android:textSize="12sp"
-                android:gravity="end"/>
+                android:orientation="horizontal"
+                android:layout_below="@id/divider_2"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
 
-        </LinearLayout>
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Charge: "
+                    android:textStyle="bold"
+                    android:textSize="12sp"/>
 
-        <LinearLayout
-            android:id="@+id/layout_continue"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_below="@id/layout_totalPrice"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center">
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/deliveryChargePrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="100.0 BDT"
+                    android:textSize="12sp"
+                    android:gravity="end"/>
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_continue"
-                android:layout_width="230dp"
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/divider_3"
+                android:layout_below="@id/layout_deliveryCharge"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                android:background="@color/ash"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+
+            <LinearLayout
+                android:id="@+id/layout_totalPrice"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_button_purple"
-                android:minHeight="0dp"
-                android:text="Continue"
-                android:textColor="@color/white" />
+                android:orientation="horizontal"
+                android:layout_below="@id/divider_3"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
 
-        </LinearLayout>
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total: "
+                    android:textStyle="bold"
+                    android:textSize="12sp"/>
 
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/totalPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="17000 BDT"
+                    android:textSize="12sp"
+                    android:gravity="end"/>
 
+            </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_continue"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_below="@id/layout_totalPrice"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
 
-    </RelativeLayout>
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_continue"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_button_purple"
+                    android:minHeight="0dp"
+                    android:text="Continue"
+                    android:textColor="@color/white" />
 
-</ScrollView>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

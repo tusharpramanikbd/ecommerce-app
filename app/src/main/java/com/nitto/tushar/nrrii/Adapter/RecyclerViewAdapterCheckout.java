@@ -2,6 +2,9 @@ package com.nitto.tushar.nrrii.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,11 +15,23 @@ import android.widget.LinearLayout;
 
 import com.nitto.tushar.nrrii.Entity.CartItem;
 import com.nitto.tushar.nrrii.R;
+import com.nitto.tushar.nrrii.Services.CartService;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerViewAdapterCheckout.ViewHolder> {
 
+    public interface OnDeleteCartItemListener{
+        void onDeleteCartItem(String dressID);
+    }
+
+    public void SetOnDeleteCartItemListener(OnDeleteCartItemListener listener) {
+        this.onDeleteCartItemListener = listener;
+    }
+
+    private OnDeleteCartItemListener onDeleteCartItemListener;
 
     private static final String TAG = "MyRecyclerView";
 
@@ -36,18 +51,54 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
 
-        CartItem cartItem = cartItems.get(position);
+        final CartItem cartItem = cartItems.get(position);
 
         holder.productPrice.setText(String.valueOf(cartItem.getProductPrice()));
 
         holder.productQuantity.setText(String.valueOf(cartItem.getProductQuantity()));
 
+
         holder.productSize.setText(String.valueOf(cartItem.getProductSize()));
 
         holder.productColor.setText(String.valueOf(cartItem.getProductColor()));
+
+        holder.product_image.setImageResource(cartItem.getProductPhoto());
+
+        holder.removeProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDeleteCartItemListener.onDeleteCartItem(cartItem.getProductId());
+            }
+        });
+
+        holder.increaseQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tmpQuantity = Integer.parseInt(holder.editQuantity.getText().toString());
+                if(tmpQuantity < 10){
+                    tmpQuantity++;
+                    holder.editQuantity.setText("0"+String.valueOf(tmpQuantity));
+                    holder.productQuantity.setText(String.valueOf(tmpQuantity));
+                    CartService.getInstance().changeTotalPrice(cartItem.getProductId(), tmpQuantity);
+                }
+            }
+        });
+
+        holder.decreaseQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tmpQuantity = Integer.parseInt(holder.editQuantity.getText().toString());
+                if(tmpQuantity > 1){
+                    tmpQuantity--;
+                    holder.editQuantity.setText("0"+String.valueOf(tmpQuantity));
+                    holder.productQuantity.setText(String.valueOf(tmpQuantity));
+                    CartService.getInstance().changeTotalPrice(cartItem.getProductId(), tmpQuantity);
+                }
+            }
+        });
     }
 
     @Override
@@ -55,16 +106,23 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
         return cartItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
 
-        AppCompatTextView productPrice, productQuantity, productSize, productColor;
+        AppCompatTextView productPrice, productQuantity, productSize, productColor,editQuantity;
+        AppCompatImageView removeProduct, product_image;
+        AppCompatButton increaseQuantity, decreaseQuantity;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             this.productPrice = itemView.findViewById(R.id.productPrice);
             this.productQuantity = itemView.findViewById(R.id.productQuantity);
             this.productSize = itemView.findViewById(R.id.productSize);
             this.productColor = itemView.findViewById(R.id.productColor);
+            this.removeProduct = itemView.findViewById(R.id.removeProduct);
+            this.product_image = itemView.findViewById(R.id.product_image);
+            this.increaseQuantity = itemView.findViewById(R.id.increaseQuantity);
+            this.decreaseQuantity = itemView.findViewById(R.id.decreaseQuantity);
+            this.editQuantity = itemView.findViewById(R.id.editQuantity);
         }
     }
 }

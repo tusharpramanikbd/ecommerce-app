@@ -20,11 +20,10 @@
                 android:orientation="vertical"
                 android:gravity="center_vertical">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_image"
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/product_image"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@mipmap/rifat_vais_wife_sample"
                     android:layout_gravity="center_vertical" />
 
             </LinearLayout>
@@ -142,9 +141,10 @@
                 android:orientation="vertical"
                 android:gravity="center">
 
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="30dp"
-                    android:layout_height="10dp"
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/increaseQuantity"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
                     android:background="@mipmap/up"
                     android:layout_marginStart="3dp"
                     android:clickable="true"
@@ -154,24 +154,27 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:orientation="vertical"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="2dp"
                     android:background="@drawable/bg_square_corner_search_background_stroked_ash">
 
-                    <android.support.v7.widget.AppCompatEditText
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@null"
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/editQuantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:text="01"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
                 <android.support.v7.widget.AppCompatButton
-                    android:layout_width="30dp"
-                    android:layout_height="10dp"
+                    android:id="@+id/decreaseQuantity"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
                     android:background="@mipmap/down"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="1dp"/>
 
             </LinearLayout>
@@ -179,12 +182,15 @@
         </LinearLayout>
 
     <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/removeProduct"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:background="@mipmap/round_cross"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="6dp"/>
+        android:layout_marginEnd="6dp"
+        android:clickable="true"
+        android:focusable="true"/>
 
 </RelativeLayout>
