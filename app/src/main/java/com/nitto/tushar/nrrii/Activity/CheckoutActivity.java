@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -22,8 +21,6 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterCheckout;
-import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterDress;
-import com.nitto.tushar.nrrii.CartActivity;
 import com.nitto.tushar.nrrii.Entity.CartItem;
 import com.nitto.tushar.nrrii.R;
 import com.nitto.tushar.nrrii.Services.CartService;
@@ -35,10 +32,7 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
     private ArrayList<CartItem> cartItems;
     private AppCompatButton btnContinue;
     private AppCompatTextView subtotalPrice, totalPrice;
-
-    private RecyclerView recyclerView;
     private RecyclerViewAdapterCheckout myAdapter;
-
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout, divider_cart;
@@ -48,36 +42,11 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_activity_checkout);
 
-        CartService.getInstance().AddOnUpdateUIListener(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        initializeUI();
 
-        this.drawer = findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        increaseHamburgerSize();
-
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        btnContinue = findViewById(R.id.btn_continue);
-        btnContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CheckoutActivity.this, LoggedInShippingAddressActivity.class) );
-            }
-        });
-
-        cartItems = new ArrayList<>();
-
-        cartItems.addAll(CartService.getInstance().getAllCartItem());
-
-        recyclerView = findViewById(R.id.recyclerViewCart);
-        myAdapter = new RecyclerViewAdapterCheckout(this,cartItems );
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(myAdapter);
+        //Button Event to Delete Cart Item..........
         myAdapter.SetOnDeleteCartItemListener(new RecyclerViewAdapterCheckout.OnDeleteCartItemListener() {
             @Override
             public void onDeleteCartItem(String dressID) {
@@ -85,7 +54,8 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
             }
         });
 
-        layoutMyProfile = findViewById(R.id.layoutMyProfile);
+
+        //Button Event For Menu Drawer..........
         layoutMyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +63,6 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
             }
         });
 
-        layoutCategory = findViewById(R.id.layoutCategory);
         layoutCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,13 +70,68 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
             }
         });
 
-        layoutOrders = findViewById(R.id.layoutOrders);
         layoutOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CheckoutActivity.this, MyOrdersActivity.class) );
             }
         });
+
+        layoutSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CheckoutActivity.this, ResetPasswordActivity.class) );
+            }
+        });
+
+        layoutLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CheckoutActivity.this, LoginActivity.class) );
+            }
+        });
+
+
+        //Button Event to Start Next Activity..........
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CheckoutActivity.this, LoggedInShippingAddressActivity.class) );
+            }
+        });
+    }
+
+    private void initializeUI() {
+        //Initializing the service calls.........
+        CartService.getInstance().AddOnUpdateUIListener(this);
+        cartItems = new ArrayList<>();
+        cartItems.addAll(CartService.getInstance().getAllCartItem());
+        double price = CartService.getInstance().getTotalPrice();
+
+        //Initializing the menu toolbar..........
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //Adding drawer to hamburger menu in toolbar..........
+        this.drawer = findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        //Setting hamburger size..................
+        increaseHamburgerSize();
+
+        //Adding toggle listener to drawer..............
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        initializeRecyclerView();
+
+        //initializing continue button.............
+        btnContinue = findViewById(R.id.btn_continue);
+
+        //Initializing menu buttons in menu drawer...........
+        layoutMyProfile = findViewById(R.id.layoutMyProfile);
+        layoutCategory = findViewById(R.id.layoutCategory);
+        layoutOrders = findViewById(R.id.layoutOrders);
 
         layoutCart = findViewById(R.id.layoutCart);
         layoutCart.setVisibility(View.GONE);
@@ -116,45 +140,25 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
         divider_cart.setVisibility(View.GONE);
 
         layoutSettings = findViewById(R.id.layoutSettings);
-        layoutSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CheckoutActivity.this, ResetPasswordActivity.class) );
-            }
-        });
-
         layoutLogout = findViewById(R.id.layoutLogout);
-        layoutLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CheckoutActivity.this, LoginActivity.class) );
-            }
-        });
 
+        //Initializing price components...........
         subtotalPrice = findViewById(R.id.subtotalPrice);
         totalPrice = findViewById(R.id.totalPrice);
-        subtotalPrice.setText(String.format("%s BDT", String.valueOf(CartService.getInstance().getTotalPrice())));
-        totalPrice.setText(String.format("%s BDT", String.valueOf(CartService.getInstance().getTotalPrice() + 100.0)));
 
+        //Setting price label to price component..........
+        subtotalPrice.setText(String.format("%s BDT", String.valueOf(price)));
+        totalPrice.setText(String.format("%s BDT", String.valueOf(price + 100.0)));
 
-        //hide soft keyboard on activity start
+        //Hide soft keyboard on activity start
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
     }
 
-    @Override
-    public void onBackPressed() {
-        if (isDrawerOpen()) {
-            closeDrawer();
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        closeDrawerWithOutAnimation();
+    private void initializeRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewCart);
+        myAdapter = new RecyclerViewAdapterCheckout(this,cartItems );
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(myAdapter);
     }
 
     private boolean isDrawerOpen() {
@@ -177,16 +181,37 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
         toggle.setDrawerArrowDrawable(new HamburgerDrawable(this));
     }
 
+    private void refreshTotalPriceInUI() {
+        double updatedTotalPrice = CartService.getInstance().getTotalPrice();
+        subtotalPrice.setText(String.format("%s BDT", String.valueOf(updatedTotalPrice)));
+        totalPrice.setText(String.format("%s BDT", String.valueOf(updatedTotalPrice + 100.0)));
+    }
+
     @Override
-    public void onItemPriceUpdated(double totalPriceBeforeChange) {
-        subtotalPrice.setText(String.format("%s BDT", String.valueOf(totalPriceBeforeChange)));
-        totalPrice.setText(String.format("%s BDT", String.valueOf(totalPriceBeforeChange + 100.0)));
+    public void onBackPressed() {
+        if (isDrawerOpen()) {
+            closeDrawer();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        closeDrawerWithOutAnimation();
+    }
+
+    @Override
+    public void onItemPriceUpdated(double updatedTotalPrice) {
+        subtotalPrice.setText(String.format("%s BDT", String.valueOf(updatedTotalPrice)));
+        totalPrice.setText(String.format("%s BDT", String.valueOf(updatedTotalPrice + 100.0)));
     }
 
 
     public class HamburgerDrawable extends DrawerArrowDrawable {
 
-        public HamburgerDrawable(Context context){
+        HamburgerDrawable(Context context){
             super(context);
             setColor(context.getResources().getColor(R.color.colorPrimary));
         }
@@ -198,9 +223,9 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
             setBarLength(60.0f);
             setBarThickness(10.0f);
             setGapSize(10.0f);
-
         }
     }
+
 
     @SuppressLint("StaticFieldLeak")
     class DeleteCartItem extends AsyncTask<Void, Void, Void> {
@@ -228,10 +253,5 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
                 }
             });
         }
-    }
-
-    private void refreshTotalPriceInUI() {
-        subtotalPrice.setText(String.format("%s BDT", String.valueOf(CartService.getInstance().getTotalPrice())));
-        totalPrice.setText(String.format("%s BDT", String.valueOf(CartService.getInstance().getTotalPrice() + 100.0)));
     }
 }
