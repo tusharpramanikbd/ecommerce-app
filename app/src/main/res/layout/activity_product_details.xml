@@ -24,6 +24,8 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
@@ -31,10 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/viewTotal"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
@@ -49,15 +50,29 @@
                 <!--android:layout_height="32dp"-->
                 <!--android:background="@mipmap/berger_menu"/>-->
 
-                <!--<android.support.v7.widget.AppCompatButton-->
-                <!--android:id="@+id/btnCartBag"-->
-                <!--android:layout_width="32dp"-->
-                <!--android:layout_height="32dp"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:background="@mipmap/shopping_black_cart"-->
-                <!--android:layout_marginStart="230dp"/>-->
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnCartBag"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="220dp"
+                    android:background="@mipmap/shopping_black_cart" />
 
-            </LinearLayout>
+                <android.support.v7.widget.AppCompatButton
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_toEndOf="@+id/btnCartBag"
+                    android:background="@drawable/custom_button_oval"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
 
