@@ -17,14 +17,18 @@ public class ShippingAddressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shipping_address);
 
-        btnNext = findViewById(R.id.btnNext);
+        initializeUI();
 
+        //Button Events........................
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ShippingAddressActivity.this, PaymentMethodActivity.class) );
-
             }
         });
+    }
+
+    private void initializeUI() {
+        btnNext = findViewById(R.id.btnNext);
     }
 }

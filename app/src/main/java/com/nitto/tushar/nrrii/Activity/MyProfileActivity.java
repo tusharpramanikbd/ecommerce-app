@@ -26,32 +26,8 @@ public class MyProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_new);
 
-        tvFullName = findViewById(R.id.tvFullName);
-        tvAge = findViewById(R.id.tvAge);
-        tvGender = findViewById(R.id.tvGender);
-        tvContactNumber = findViewById(R.id.tvContactNumber);
-        tvEmail = findViewById(R.id.tvEmail);
-        tvAddress = findViewById(R.id.tvAddress);
 
-        etFullName = findViewById(R.id.etFullName);
-        etAge = findViewById(R.id.etAge);
-        etContactNumber = findViewById(R.id.etContactNumber);
-        etEmail = findViewById(R.id.etEmail);
-        etAddress = findViewById(R.id.etAddress);
-
-        genderSpinner = findViewById(R.id.genderSpinner);
-
-        btnDone = findViewById(R.id.btnDone);
-        btnEditProfile = findViewById(R.id.fabEditProfile);
-
-        div1 = findViewById(R.id.divider1);
-        div2 = findViewById(R.id.divider2);
-        div3 = findViewById(R.id.divider3);
-        div4 = findViewById(R.id.divider4);
-        div5 = findViewById(R.id.divider5);
-        div6 = findViewById(R.id.divider6);
-
-
+        initializeUI();
 
 
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
@@ -116,5 +92,32 @@ public class MyProfileActivity extends AppCompatActivity {
                 div6.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    private void initializeUI() {
+        tvFullName = findViewById(R.id.tvFullName);
+        tvAge = findViewById(R.id.tvAge);
+        tvGender = findViewById(R.id.tvGender);
+        tvContactNumber = findViewById(R.id.tvContactNumber);
+        tvEmail = findViewById(R.id.tvEmail);
+        tvAddress = findViewById(R.id.tvAddress);
+
+        etFullName = findViewById(R.id.etFullName);
+        etAge = findViewById(R.id.etAge);
+        etContactNumber = findViewById(R.id.etContactNumber);
+        etEmail = findViewById(R.id.etEmail);
+        etAddress = findViewById(R.id.etAddress);
+
+        genderSpinner = findViewById(R.id.genderSpinner);
+
+        btnDone = findViewById(R.id.btnDone);
+        btnEditProfile = findViewById(R.id.fabEditProfile);
+
+        div1 = findViewById(R.id.divider1);
+        div2 = findViewById(R.id.divider2);
+        div3 = findViewById(R.id.divider3);
+        div4 = findViewById(R.id.divider4);
+        div5 = findViewById(R.id.divider5);
+        div6 = findViewById(R.id.divider6);
     }
 }

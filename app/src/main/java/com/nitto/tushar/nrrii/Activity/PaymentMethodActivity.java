@@ -22,16 +22,14 @@ public class PaymentMethodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_method);
 
-        cardPaymentLayout = findViewById(R.id.cardPaymentLayout);
-        bkashPaymentLayout = findViewById(R.id.bkashPaymentLayout);
-        paymentSpinner = findViewById(R.id.paymentSpinner);
-        btnDone = findViewById(R.id.btnDone);
+
+        initializeUI();
+
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(PaymentMethodActivity.this, CongratulationScreenActivity.class) );
-
             }
         });
 
@@ -54,6 +52,12 @@ public class PaymentMethodActivity extends AppCompatActivity {
                 bkashPaymentLayout.setVisibility(View.GONE);
             }
         });
+    }
 
+    private void initializeUI() {
+        cardPaymentLayout = findViewById(R.id.cardPaymentLayout);
+        bkashPaymentLayout = findViewById(R.id.bkashPaymentLayout);
+        paymentSpinner = findViewById(R.id.paymentSpinner);
+        btnDone = findViewById(R.id.btnDone);
     }
 }

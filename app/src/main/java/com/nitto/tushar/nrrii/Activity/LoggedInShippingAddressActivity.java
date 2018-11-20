@@ -17,14 +17,15 @@ public class LoggedInShippingAddressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in_shipping_address);
 
-        btnAddNew = findViewById(R.id.btnAddNew);
-        btnNext = findViewById(R.id.btnNext);
 
+        initializeUI();
+
+
+        //Button Events........................
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoggedInShippingAddressActivity.this, ShippingAddressActivity.class) );
-
             }
         });
 
@@ -32,8 +33,13 @@ public class LoggedInShippingAddressActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoggedInShippingAddressActivity.this, PaymentMethodActivity.class) );
-
             }
         });
+    }
+
+    private void initializeUI() {
+        //initializing the buttons.....................
+        btnAddNew = findViewById(R.id.btnAddNew);
+        btnNext = findViewById(R.id.btnNext);
     }
 }

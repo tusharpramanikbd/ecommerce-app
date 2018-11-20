@@ -10,21 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterCategory;
-import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterDress;
 import com.nitto.tushar.nrrii.R;
 
 public class ProductCategoryActivity extends AppCompatActivity {
-
-    private RelativeLayout layoutCat1;
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
@@ -39,19 +34,11 @@ public class ProductCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_product_category);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        this.drawer = findViewById(R.id.drawer_layout_product_category);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        initializeUI();
 
-        increaseHamburgerSize();
 
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        btnCartBag = findViewById(R.id.btnCartBag);
+        //Button event to go to cart............
         btnCartBag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,12 +46,8 @@ public class ProductCategoryActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewCategory);
-        RecyclerViewAdapterCategory myAdapter = new RecyclerViewAdapterCategory(this,images,categoryNames);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(myAdapter);
 
-        layoutMyProfile = findViewById(R.id.layoutMyProfile);
+        //Button Event For Menu Drawer..........
         layoutMyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +55,6 @@ public class ProductCategoryActivity extends AppCompatActivity {
             }
         });
 
-        layoutCategory = findViewById(R.id.layoutCategory);
         layoutCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +62,6 @@ public class ProductCategoryActivity extends AppCompatActivity {
             }
         });
 
-        layoutOrders = findViewById(R.id.layoutOrders);
         layoutOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +69,6 @@ public class ProductCategoryActivity extends AppCompatActivity {
             }
         });
 
-        layoutCart = findViewById(R.id.layoutCart);
         layoutCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +76,6 @@ public class ProductCategoryActivity extends AppCompatActivity {
             }
         });
 
-        layoutSettings = findViewById(R.id.layoutSettings);
         layoutSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,29 +83,48 @@ public class ProductCategoryActivity extends AppCompatActivity {
             }
         });
 
-        layoutLogout = findViewById(R.id.layoutLogout);
         layoutLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ProductCategoryActivity.this, LoginActivity.class) );
             }
         });
-
     }
 
-    @Override
-    public void onBackPressed() {
-        if (isDrawerOpen()) {
-            closeDrawer();
-        } else {
-            super.onBackPressed();
-        }
+    private void initializeUI() {
+        //Initializing the menu toolbar..........
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //Adding drawer to hamburger menu in toolbar..........
+        this.drawer = findViewById(R.id.drawer_layout_product_category);
+        toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        //Setting hamburger size..................
+        increaseHamburgerSize();
+
+        //Adding toggle listener to drawer..............
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        btnCartBag = findViewById(R.id.btnCartBag);
+
+        initializeRecyclerView();
+
+        layoutMyProfile = findViewById(R.id.layoutMyProfile);
+        layoutCategory = findViewById(R.id.layoutCategory);
+        layoutOrders = findViewById(R.id.layoutOrders);
+        layoutCart = findViewById(R.id.layoutCart);
+        layoutSettings = findViewById(R.id.layoutSettings);
+        layoutLogout = findViewById(R.id.layoutLogout);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        closeDrawerWithOutAnimation();
+    private void initializeRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewCategory);
+        RecyclerViewAdapterCategory myAdapter = new RecyclerViewAdapterCategory(this,images,categoryNames);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(myAdapter);
     }
 
     private boolean isDrawerOpen() {
@@ -149,10 +147,25 @@ public class ProductCategoryActivity extends AppCompatActivity {
         toggle.setDrawerArrowDrawable(new HamburgerDrawable(this));
     }
 
+    @Override
+    public void onBackPressed() {
+        if (isDrawerOpen()) {
+            closeDrawer();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        closeDrawerWithOutAnimation();
+    }
+
 
     public class HamburgerDrawable extends DrawerArrowDrawable {
 
-        public HamburgerDrawable(Context context){
+        HamburgerDrawable(Context context){
             super(context);
             setColor(context.getResources().getColor(R.color.colorPrimary));
         }
@@ -164,7 +177,6 @@ public class ProductCategoryActivity extends AppCompatActivity {
             setBarLength(60.0f);
             setBarThickness(10.0f);
             setGapSize(10.0f);
-
         }
     }
 }

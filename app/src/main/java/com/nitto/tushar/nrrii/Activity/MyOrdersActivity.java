@@ -20,7 +20,7 @@ import java.util.List;
 public class MyOrdersActivity extends AppCompatActivity implements OrderService.OnUpdateUIListener{
 
 
-    ArrayList<OrderItem> orderItems = new ArrayList<>();
+    ArrayList<OrderItem> orderItems;
     private RecyclerView recyclerView;
     private RecyclerViewAdapterOrder myRecyclerViewAdapter;
     private LinearLayoutManager linearLayoutManager;
@@ -30,36 +30,35 @@ public class MyOrdersActivity extends AppCompatActivity implements OrderService.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_order);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Order List");
-
         initializeUI();
     }
 
     public void initializeUI(){
+        //Initializing the service calls.........
         OrderService.getInstance().AddOnUpdateUIListener(this);
-        //orderItems = OrderService.getInstance().getAllOrderByDeliveredTo("01746941437");
-//        if(orderItems != null){
-//            OrderItem orderItem = new OrderItem();
-//            orderItem.setDeliveredTo("01746941437");
-//            orderItem.setOrderComplete(false);
-//            orderItem.setOrderDate(Calendar.getInstance().getTime().toString());
-//            orderItem.setOrderDescription("Hijibiji");
-//            orderItem.setOrderPrice(100);
-//            orderItem.setQuantity(2);
-//            orderItem.setOrderNumber("1");
-//            orderItem.setShopId("420");
-//            orderItem.setShopName("Fordo Shop");
-//            orderItems.add(orderItem);
+
+        //Initializing action bar.............
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Order List");
+
+        orderItems = new ArrayList<>();
         orderItems.add(new OrderItem(2, "2/5/18", true));
         orderItems.add(new OrderItem(1, "8/8/18", false));
         orderItems.add(new OrderItem(3, "22/6/18", true));
         orderItems.add(new OrderItem(5, "2/8/18", false));
         orderItems.add(new OrderItem(2, "6/6/18", true));
         orderItems.add(new OrderItem(3, "5/5/18", true));
-            initRecyclerView();
-//        }
+
+        initRecyclerView();
+    }
+
+    private void initRecyclerView(){
+        recyclerView = findViewById(R.id.recyclerView);
+        myRecyclerViewAdapter = new RecyclerViewAdapterOrder(this, orderItems);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(myRecyclerViewAdapter);
     }
 
     @Override
@@ -74,7 +73,6 @@ public class MyOrdersActivity extends AppCompatActivity implements OrderService.
             case R.id.action_delete:
                 Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show();
                 OrderService.getInstance().deleteAllOrderFromDb();
-                //myRecyclerViewAdapter.notifyDataSetChanged();
                 break;
         }
         if (item.getItemId() == android.R.id.home) // Press Back Icon
@@ -83,14 +81,6 @@ public class MyOrdersActivity extends AppCompatActivity implements OrderService.
         }
 
         return true;
-    }
-
-    private void initRecyclerView(){
-        recyclerView = findViewById(R.id.recyclerView);
-        myRecyclerViewAdapter = new RecyclerViewAdapterOrder(this, orderItems);
-        linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(myRecyclerViewAdapter);
     }
 
     @Override

@@ -68,7 +68,6 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void initializeUI() {

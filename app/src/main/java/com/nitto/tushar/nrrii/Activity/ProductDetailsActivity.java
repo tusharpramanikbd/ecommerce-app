@@ -43,9 +43,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
     private AppCompatTextView tvPrice;
 
-
-    //private int[] images = {R.mipmap.rifat_vais_wife_sample, R.mipmap.rifat_vais_wife_sample, R.mipmap.rifat_vais_wife_sample};
-
     private AppCompatImageView
             ivWalkThroughCircle1,
             ivWalkThroughCircle2,
@@ -55,32 +52,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_activity_product_details);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        this.drawer = findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
-        increaseHamburgerSize();
-
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        this.ivWalkThroughCircle1 = findViewById(R.id.ivWalkThroughCircle1);
-        this.ivWalkThroughCircle2 = findViewById(R.id.ivWalkThroughCircle2);
-        this.ivWalkThroughCircle3 = findViewById(R.id.ivWalkThroughCircle3);
-
-        mPeger = findViewById(R.id.viewpager);
-        myPagerAdapter = new MyPagerAdapter(ProductService.getInstance().getDressDetails().getDressImages(), this);
-        mPeger.setAdapter(myPagerAdapter);
-
+        
+        initializeUI();
+        
         mPeger.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
             @Override
             public void onPageSelected(int position) {
@@ -91,15 +68,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
+            public void onPageScrollStateChanged(int state) { }
         });
-
-        tvPrice = findViewById(R.id.tvPrice);
-        tvPrice.setText(ProductService.getInstance().getDressDetails().getActualPrice());
-
-        btnReadMore = findViewById(R.id.btnReadMore);
 
         btnReadMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,21 +92,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
-        dressArrayList = new ArrayList<>();
-        dressArrayList.addAll(ProductService.getInstance().getAllDress());
-        for (int i=0; i<this.dressArrayList.size(); i++){
-            if(this.dressArrayList.get(i).getDressId().equals(ProductService.getInstance().getDressDetails().getDressId())){
-                dressArrayList.remove(i);
-            }
-        }
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
-        RecyclerViewAdapterDress myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(myAdapter);
-        recyclerView.setNestedScrollingEnabled(false);
-
-        layoutMyProfile = findViewById(R.id.layoutMyProfile);
         layoutMyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,7 +99,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
-        layoutCategory = findViewById(R.id.layoutCategory);
         layoutCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +106,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
-        layoutOrders = findViewById(R.id.layoutOrders);
         layoutOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,7 +113,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
-        layoutCart = findViewById(R.id.layoutCart);
         layoutCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,7 +120,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
-        layoutSettings = findViewById(R.id.layoutSettings);
         layoutSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +127,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
-        layoutLogout = findViewById(R.id.layoutLogout);
         layoutLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,6 +135,63 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
     }
 
+    private void initializeUI() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        this.drawer = findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        increaseHamburgerSize();
+
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        this.ivWalkThroughCircle1 = findViewById(R.id.ivWalkThroughCircle1);
+        this.ivWalkThroughCircle2 = findViewById(R.id.ivWalkThroughCircle2);
+        this.ivWalkThroughCircle3 = findViewById(R.id.ivWalkThroughCircle3);
+
+        initializeViewPager();
+
+        tvPrice = findViewById(R.id.tvPrice);
+        tvPrice.setText(ProductService.getInstance().getDressDetails().getActualPrice());
+
+        btnReadMore = findViewById(R.id.btnReadMore);
+
+        //Setting more dress item....................
+        dressArrayList = new ArrayList<>();
+        dressArrayList.addAll(ProductService.getInstance().getAllDress());
+        for (int i=0; i<this.dressArrayList.size(); i++){
+            if(this.dressArrayList.get(i).getDressId().equals(ProductService.getInstance().getDressDetails().getDressId())){
+                dressArrayList.remove(i);
+            }
+        }
+
+        initializeRecyclerView();
+
+        layoutMyProfile = findViewById(R.id.layoutMyProfile);
+        layoutCategory = findViewById(R.id.layoutCategory);
+        layoutOrders = findViewById(R.id.layoutOrders);
+        layoutCart = findViewById(R.id.layoutCart);
+        layoutSettings = findViewById(R.id.layoutSettings);
+        layoutLogout = findViewById(R.id.layoutLogout);
+    }
+
+    private void initializeViewPager() {
+        mPeger = findViewById(R.id.viewpager);
+        myPagerAdapter = new MyPagerAdapter(ProductService.getInstance().getDressDetails().getDressImages(), this);
+        mPeger.setAdapter(myPagerAdapter);
+    }
+    
+    private void initializeRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
+        RecyclerViewAdapterDress myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setNestedScrollingEnabled(false);
+    }
+    
     private void resetWalkthroughTabSelectionColor() {
         this.ivWalkThroughCircle1.setBackgroundResource(R.drawable.ic_circle_ash);
         this.ivWalkThroughCircle2.setBackgroundResource(R.drawable.ic_circle_ash);
@@ -203,23 +210,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 this.ivWalkThroughCircle3.setBackgroundResource(R.drawable.ic_circle_ash_selected);
                 break;
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (isDrawerOpen()) {
-            closeDrawer();
-        } else {
-            super.onBackPressed();
-            finish();
-        }
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        closeDrawerWithOutAnimation();
     }
 
     private boolean isDrawerOpen() {
@@ -242,10 +232,25 @@ public class ProductDetailsActivity extends AppCompatActivity {
         toggle.setDrawerArrowDrawable(new HamburgerDrawable(this));
     }
 
+    @Override
+    public void onBackPressed() {
+        if (isDrawerOpen()) {
+            closeDrawer();
+        } else {
+            super.onBackPressed();
+            finish();
+        }
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        closeDrawerWithOutAnimation();
+    }
+    
     public class HamburgerDrawable extends DrawerArrowDrawable {
 
-        public HamburgerDrawable(Context context){
+        HamburgerDrawable(Context context){
             super(context);
             setColor(context.getResources().getColor(R.color.colorPrimary));
         }
@@ -257,7 +262,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             setBarLength(60.0f);
             setBarThickness(10.0f);
             setGapSize(10.0f);
-
         }
     }
 }

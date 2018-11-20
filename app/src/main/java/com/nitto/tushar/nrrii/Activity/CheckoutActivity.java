@@ -24,6 +24,7 @@ import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterCheckout;
 import com.nitto.tushar.nrrii.Entity.CartItem;
 import com.nitto.tushar.nrrii.R;
 import com.nitto.tushar.nrrii.Services.CartService;
+import com.nitto.tushar.nrrii.Services.OrderService;
 
 import java.util.ArrayList;
 
@@ -206,6 +207,12 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
     public void onItemPriceUpdated(double updatedTotalPrice) {
         subtotalPrice.setText(String.format("%s BDT", String.valueOf(updatedTotalPrice)));
         totalPrice.setText(String.format("%s BDT", String.valueOf(updatedTotalPrice + 100.0)));
+    }
+
+    @Override
+    protected void onDestroy() {
+        CartService.getInstance().RemoveOnUpdateUIListener(this);
+        super.onDestroy();
     }
 
 

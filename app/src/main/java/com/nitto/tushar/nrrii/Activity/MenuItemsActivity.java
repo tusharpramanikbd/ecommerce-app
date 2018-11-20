@@ -17,7 +17,11 @@ public class MenuItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_item);
 
-        layoutMyProfile = findViewById(R.id.layoutMyProfile);
+
+        initializeUI();
+
+
+        //Button Events..............................
         layoutMyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,7 +29,6 @@ public class MenuItemsActivity extends AppCompatActivity {
             }
         });
 
-        orderList = findViewById(R.id.orderList);
         orderList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,7 +36,6 @@ public class MenuItemsActivity extends AppCompatActivity {
             }
         });
 
-        btnSettings = findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,12 +43,19 @@ public class MenuItemsActivity extends AppCompatActivity {
             }
         });
 
-        btnLogout = findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MenuItemsActivity.this, LoginActivity.class) );
             }
         });
+    }
+
+    private void initializeUI() {
+        //Initializing the components....................
+        layoutMyProfile = findViewById(R.id.layoutMyProfile);
+        orderList = findViewById(R.id.orderList);
+        btnSettings = findViewById(R.id.btnSettings);
+        btnLogout = findViewById(R.id.btnLogout);
     }
 }

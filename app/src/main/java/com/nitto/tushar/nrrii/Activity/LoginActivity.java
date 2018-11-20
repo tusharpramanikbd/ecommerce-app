@@ -9,7 +9,6 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.nitto.tushar.nrrii.R;
 
@@ -25,8 +24,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         initializeUI();
 
+
+        //Button events.......................
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initializeUI() {
+        //Initializing the components...............
         btnRegister = findViewById(R.id.btnRegister);
         tvSkip = findViewById(R.id.tvSkip);
         layout_invalid_sign =findViewById(R.id.layout_invalid_sign);

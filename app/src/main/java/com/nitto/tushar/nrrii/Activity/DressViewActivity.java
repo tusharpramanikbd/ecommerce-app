@@ -13,7 +13,6 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -37,19 +36,11 @@ public class DressViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_drawer);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        this.drawer = findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        initializeUI();
 
-        increaseHamburgerSize();
 
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        btnCartBag = findViewById(R.id.btnCartBag);
+        //Button event to go to cart............
         btnCartBag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,16 +48,8 @@ public class DressViewActivity extends AppCompatActivity {
             }
         });
 
-        dressArrayList = new ArrayList<>();
-        dressArrayList.addAll(ProductService.getInstance().getAllDress());
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
-        RecyclerViewAdapterDress myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(myAdapter);
-
-
-        layoutMyProfile = findViewById(R.id.layoutMyProfile);
+        //Button Event For Menu Drawer..........
         layoutMyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +57,6 @@ public class DressViewActivity extends AppCompatActivity {
             }
         });
 
-        layoutCategory = findViewById(R.id.layoutCategory);
         layoutCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +64,6 @@ public class DressViewActivity extends AppCompatActivity {
             }
         });
 
-        layoutOrders = findViewById(R.id.layoutOrders);
         layoutOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +71,6 @@ public class DressViewActivity extends AppCompatActivity {
             }
         });
 
-        layoutCart = findViewById(R.id.layoutCart);
         layoutCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +78,6 @@ public class DressViewActivity extends AppCompatActivity {
             }
         });
 
-        layoutSettings = findViewById(R.id.layoutSettings);
         layoutSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,29 +85,53 @@ public class DressViewActivity extends AppCompatActivity {
             }
         });
 
-        layoutLogout = findViewById(R.id.layoutLogout);
         layoutLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DressViewActivity.this, LoginActivity.class) );
             }
         });
-
     }
 
-    @Override
-    public void onBackPressed() {
-        if (isDrawerOpen()) {
-            closeDrawer();
-        } else {
-            super.onBackPressed();
-        }
+    private void initializeUI() {
+        //Initializing the service calls.........
+        dressArrayList = new ArrayList<>();
+        dressArrayList.addAll(ProductService.getInstance().getAllDress());
+
+        //Initializing the menu toolbar..........
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //Adding drawer to hamburger menu in toolbar..........
+        this.drawer = findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        //Setting hamburger size..................
+        increaseHamburgerSize();
+
+        //Adding toggle listener to drawer..............
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        initializeRecyclerView();
+
+        //Initializing cart button in toolbar...........
+        btnCartBag = findViewById(R.id.btnCartBag);
+
+        //Initializing menu buttons in menu drawer...........
+        layoutMyProfile = findViewById(R.id.layoutMyProfile);
+        layoutCategory = findViewById(R.id.layoutCategory);
+        layoutOrders = findViewById(R.id.layoutOrders);
+        layoutCart = findViewById(R.id.layoutCart);
+        layoutSettings = findViewById(R.id.layoutSettings);
+        layoutLogout = findViewById(R.id.layoutLogout);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        closeDrawerWithOutAnimation();
+    private void initializeRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
+        RecyclerViewAdapterDress myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setAdapter(myAdapter);
     }
 
     private boolean isDrawerOpen() {
@@ -151,6 +154,21 @@ public class DressViewActivity extends AppCompatActivity {
         toggle.setDrawerArrowDrawable(new HamburgerDrawable(this));
     }
 
+    @Override
+    public void onBackPressed() {
+        if (isDrawerOpen()) {
+            closeDrawer();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        closeDrawerWithOutAnimation();
+    }
+
 
     public class HamburgerDrawable extends DrawerArrowDrawable{
 
@@ -166,7 +184,6 @@ public class DressViewActivity extends AppCompatActivity {
             setBarLength(60.0f);
             setBarThickness(10.0f);
             setGapSize(10.0f);
-
         }
     }
 }
