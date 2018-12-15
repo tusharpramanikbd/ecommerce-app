@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.borjabravo.readmoretextview.ReadMoreTextView;
 import com.nitto.tushar.nrrii.Adapter.MyPagerAdapter;
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterDress;
 import com.nitto.tushar.nrrii.Entity.Dress;
@@ -38,10 +39,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private LayoutInflater inflater;
     private LinearLayout linearLayout;
 
+    private ReadMoreTextView text_view;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
-    private AppCompatTextView tvPrice;
+    private AppCompatTextView tvPrice, dressTitle;
 
     private AppCompatImageView
             ivWalkThroughCircle1,
@@ -157,6 +159,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
         tvPrice = findViewById(R.id.tvPrice);
         tvPrice.setText(ProductService.getInstance().getDressDetails().getActualPrice());
 
+        dressTitle = findViewById(R.id.dressTitle);
+        dressTitle.setText(ProductService.getInstance().getDressDetails().getDressTitle());
+
+        text_view = findViewById(R.id.text_view);
+        text_view.setText(ProductService.getInstance().getDressDetails().getDressDetails());
+
         btnReadMore = findViewById(R.id.btnReadMore);
 
         //Setting more dress item....................
@@ -180,8 +188,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private void initializeViewPager() {
         mPeger = findViewById(R.id.viewpager);
-        myPagerAdapter = new MyPagerAdapter(ProductService.getInstance().getDressDetails().getDressImages(), this);
+        myPagerAdapter = new MyPagerAdapter(ProductService.getInstance().getDressDetails().getImages(), this);
         mPeger.setAdapter(myPagerAdapter);
+        mPeger.setOffscreenPageLimit(2);
     }
     
     private void initializeRecyclerView() {

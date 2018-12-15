@@ -12,6 +12,7 @@ public class Dress {
     private String promotionalPrice;
     private String dressDetails;
     private ArrayList<DressReview> dressReviews;
+    private ArrayList<ImageItem> images;
 
     public Dress() {
     }
@@ -27,6 +28,14 @@ public class Dress {
         this.dressCoverPhoto = dressCoverPhoto;
         this.dressImages = dressImages;
         this.actualPrice = actualPrice;
+    }
+
+    public ArrayList<ImageItem> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<ImageItem> images) {
+        this.images = images;
     }
 
     public int getDressCoverPhoto() {

@@ -10,7 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitInstance {
-    private static final String BASE_URL = "http://52.40.71.120/api/";
+    private static final String BASE_URL = "https://nrrifashion.com/api/wp-json/wc/v2/";
+//    private static final String BASE_URL = "http://52.40.71.120/api/";
 //    public static final String BASE_URL = "http://192.168.0.109:5000/api/";
 
     private static Retrofit retrofit;

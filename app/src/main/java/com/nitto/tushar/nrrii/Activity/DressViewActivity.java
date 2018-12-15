@@ -15,20 +15,30 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterDress;
 import com.nitto.tushar.nrrii.Entity.Dress;
+import com.nitto.tushar.nrrii.Entity.ProductItem;
+import com.nitto.tushar.nrrii.Network.ApiCalls.ApiSearchProduct;
+import com.nitto.tushar.nrrii.Network.RetrofitInstance;
 import com.nitto.tushar.nrrii.R;
 import com.nitto.tushar.nrrii.Services.ProductService;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class DressViewActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class DressViewActivity extends AppCompatActivity implements ProductService.UpdateUIOnProductRetrieveListener {
 
     private DrawerLayout drawer;
     private ArrayList<Dress> dressArrayList;
     private AppCompatButton btnCartBag;
     private ActionBarDrawerToggle toggle;
+    private RecyclerViewAdapterDress myAdapter;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
 
     @Override
@@ -95,8 +105,10 @@ public class DressViewActivity extends AppCompatActivity {
 
     private void initializeUI() {
         //Initializing the service calls.........
+        ProductService.getInstance().AddUpdateUIOnProductRetrieveListener(this);
+
         dressArrayList = new ArrayList<>();
-        dressArrayList.addAll(ProductService.getInstance().getAllDress());
+        //dressArrayList.addAll(ProductService.getInstance().getAllDress());
 
         //Initializing the menu toolbar..........
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -125,11 +137,14 @@ public class DressViewActivity extends AppCompatActivity {
         layoutCart = findViewById(R.id.layoutCart);
         layoutSettings = findViewById(R.id.layoutSettings);
         layoutLogout = findViewById(R.id.layoutLogout);
+
+        ProductService.getInstance().getProductItemsFromServer();
     }
+
 
     private void initializeRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
-        RecyclerViewAdapterDress myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
+        myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(myAdapter);
     }
@@ -169,6 +184,22 @@ public class DressViewActivity extends AppCompatActivity {
         closeDrawerWithOutAnimation();
     }
 
+    @Override
+    public void onProductRetrieve(List<ProductItem> productItems) {
+
+        for (int i = 0; i < productItems.size(); i++){
+            Dress dress = new Dress();
+            dress.setDressId(String.valueOf(productItems.get(i).getUid()));
+            dress.setDressTitle(productItems.get(i).getName());
+            dress.setImages(productItems.get(i).getImages());
+            dress.setActualPrice(String.valueOf(productItems.get(i).getPrice()));
+            dress.setDressDetails(productItems.get(i).getProductDescription());
+            dressArrayList.add(dress);
+        }
+
+        myAdapter.notifyDataSetChanged();
+    }
+
 
     public class HamburgerDrawable extends DrawerArrowDrawable{
 
@@ -185,5 +216,11 @@ public class DressViewActivity extends AppCompatActivity {
             setBarThickness(10.0f);
             setGapSize(10.0f);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        ProductService.getInstance().RemoveUpdateUIOnProductRetrieveListener();
+        super.onDestroy();
     }
 }

@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.nitto.tushar.nrrii.Activity.ProductDetailsActivity;
 import com.nitto.tushar.nrrii.Entity.Dress;
 import com.nitto.tushar.nrrii.R;
@@ -43,18 +45,30 @@ public class RecyclerViewAdapterDress extends RecyclerView.Adapter<RecyclerViewA
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-        holder.dressCover.setImageResource(dressArrayList.get(position).getDressCoverPhoto());
+        //holder.dressCover.setImageResource(dressArrayList.get(position).getImages().get(0).getSrc());
+
+        Glide
+                .with(mContext)
+                .load(dressArrayList.get(position).getImages().get(0).getSrc())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.ic_default_product_image)
+                        .error(R.drawable.ic_default_product_image))
+                .into(holder.dressCover);
+
+
+
+
         holder.tvActualPrice.setText(dressArrayList.get(position).getActualPrice());
         //holder.tvActualPrice.setPaintFlags(holder.tvActualPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
         //holder.tvActualPriceBDT.setPaintFlags(holder.tvActualPriceBDT.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-        holder.tvPromotionalPrice.setText(dressArrayList.get(position).getPromotionalPrice());
+        //holder.tvPromotionalPrice.setText(dressArrayList.get(position).getPromotionalPrice());
 
         holder.dressCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductService.getInstance().setDressForDetails(dressArrayList.get(position).getDressId());
+                ProductService.getInstance().setDressForDetails(dressArrayList.get(position));
                 mContext.startActivity(new Intent(mContext, ProductDetailsActivity.class) );
             }
         });

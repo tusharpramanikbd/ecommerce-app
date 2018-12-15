@@ -2,9 +2,12 @@ package com.nitto.tushar.nrrii.Entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 
 @Entity(tableName = "ProductItem")
 public class ProductItem {
@@ -13,10 +16,11 @@ public class ProductItem {
     @PrimaryKey(autoGenerate = true)
     private int uid;
 
-    @SerializedName("product_name")
+    @SerializedName("name")
     @ColumnInfo(name = "product_name")
     private String name;
 
+    @SerializedName("description")
     @ColumnInfo(name = "product_description")
     private String productDescription;
 
@@ -27,18 +31,30 @@ public class ProductItem {
     @ColumnInfo(name = "product_rating")
     private int rating;
 
-    @SerializedName("product_image")
+    //@SerializedName("product_image")
     @ColumnInfo(name = "product_image")
     private String image;
 
     @ColumnInfo(name = "product_quantity")
     private int quantity;
 
-    @SerializedName("category_id")
+    //@SerializedName("category_id")
     @ColumnInfo(name = "category_number")
     private int categoryNumber;
 
+    @SerializedName("images")
+    @Ignore
+    private ArrayList<ImageItem> images;
 
+
+    public ArrayList<ImageItem> getImages() {
+
+        return images;
+    }
+
+    public void setImages(ArrayList<ImageItem> images) {
+        this.images = images;
+    }
 
     public int getUid() {
         return uid;

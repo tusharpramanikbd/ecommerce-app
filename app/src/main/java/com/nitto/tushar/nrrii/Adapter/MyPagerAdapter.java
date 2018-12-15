@@ -9,23 +9,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.nitto.tushar.nrrii.Entity.ImageItem;
 import com.nitto.tushar.nrrii.R;
+
+import java.util.ArrayList;
 
 public class MyPagerAdapter extends PagerAdapter {
 
-    private int[] images;
+    private ArrayList<ImageItem> imageItems;
     private LayoutInflater inflater;
     private Context mContext;
 
-    public MyPagerAdapter(int[] images, Context mContext) {
-        this.images = images;
+    public MyPagerAdapter(ArrayList<ImageItem> imageItems, Context mContext) {
+        this.imageItems = imageItems;
         this.mContext = mContext;
         this.inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return images.length;
+        return imageItems.size();
     }
 
     @Override
@@ -39,7 +44,15 @@ public class MyPagerAdapter extends PagerAdapter {
 
         AppCompatImageView slideImage = view.findViewById(R.id.slideImage);
 
-        slideImage.setImageResource(images[position]);
+        //slideImage.setImageResource(images[position]);
+
+        Glide
+                .with(mContext)
+                .load(imageItems.get(position).getSrc())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.ic_default_product_image)
+                        .error(R.drawable.ic_default_product_image))
+                .into(slideImage);
 
         container.addView(view);
         return view;

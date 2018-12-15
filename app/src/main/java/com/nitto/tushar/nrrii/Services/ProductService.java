@@ -2,17 +2,28 @@ package com.nitto.tushar.nrrii.Services;
 
 
 
+import android.widget.Toast;
+
+import com.nitto.tushar.nrrii.Activity.DressViewActivity;
 import com.nitto.tushar.nrrii.Entity.Dress;
 import com.nitto.tushar.nrrii.Entity.ProductItem;
+import com.nitto.tushar.nrrii.Network.ApiCalls.ApiSearchProduct;
+import com.nitto.tushar.nrrii.Network.RetrofitInstance;
 import com.nitto.tushar.nrrii.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ProductService {
     private ProductItem productItem;
     private ArrayList<Dress> dressItems;
     private Dress dress;
+    private UpdateUIOnProductRetrieveListener updateUIOnProductRetrieveListener;
+    private String consumer_key = "ck_c8a5753c20021f7f009633b32eaec7be5535b025", consumer_secret = "cs_4700d25eb3d82d4bfeafa1c0d7a785da797d15af";
 
     private static ProductService productService = new ProductService();
 
@@ -27,6 +38,61 @@ public class ProductService {
         return productService;
     }
 
+    public interface UpdateUIOnProductRetrieveListener{
+        void onProductRetrieve(List<ProductItem> productItems);
+    }
+
+    public void AddUpdateUIOnProductRetrieveListener(UpdateUIOnProductRetrieveListener listener){
+        this.updateUIOnProductRetrieveListener = listener;
+    }
+
+    public void RemoveUpdateUIOnProductRetrieveListener(){
+        this.updateUIOnProductRetrieveListener = null;
+    }
+
+    public void getProductItemsFromServer() {
+
+
+        ApiSearchProduct ApiSearchProduct = RetrofitInstance.getInstance().create(ApiSearchProduct.class);
+
+        Call<List<ProductItem>> result;
+
+        result = ApiSearchProduct.searchProductByCategory(10,consumer_key,consumer_secret);
+
+        result.enqueue(new Callback<List<ProductItem>>()
+        {
+            @Override
+            public void onResponse(Call<List<ProductItem>> call, Response<List<ProductItem>> response)
+            {
+                List<ProductItem> productItems = response.body();
+
+                for (int i = 0; i < productItems.size(); i++){
+                    Dress dress = new Dress();
+                    dress.setDressId(String.valueOf(productItems.get(i).getUid()));
+                    dress.setDressTitle(productItems.get(i).getName());
+                    dress.setImages(productItems.get(i).getImages());
+                    dress.setActualPrice(String.valueOf(productItems.get(i).getPrice()));
+                    dress.setDressDetails(productItems.get(i).getProductDescription());
+                    dressItems.add(dress);
+                }
+
+                updateViewOnProductRetrieve(productItems);
+
+                //Toast.makeText(DressViewActivity.this, "Api called Successfully ", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<ProductItem>> call, Throwable t)
+            {
+                //Toast.makeText(DressViewActivity.this, "Failed to call", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void updateViewOnProductRetrieve(List<ProductItem> productItems) {
+        this.updateUIOnProductRetrieveListener.onProductRetrieve(productItems);
+    }
+
     // Constructor
     private ProductService(){
 //        // all class related initialization goes here
@@ -35,6 +101,7 @@ public class ProductService {
 
     public void InitializeProductService() {
         this.productItem = null;
+        this.dressItems = new ArrayList<>();
     }
 
     public void insertProductItem(ProductItem productItem) {
@@ -46,28 +113,18 @@ public class ProductService {
     }
 
     public ArrayList<Dress> getAllDress(){
-        this.dressItems = new ArrayList<>();
-        this.dressItems.add(new Dress("1", R.mipmap.dress40, new int[]{R.mipmap.dress41,R.mipmap.dress42,R.mipmap.dress43,R.mipmap.dress44}, "2950"));
-        this.dressItems.add(new Dress("2", R.mipmap.dress50, new int[]{R.mipmap.dress51,R.mipmap.dress52,R.mipmap.dress53,R.mipmap.dress54}, "3450"));
-        this.dressItems.add(new Dress("3", R.mipmap.dress60, new int[]{R.mipmap.dress61,R.mipmap.dress62,R.mipmap.dress63,R.mipmap.dress64,R.mipmap.dress65},"2250"));
-        this.dressItems.add(new Dress("4", R.mipmap.dress70, new int[]{R.mipmap.dress71,R.mipmap.dress72,R.mipmap.dress73,R.mipmap.dress74,R.mipmap.dress75,R.mipmap.dress76},"3550"));
-        this.dressItems.add(new Dress("5", R.mipmap.dress80, new int[]{R.mipmap.dress81,R.mipmap.dress82},"2950"));
 
         return this.dressItems;
     }
 
-    public void setDressForDetails(String dressId){
+    public void setDressForDetails(Dress dress){
         this.dress = new Dress();
-        for (int i=0; i<this.dressItems.size(); i++){
-            if(this.dressItems.get(i).getDressId().equals(dressId)){
-                this.dress.setDressId(this.dressItems.get(i).getDressId());
-                this.dress.setActualPrice(this.dressItems.get(i).getActualPrice());
-                this.dress.setPromotionalPrice(this.dressItems.get(i).getPromotionalPrice());
-                this.dress.setDressCoverPhoto(this.dressItems.get(i).getDressCoverPhoto());
-                this.dress.setDressImages(this.dressItems.get(i).getDressImages());
 
-            }
-        }
+        this.dress.setDressId(dress.getDressId());
+        this.dress.setDressTitle(dress.getDressTitle());
+        this.dress.setDressDetails(dress.getDressDetails());
+        this.dress.setActualPrice(dress.getActualPrice());
+        this.dress.setImages(dress.getImages());
     }
 
     public Dress getDressDetails(){

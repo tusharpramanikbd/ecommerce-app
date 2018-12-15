@@ -91,35 +91,35 @@ public class DemoFragment extends Fragment {
 
     private void populateProductItems() {
 
-        int numberAgainstCategory = getCategoryNumber(GetPageTitle());
-
-        ApiSearchProduct ApiSearchProduct = RetrofitInstance.getInstance().create(ApiSearchProduct.class);
-
-        Call<List<ProductItem>> result;
-
-        if (numberAgainstCategory == 0){
-            result = ApiSearchProduct.searchProduct("",0,10);
-        }
-        else {
-            result = ApiSearchProduct.searchProductByCategory("",numberAgainstCategory,0,10);
-
-        }
-        result.enqueue(new Callback<List<ProductItem>>()
-        {
-            @Override
-            public void onResponse(Call<List<ProductItem>> call, Response<List<ProductItem>> response)
-            {
-                List<ProductItem> productItems = response.body();
-                //Toast.makeText(getContext(), "Api called Successfully ", Toast.LENGTH_SHORT).show();
-                updateUIWithProductItems(productItems);
-            }
-
-            @Override
-            public void onFailure(Call<List<ProductItem>> call, Throwable t)
-            {
-                //Toast.makeText(getContext(), "Failed to call", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        int numberAgainstCategory = getCategoryNumber(GetPageTitle());
+//
+//        ApiSearchProduct ApiSearchProduct = RetrofitInstance.getInstance().create(ApiSearchProduct.class);
+//
+//        Call<List<ProductItem>> result;
+//
+//        if (numberAgainstCategory == 0){
+//            result = ApiSearchProduct.searchProduct("",0,10);
+//        }
+//        else {
+//            result = ApiSearchProduct.searchProductByCategory("",numberAgainstCategory,0,10);
+//
+//        }
+//        result.enqueue(new Callback<List<ProductItem>>()
+//        {
+//            @Override
+//            public void onResponse(Call<List<ProductItem>> call, Response<List<ProductItem>> response)
+//            {
+//                List<ProductItem> productItems = response.body();
+//                //Toast.makeText(getContext(), "Api called Successfully ", Toast.LENGTH_SHORT).show();
+//                updateUIWithProductItems(productItems);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<ProductItem>> call, Throwable t)
+//            {
+//                //Toast.makeText(getContext(), "Failed to call", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void updateUIWithProductItems(List<ProductItem> productItems) {
@@ -177,30 +177,30 @@ public class DemoFragment extends Fragment {
 
     private void getProductItemsFromServer(int categoryNumber, int previousProductListSize){
 
-        ApiSearchProduct ApiSearchProduct = RetrofitInstance.getInstance().create(ApiSearchProduct.class);
-        Call<List<ProductItem>> result;
-        if (categoryNumber == 0){
-            result = ApiSearchProduct.searchProduct("",previousProductListSize,10);
-        }
-        else {
-            result = ApiSearchProduct.searchProductByCategory("",categoryNumber,previousProductListSize,10);
-        }
-        result.enqueue(new Callback<List<ProductItem>>()
-        {
-            @Override
-            public void onResponse(Call<List<ProductItem>> call, Response<List<ProductItem>> response)
-            {
-                List<ProductItem> newLoadedProductItems = response.body();
-                //Toast.makeText(getContext(), "Image Message Send Successfully", Toast.LENGTH_SHORT).show();
-                updateUIWithProductItems(newLoadedProductItems);
-            }
-
-            @Override
-            public void onFailure(Call<List<ProductItem>> call, Throwable t)
-            {
-                //Toast.makeText(getContext(), "Failed To Send", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        ApiSearchProduct ApiSearchProduct = RetrofitInstance.getInstance().create(ApiSearchProduct.class);
+//        Call<List<ProductItem>> result;
+//        if (categoryNumber == 0){
+//            result = ApiSearchProduct.searchProduct("",previousProductListSize,10);
+//        }
+//        else {
+//            result = ApiSearchProduct.searchProductByCategory("",categoryNumber,previousProductListSize,10);
+//        }
+//        result.enqueue(new Callback<List<ProductItem>>()
+//        {
+//            @Override
+//            public void onResponse(Call<List<ProductItem>> call, Response<List<ProductItem>> response)
+//            {
+//                List<ProductItem> newLoadedProductItems = response.body();
+//                //Toast.makeText(getContext(), "Image Message Send Successfully", Toast.LENGTH_SHORT).show();
+//                updateUIWithProductItems(newLoadedProductItems);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<ProductItem>> call, Throwable t)
+//            {
+//                //Toast.makeText(getContext(), "Failed To Send", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
 //    @Override
