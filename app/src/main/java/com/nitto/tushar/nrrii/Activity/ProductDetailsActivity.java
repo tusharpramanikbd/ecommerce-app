@@ -16,6 +16,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
-    private ViewPager mPeger;
+    private ViewPager mPager;
     private MyPagerAdapter myPagerAdapter;
     private ArrayList<Dress> dressArrayList;
     private AppCompatButton btnReadMore;
@@ -39,16 +40,20 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private LayoutInflater inflater;
     private LinearLayout linearLayout;
 
+    private LinearLayout pager_indicator;
+    private int dotsCount;
+    private AppCompatImageView[] dots;
+
     private ReadMoreTextView text_view;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
     private AppCompatTextView tvPrice, dressTitle;
 
-    private AppCompatImageView
-            ivWalkThroughCircle1,
-            ivWalkThroughCircle2,
-            ivWalkThroughCircle3;
+//    private AppCompatImageView
+//            ivWalkThroughCircle1,
+//            ivWalkThroughCircle2,
+//            ivWalkThroughCircle3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +62,22 @@ public class ProductDetailsActivity extends AppCompatActivity {
         
         initializeUI();
         
-        mPeger.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
             @Override
             public void onPageSelected(int position) {
-                //reset all tab selection to not selected
-                resetWalkthroughTabSelectionColor();
-                //highlight custom tab button on selected page position here
-                setSelectionColorOnSelectedPagePosition(position);
+//                //reset all tab selection to not selected
+//                resetWalkthroughTabSelectionColor();
+//                //highlight custom tab button on selected page position here
+//                setSelectionColorOnSelectedPagePosition(position);
+                Log.d("###onPageSelected, pos ", String.valueOf(position));
+                for (int i = 0; i < dotsCount; i++) {
+                    dots[i].setImageDrawable(getResources().getDrawable(R.drawable.nonselecteditem_dot));
+                }
+
+                dots[position].setImageDrawable(getResources().getDrawable(R.drawable.selecteditem_dot));
             }
 
             @Override
@@ -141,6 +152,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        pager_indicator = findViewById(R.id.viewPagerCountDots);
+
         this.drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -150,9 +163,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        this.ivWalkThroughCircle1 = findViewById(R.id.ivWalkThroughCircle1);
-        this.ivWalkThroughCircle2 = findViewById(R.id.ivWalkThroughCircle2);
-        this.ivWalkThroughCircle3 = findViewById(R.id.ivWalkThroughCircle3);
+//        this.ivWalkThroughCircle1 = findViewById(R.id.ivWalkThroughCircle1);
+//        this.ivWalkThroughCircle2 = findViewById(R.id.ivWalkThroughCircle2);
+//        this.ivWalkThroughCircle3 = findViewById(R.id.ivWalkThroughCircle3);
 
         initializeViewPager();
 
@@ -187,10 +200,48 @@ public class ProductDetailsActivity extends AppCompatActivity {
     }
 
     private void initializeViewPager() {
-        mPeger = findViewById(R.id.viewpager);
+        mPager = findViewById(R.id.viewpager);
         myPagerAdapter = new MyPagerAdapter(ProductService.getInstance().getDressDetails().getImages(), this);
-        mPeger.setAdapter(myPagerAdapter);
-        mPeger.setOffscreenPageLimit(2);
+        mPager.setAdapter(myPagerAdapter);
+        mPager.setOffscreenPageLimit(2);
+
+        setPageViewIndicator();
+    }
+
+    private void setPageViewIndicator() {
+        if(dotsCount!=0) {
+            pager_indicator.removeAllViews();
+        }
+        Log.d("###setPageViewIndicator", " : called");
+        dotsCount = myPagerAdapter.getCount();
+        dots = new AppCompatImageView[dotsCount];
+
+        for (int i = 0; i < dotsCount; i++) {
+            dots[i] = new AppCompatImageView(this);
+            dots[i].setImageDrawable(getResources().getDrawable(R.drawable.nonselecteditem_dot));
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+
+            params.setMargins(4, 0, 4, 0);
+
+            final int presentPosition = i;
+
+            dots[presentPosition].setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    mPager.setCurrentItem(presentPosition);
+                }
+
+            });
+
+            pager_indicator.addView(dots[i], params);
+        }
+
+        dots[0].setImageDrawable(getResources().getDrawable(R.drawable.selecteditem_dot));
     }
     
     private void initializeRecyclerView() {
@@ -201,25 +252,25 @@ public class ProductDetailsActivity extends AppCompatActivity {
         recyclerView.setNestedScrollingEnabled(false);
     }
     
-    private void resetWalkthroughTabSelectionColor() {
-        this.ivWalkThroughCircle1.setBackgroundResource(R.drawable.ic_circle_ash);
-        this.ivWalkThroughCircle2.setBackgroundResource(R.drawable.ic_circle_ash);
-        this.ivWalkThroughCircle3.setBackgroundResource(R.drawable.ic_circle_ash);
-    }
+//    private void resetWalkthroughTabSelectionColor() {
+//        this.ivWalkThroughCircle1.setBackgroundResource(R.drawable.ic_circle_ash);
+//        this.ivWalkThroughCircle2.setBackgroundResource(R.drawable.ic_circle_ash);
+//        this.ivWalkThroughCircle3.setBackgroundResource(R.drawable.ic_circle_ash);
+//    }
 
-    private void setSelectionColorOnSelectedPagePosition(int position) {
-        switch (position) {
-            case 0:
-                this.ivWalkThroughCircle1.setBackgroundResource(R.drawable.ic_circle_ash_selected);
-                break;
-            case 1:
-                this.ivWalkThroughCircle2.setBackgroundResource(R.drawable.ic_circle_ash_selected);
-                break;
-            case 2:
-                this.ivWalkThroughCircle3.setBackgroundResource(R.drawable.ic_circle_ash_selected);
-                break;
-        }
-    }
+//    private void setSelectionColorOnSelectedPagePosition(int position) {
+//        switch (position) {
+//            case 0:
+//                this.ivWalkThroughCircle1.setBackgroundResource(R.drawable.ic_circle_ash_selected);
+//                break;
+//            case 1:
+//                this.ivWalkThroughCircle2.setBackgroundResource(R.drawable.ic_circle_ash_selected);
+//                break;
+//            case 2:
+//                this.ivWalkThroughCircle3.setBackgroundResource(R.drawable.ic_circle_ash_selected);
+//                break;
+//        }
+//    }
 
     private boolean isDrawerOpen() {
         return this.drawer.isDrawerOpen(GravityCompat.START);
