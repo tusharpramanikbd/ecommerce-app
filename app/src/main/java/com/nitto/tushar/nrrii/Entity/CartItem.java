@@ -4,16 +4,16 @@ public class CartItem {
 
     private String productId;
     private String productTitle;
-    private int productPhoto;
+    private String productPhoto;
     private int productQuantity;
-    private int productPrice;
+    private double productPrice;
     private String productSize;
     private String productColor;
 
     public CartItem() {
     }
 
-    public CartItem(String productId,int productPhoto,int productQuantity, int productPrice, String productSize, String productColor) {
+    public CartItem(String productId,String productPhoto,int productQuantity, double productPrice, String productSize, String productColor) {
         this.productId = productId;
         this.productPhoto = productPhoto;
         this.productQuantity = productQuantity;
@@ -22,7 +22,7 @@ public class CartItem {
         this.productColor = productColor;
     }
 
-    public CartItem(String productId, String productTitle, int productPhoto, int productQuantity, int productPrice, String productSize, String productColor) {
+    public CartItem(String productId, String productTitle, String productPhoto, int productQuantity, double productPrice, String productSize, String productColor) {
         this.productId = productId;
         this.productTitle = productTitle;
         this.productPhoto = productPhoto;
@@ -40,11 +40,11 @@ public class CartItem {
         this.productId = productId;
     }
 
-    public int getProductPhoto() {
+    public String getProductPhoto() {
         return productPhoto;
     }
 
-    public void setProductPhoto(int productPhoto) {
+    public void setProductPhoto(String productPhoto) {
         this.productPhoto = productPhoto;
     }
 
@@ -64,11 +64,11 @@ public class CartItem {
         this.productQuantity = productQuantity;
     }
 
-    public int getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(int productPrice) {
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
 

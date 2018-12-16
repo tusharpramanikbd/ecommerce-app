@@ -62,13 +62,23 @@ public class CartService {
         cartItemsList.add(dressItem);
     }
 
-    public boolean isAvailableInCart(CartItem dressItem) {
+    public boolean isAvailableInCart(String productId) {
         for(int i=0;i<cartItemsList.size();i++) {
-            if(cartItemsList.get(i).getProductId().equals(dressItem.getProductId())) {
+            if(cartItemsList.get(i).getProductId().equals(productId)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public void increaseQuantity(String productId){
+        for (int i = 0; i < cartItemsList.size(); i++){
+            if(cartItemsList.get(i).getProductId().equals(productId)){
+                int quantity = cartItemsList.get(i).getProductQuantity();
+                quantity++;
+                cartItemsList.get(i).setProductQuantity(quantity);
+            }
+        }
     }
 
     public ArrayList<CartItem> getProductCart() {
@@ -76,12 +86,6 @@ public class CartService {
     }
 
     public ArrayList<CartItem> getAllCartItem(){
-        //ArrayList<CartItem> cartItems = new ArrayList<>();
-
-        cartItemsList.clear();
-        cartItemsList.add(new CartItem("1", R.mipmap.dress40,1, 2950, "M", "Pink"));
-        cartItemsList.add(new CartItem("2",R.mipmap.dress50,1, 3450, "L", "Yellow"));
-        cartItemsList.add(new CartItem("3",R.mipmap.dress60,1, 2250, "XL", "Pink"));
 
         return cartItemsList;
     }
@@ -135,6 +139,14 @@ public class CartService {
         totalPriceBeforeChange = totalPriceBeforeChange + currentProductPrice;
 
         updateUIOnItemInsert(totalPriceBeforeChange);
+    }
+
+    public int getTotalQuantity(){
+        int quantity = 0;
+        for(int i=0;i<cartItemsList.size();i++) {
+            quantity += cartItemsList.get(i).getProductQuantity();
+        }
+        return quantity;
     }
 
     private void updateUIOnItemInsert(double totalPriceBeforeChange) {

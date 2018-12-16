@@ -20,7 +20,7 @@
             android:background="@color/white"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
-            <LinearLayout
+            <RelativeLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/viewTotal"
                 android:layout_width="match_parent"
@@ -31,20 +31,34 @@
                 android:padding="10dp">
 
                 <!--<android.support.v7.widget.AppCompatButton-->
-                    <!--android:id="@+id/btn_berger"-->
-                    <!--android:layout_width="32dp"-->
-                    <!--android:layout_height="32dp"-->
-                    <!--android:background="@mipmap/berger_menu"/>-->
+                <!--android:id="@+id/btn_berger"-->
+                <!--android:layout_width="32dp"-->
+                <!--android:layout_height="32dp"-->
+                <!--android:background="@mipmap/berger_menu"/>-->
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btnCartBag"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
-                    android:background="@mipmap/shopping_black_cart"
-                    android:layout_marginStart="230dp"/>
+                    android:layout_marginStart="220dp"
+                    android:background="@mipmap/shopping_black_cart" />
 
-            </LinearLayout>
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnQuantityIndicator"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:layout_toEndOf="@+id/btnCartBag"
+                    android:background="@drawable/custom_button_oval"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
 

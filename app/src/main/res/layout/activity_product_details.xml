@@ -35,7 +35,8 @@
             android:background="@color/white"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/viewTotal"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
@@ -59,18 +60,18 @@
                     android:background="@mipmap/shopping_black_cart" />
 
                 <android.support.v7.widget.AppCompatButton
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:id="@+id/btnQuantityIndicator"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_alignParentTop="true"
                     android:layout_gravity="center"
                     android:layout_toEndOf="@+id/btnCartBag"
                     android:background="@drawable/custom_button_oval"
                     android:enabled="false"
                     android:gravity="center"
-                    android:text="3"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
-
 
             </RelativeLayout>
 
@@ -155,102 +156,7 @@
 
                     <!--</LinearLayout>-->
 
-
                 </RelativeLayout>
-
-                <!--<LinearLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:weightSum="3"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:baselineAligned="false">-->
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="horizontal"-->
-                        <!--android:layout_weight="1">-->
-
-                    <!--</LinearLayout>-->
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="horizontal"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:gravity="center_horizontal"-->
-                        <!--android:layout_gravity="center">-->
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="12dp"-->
-                            <!--android:layout_height="12dp">-->
-
-                            <!--<android.support.v7.widget.AppCompatImageView-->
-                                <!--android:id="@+id/ivWalkThroughCircle1"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:background="@drawable/ic_circle_ash_selected"/>-->
-
-                        <!--</LinearLayout>-->
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="10dp"-->
-                            <!--android:layout_height="5dp"></LinearLayout>-->
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="12dp"-->
-                            <!--android:layout_height="12dp"-->
-                            <!--android:gravity="center"-->
-                            <!--android:layout_gravity="center">-->
-
-                            <!--<android.support.v7.widget.AppCompatImageView-->
-                                <!--android:id="@+id/ivWalkThroughCircle2"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:background="@drawable/ic_circle_ash"/>-->
-
-                        <!--</LinearLayout>-->
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="10dp"-->
-                            <!--android:layout_height="5dp" />-->
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="12dp"-->
-                            <!--android:layout_height="12dp"-->
-                            <!--android:gravity="center"-->
-                            <!--android:layout_gravity="center">-->
-
-                            <!--<android.support.v7.widget.AppCompatImageView-->
-                                <!--android:id="@+id/ivWalkThroughCircle3"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:background="@drawable/ic_circle_ash"/>-->
-
-                        <!--</LinearLayout>-->
-
-                    <!--</LinearLayout>-->
-
-                    <!--<LinearLayout-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="vertical"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:gravity="center">-->
-
-                        <!--<android.support.v7.widget.AppCompatButton-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:text="Favorite"-->
-                            <!--android:textAllCaps="false"-->
-                            <!--android:textColor="@color/white"-->
-                            <!--android:background="@drawable/custom_button_purple"-->
-                            <!--android:minHeight="0dp"/>-->
-
-                    <!--</LinearLayout>-->
-
-                <!--</LinearLayout>-->
 
                 <RelativeLayout
                     android:id="@+id/viewPagerIndicator"

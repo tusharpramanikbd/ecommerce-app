@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.nitto.tushar.nrrii.Entity.CartItem;
 import com.nitto.tushar.nrrii.R;
 import com.nitto.tushar.nrrii.Services.CartService;
@@ -58,14 +60,25 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
 
         holder.productPrice.setText(String.valueOf(cartItem.getProductPrice()));
 
+        holder.productTitle.setText(cartItem.getProductTitle());
+
         holder.productQuantity.setText(String.valueOf(cartItem.getProductQuantity()));
 
+        holder.editQuantity.setText("0"+String.valueOf(cartItem.getProductQuantity()));
 
         holder.productSize.setText(String.valueOf(cartItem.getProductSize()));
 
         holder.productColor.setText(String.valueOf(cartItem.getProductColor()));
 
-        holder.product_image.setImageResource(cartItem.getProductPhoto());
+        //holder.product_image.setImageResource(cartItem.getProductPhoto());
+
+        Glide
+                .with(mContext)
+                .load(cartItem.getProductPhoto())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.ic_default_product_image)
+                        .error(R.drawable.ic_default_product_image))
+                .into(holder.product_image);
 
         holder.removeProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +121,7 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        AppCompatTextView productPrice, productQuantity, productSize, productColor,editQuantity;
+        AppCompatTextView productPrice, productQuantity, productSize, productColor,editQuantity, productTitle;
         AppCompatImageView removeProduct, product_image;
         AppCompatButton increaseQuantity, decreaseQuantity;
 
@@ -123,6 +136,7 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
             this.increaseQuantity = itemView.findViewById(R.id.increaseQuantity);
             this.decreaseQuantity = itemView.findViewById(R.id.decreaseQuantity);
             this.editQuantity = itemView.findViewById(R.id.editQuantity);
+            this.productTitle = itemView.findViewById(R.id.productTitle);
         }
     }
 }

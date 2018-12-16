@@ -23,6 +23,7 @@ import com.nitto.tushar.nrrii.Entity.ProductItem;
 import com.nitto.tushar.nrrii.Network.ApiCalls.ApiSearchProduct;
 import com.nitto.tushar.nrrii.Network.RetrofitInstance;
 import com.nitto.tushar.nrrii.R;
+import com.nitto.tushar.nrrii.Services.CartService;
 import com.nitto.tushar.nrrii.Services.ProductService;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
 
     private DrawerLayout drawer;
     private ArrayList<Dress> dressArrayList;
-    private AppCompatButton btnCartBag;
+    private AppCompatButton btnCartBag, btnQuantityIndicator, btnQuantityIndicatorDrawer;
     private ActionBarDrawerToggle toggle;
     private RecyclerViewAdapterDress myAdapter;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
@@ -54,7 +55,13 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
         btnCartBag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DressViewActivity.this, CheckoutActivity.class) );
+
+                if(CartService.getInstance().getTotalQuantity()< 1){
+                    Toast.makeText(DressViewActivity.this, "Cart is empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    startActivity(new Intent(DressViewActivity.this, CheckoutActivity.class) );
+                }
             }
         });
 
@@ -84,7 +91,12 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
         layoutCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DressViewActivity.this, CheckoutActivity.class) );
+                if(CartService.getInstance().getTotalQuantity()< 1){
+                    Toast.makeText(DressViewActivity.this, "Cart is empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    startActivity(new Intent(DressViewActivity.this, CheckoutActivity.class) );
+                }
             }
         });
 
@@ -138,9 +150,21 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
         layoutSettings = findViewById(R.id.layoutSettings);
         layoutLogout = findViewById(R.id.layoutLogout);
 
+        btnQuantityIndicator = findViewById(R.id.btnQuantityIndicator);
+        btnQuantityIndicator.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+
+        btnQuantityIndicatorDrawer = findViewById(R.id.btnQuantityIndicatorDrawer);
+        btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+
         ProductService.getInstance().getProductItemsFromServer();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        btnQuantityIndicator.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+        btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+    }
 
     private void initializeRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);

@@ -15,15 +15,17 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterCategory;
 import com.nitto.tushar.nrrii.R;
+import com.nitto.tushar.nrrii.Services.CartService;
 
 public class ProductCategoryActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
-    private AppCompatButton btnCartBag;
+    private AppCompatButton btnCartBag, btnQuantityIndicator, btnQuantityIndicatorDrawer;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
 
     private int[] images = {R.mipmap.cat_1, R.mipmap.cat_2, R.mipmap.cat_3, R.mipmap.cat_4};
@@ -42,7 +44,13 @@ public class ProductCategoryActivity extends AppCompatActivity {
         btnCartBag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProductCategoryActivity.this, CheckoutActivity.class) );
+
+                if(CartService.getInstance().getTotalQuantity()< 1){
+                    Toast.makeText(ProductCategoryActivity.this, "Cart is empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    startActivity(new Intent(ProductCategoryActivity.this, CheckoutActivity.class) );
+                }
             }
         });
 
@@ -72,7 +80,12 @@ public class ProductCategoryActivity extends AppCompatActivity {
         layoutCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProductCategoryActivity.this, CheckoutActivity.class) );
+                if(CartService.getInstance().getTotalQuantity()< 1){
+                    Toast.makeText(ProductCategoryActivity.this, "Cart is empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    startActivity(new Intent(ProductCategoryActivity.this, CheckoutActivity.class) );
+                }
             }
         });
 
@@ -118,6 +131,20 @@ public class ProductCategoryActivity extends AppCompatActivity {
         layoutCart = findViewById(R.id.layoutCart);
         layoutSettings = findViewById(R.id.layoutSettings);
         layoutLogout = findViewById(R.id.layoutLogout);
+
+        btnQuantityIndicator = findViewById(R.id.btnQuantityIndicator);
+        btnQuantityIndicator.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+
+        btnQuantityIndicatorDrawer = findViewById(R.id.btnQuantityIndicatorDrawer);
+        btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        btnQuantityIndicator.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+        btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+
     }
 
     private void initializeRecyclerView() {

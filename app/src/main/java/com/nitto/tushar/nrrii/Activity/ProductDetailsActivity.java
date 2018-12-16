@@ -20,12 +20,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.borjabravo.readmoretextview.ReadMoreTextView;
 import com.nitto.tushar.nrrii.Adapter.MyPagerAdapter;
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterDress;
+import com.nitto.tushar.nrrii.Entity.CartItem;
 import com.nitto.tushar.nrrii.Entity.Dress;
 import com.nitto.tushar.nrrii.R;
+import com.nitto.tushar.nrrii.Services.CartService;
 import com.nitto.tushar.nrrii.Services.ProductService;
 
 import java.util.ArrayList;
@@ -35,7 +38,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ViewPager mPager;
     private MyPagerAdapter myPagerAdapter;
     private ArrayList<Dress> dressArrayList;
-    private AppCompatButton btnReadMore;
+    private AppCompatButton btnCartBag,btnReadMore, btnAddToCart, btnQuantityIndicator, btnQuantityIndicatorDrawer;
 
     private LayoutInflater inflater;
     private LinearLayout linearLayout;
@@ -48,12 +51,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
-    private AppCompatTextView tvPrice, dressTitle;
-
-//    private AppCompatImageView
-//            ivWalkThroughCircle1,
-//            ivWalkThroughCircle2,
-//            ivWalkThroughCircle3;
+    private AppCompatTextView tvPrice, dressTitle, totalPriceAfterAddToCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +59,20 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.drawer_activity_product_details);
         
         initializeUI();
+
+        //Button event to go to cart............
+        btnCartBag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(CartService.getInstance().getTotalQuantity()< 1){
+                    Toast.makeText(ProductDetailsActivity.this, "Cart is empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    startActivity(new Intent(ProductDetailsActivity.this, CheckoutActivity.class) );
+                }
+            }
+        });
         
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -68,10 +80,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-//                //reset all tab selection to not selected
-//                resetWalkthroughTabSelectionColor();
-//                //highlight custom tab button on selected page position here
-//                setSelectionColorOnSelectedPagePosition(position);
                 Log.d("###onPageSelected, pos ", String.valueOf(position));
                 for (int i = 0; i < dotsCount; i++) {
                     dots[i].setImageDrawable(getResources().getDrawable(R.drawable.nonselecteditem_dot));
@@ -129,7 +137,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
         layoutCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProductDetailsActivity.this, CheckoutActivity.class) );
+                if(CartService.getInstance().getTotalQuantity()< 1){
+                    Toast.makeText(ProductDetailsActivity.this, "Cart is empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    startActivity(new Intent(ProductDetailsActivity.this, CheckoutActivity.class) );
+                }
             }
         });
 
@@ -144,6 +157,35 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ProductDetailsActivity.this, LoginActivity.class) );
+            }
+        });
+
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(CartService.getInstance().isAvailableInCart(ProductService.getInstance().getDressDetails().getDressId())){
+                    CartService.getInstance().increaseQuantity(ProductService.getInstance().getDressDetails().getDressId());
+                }
+                else {
+                    CartItem cartItem = new CartItem();
+                    cartItem.setProductId(ProductService.getInstance().getDressDetails().getDressId());
+                    cartItem.setProductTitle(ProductService.getInstance().getDressDetails().getDressTitle());
+                    cartItem.setProductPrice(Double.parseDouble(ProductService.getInstance().getDressDetails().getActualPrice()));
+                    cartItem.setProductPhoto(ProductService.getInstance().getDressDetails().getImages().get(0).getSrc());
+
+                    cartItem.setProductQuantity(1);
+
+                    CartService.getInstance().addToCart(cartItem);
+                }
+
+                Toast.makeText(ProductDetailsActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
+
+                totalPriceAfterAddToCart.setText(String.valueOf(CartService.getInstance().getTotalPrice()));
+
+                btnQuantityIndicator.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+
+                btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
             }
         });
     }
@@ -163,11 +205,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-//        this.ivWalkThroughCircle1 = findViewById(R.id.ivWalkThroughCircle1);
-//        this.ivWalkThroughCircle2 = findViewById(R.id.ivWalkThroughCircle2);
-//        this.ivWalkThroughCircle3 = findViewById(R.id.ivWalkThroughCircle3);
-
         initializeViewPager();
+
+        btnCartBag = findViewById(R.id.btnCartBag);
 
         tvPrice = findViewById(R.id.tvPrice);
         tvPrice.setText(ProductService.getInstance().getDressDetails().getActualPrice());
@@ -178,7 +218,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
         text_view = findViewById(R.id.text_view);
         text_view.setText(ProductService.getInstance().getDressDetails().getDressDetails());
 
+        totalPriceAfterAddToCart = findViewById(R.id.totalPriceAfterAddToCart);
+        totalPriceAfterAddToCart.setText(String.valueOf(CartService.getInstance().getTotalPrice()));
+
         btnReadMore = findViewById(R.id.btnReadMore);
+
+
+        btnQuantityIndicator = findViewById(R.id.btnQuantityIndicator);
+        btnQuantityIndicator.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+
+        btnQuantityIndicatorDrawer = findViewById(R.id.btnQuantityIndicatorDrawer);
+        btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+
+        btnAddToCart = findViewById(R.id.btnAddToCart);
 
         //Setting more dress item....................
         dressArrayList = new ArrayList<>();
@@ -251,26 +303,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         recyclerView.setAdapter(myAdapter);
         recyclerView.setNestedScrollingEnabled(false);
     }
-    
-//    private void resetWalkthroughTabSelectionColor() {
-//        this.ivWalkThroughCircle1.setBackgroundResource(R.drawable.ic_circle_ash);
-//        this.ivWalkThroughCircle2.setBackgroundResource(R.drawable.ic_circle_ash);
-//        this.ivWalkThroughCircle3.setBackgroundResource(R.drawable.ic_circle_ash);
-//    }
-
-//    private void setSelectionColorOnSelectedPagePosition(int position) {
-//        switch (position) {
-//            case 0:
-//                this.ivWalkThroughCircle1.setBackgroundResource(R.drawable.ic_circle_ash_selected);
-//                break;
-//            case 1:
-//                this.ivWalkThroughCircle2.setBackgroundResource(R.drawable.ic_circle_ash_selected);
-//                break;
-//            case 2:
-//                this.ivWalkThroughCircle3.setBackgroundResource(R.drawable.ic_circle_ash_selected);
-//                break;
-//        }
-//    }
 
     private boolean isDrawerOpen() {
         return this.drawer.isDrawerOpen(GravityCompat.START);
