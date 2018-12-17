@@ -39,7 +39,7 @@ public class ProductService {
     }
 
     public interface UpdateUIOnProductRetrieveListener{
-        void onProductRetrieve(List<ProductItem> productItems);
+        void onProductRetrieve();
     }
 
     public void AddUpdateUIOnProductRetrieveListener(UpdateUIOnProductRetrieveListener listener){
@@ -76,7 +76,7 @@ public class ProductService {
                     dressItems.add(dress);
                 }
 
-                updateViewOnProductRetrieve(productItems);
+                updateViewOnProductRetrieve();
 
                 //Toast.makeText(DressViewActivity.this, "Api called Successfully ", Toast.LENGTH_SHORT).show();
             }
@@ -89,8 +89,8 @@ public class ProductService {
         });
     }
 
-    private void updateViewOnProductRetrieve(List<ProductItem> productItems) {
-        this.updateUIOnProductRetrieveListener.onProductRetrieve(productItems);
+    private void updateViewOnProductRetrieve() {
+        this.updateUIOnProductRetrieveListener.onProductRetrieve();
     }
 
     // Constructor

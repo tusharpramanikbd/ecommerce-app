@@ -33,7 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DressViewActivity extends AppCompatActivity implements ProductService.UpdateUIOnProductRetrieveListener {
+public class DressViewActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
     private ArrayList<Dress> dressArrayList;
@@ -117,7 +117,7 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
 
     private void initializeUI() {
         //Initializing the service calls.........
-        ProductService.getInstance().AddUpdateUIOnProductRetrieveListener(this);
+        //ProductService.getInstance().AddUpdateUIOnProductRetrieveListener(this);
 
         dressArrayList = new ArrayList<>();
         //dressArrayList.addAll(ProductService.getInstance().getAllDress());
@@ -156,7 +156,7 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
         btnQuantityIndicatorDrawer = findViewById(R.id.btnQuantityIndicatorDrawer);
         btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
 
-        ProductService.getInstance().getProductItemsFromServer();
+        //ProductService.getInstance().getProductItemsFromServer();
     }
 
     @Override
@@ -167,6 +167,8 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
     }
 
     private void initializeRecyclerView() {
+        dressArrayList.addAll(ProductService.getInstance().getAllDress());
+
         RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
         myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -208,21 +210,21 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
         closeDrawerWithOutAnimation();
     }
 
-    @Override
-    public void onProductRetrieve(List<ProductItem> productItems) {
-
-        for (int i = 0; i < productItems.size(); i++){
-            Dress dress = new Dress();
-            dress.setDressId(String.valueOf(productItems.get(i).getUid()));
-            dress.setDressTitle(productItems.get(i).getName());
-            dress.setImages(productItems.get(i).getImages());
-            dress.setActualPrice(String.valueOf(productItems.get(i).getPrice()));
-            dress.setDressDetails(productItems.get(i).getProductDescription());
-            dressArrayList.add(dress);
-        }
-
-        myAdapter.notifyDataSetChanged();
-    }
+//    @Override
+//    public void onProductRetrieve(List<ProductItem> productItems) {
+//
+//        for (int i = 0; i < productItems.size(); i++){
+//            Dress dress = new Dress();
+//            dress.setDressId(String.valueOf(productItems.get(i).getUid()));
+//            dress.setDressTitle(productItems.get(i).getName());
+//            dress.setImages(productItems.get(i).getImages());
+//            dress.setActualPrice(String.valueOf(productItems.get(i).getPrice()));
+//            dress.setDressDetails(productItems.get(i).getProductDescription());
+//            dressArrayList.add(dress);
+//        }
+//
+//        myAdapter.notifyDataSetChanged();
+//    }
 
 
     public class HamburgerDrawable extends DrawerArrowDrawable{
@@ -244,7 +246,7 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
 
     @Override
     protected void onDestroy() {
-        ProductService.getInstance().RemoveUpdateUIOnProductRetrieveListener();
+        //ProductService.getInstance().RemoveUpdateUIOnProductRetrieveListener();
         super.onDestroy();
     }
 }
