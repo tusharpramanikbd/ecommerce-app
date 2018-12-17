@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 
+import com.nitto.tushar.nrrii.DataRepository.CartItemsDataRepository;
 import com.nitto.tushar.nrrii.Entity.CartItem;
 import com.nitto.tushar.nrrii.Entity.ProductItem;
 import com.nitto.tushar.nrrii.R;
@@ -20,6 +21,8 @@ public class CartService {
     //Listener.........................
     public interface OnUpdateUIListener {
         void onItemPriceUpdated(double totalPriceBeforeChange);
+        void onItemDeleted(List<CartItem> cartItems);
+        void onTotalPriceAndQuantityIndicatorUpdated();
     }
 
     private List<OnUpdateUIListener> updateUIListeners = new ArrayList<>();
@@ -55,11 +58,33 @@ public class CartService {
     // Constructor
     public CartService(Context context){
         // all class related initialization goes here
-        this.cartItemsList = new ArrayList<>();
+
     }
 
-    public void addToCart(CartItem dressItem) {
-        cartItemsList.add(dressItem);
+    public void InitializeOrderService() {
+        this.cartItemsList = new ArrayList<>();
+        this.getAllCartItemFromDB();
+    }
+
+    private void getAllCartItemFromDB() {
+        CartItemsDataRepository.FetchAllCartItem(new CartItemsDataRepository.AllCartItemsFetchDoneListener() {
+            @Override
+            public void onAllCartItemFetchDone(List<CartItem> cartItems) {
+                cartItemsList.addAll(cartItems);
+            }
+        });
+    }
+
+    public void addToCart(final CartItem dressItem) {
+        CartItemsDataRepository.InsertCartItem(dressItem, new CartItemsDataRepository.CartItemInsertionDoneListener() {
+            @Override
+            public void onCartItemInsertionDone(Long insertID) {
+                dressItem.setCartId(insertID);
+                cartItemsList.add(dressItem);
+                updateUIOnItemTotalPriceAndQuantityChanged();
+            }
+        });
+
     }
 
     public boolean isAvailableInCart(String productId) {
@@ -79,14 +104,35 @@ public class CartService {
                 cartItemsList.get(i).setProductQuantity(quantity);
             }
         }
+
+        CartItemsDataRepository.UpdateAllCartItem(cartItemsList, new CartItemsDataRepository.CartItemUpdateDoneListener() {
+            @Override
+            public void onCartItemUpdateDone(int rowsUpdated) {
+                updateUIOnItemTotalPriceAndQuantityChanged();
+            }
+        });
+
     }
 
-    public ArrayList<CartItem> getProductCart() {
-        return cartItemsList;
+    public void decreaseQuantity(String productId){
+        for (int i = 0; i < cartItemsList.size(); i++){
+            if(cartItemsList.get(i).getProductId().equals(productId)){
+                int quantity = cartItemsList.get(i).getProductQuantity();
+                quantity--;
+                cartItemsList.get(i).setProductQuantity(quantity);
+            }
+        }
+
+        CartItemsDataRepository.UpdateAllCartItem(cartItemsList, new CartItemsDataRepository.CartItemUpdateDoneListener() {
+            @Override
+            public void onCartItemUpdateDone(int rowsUpdated) {
+
+            }
+        });
+
     }
 
     public ArrayList<CartItem> getAllCartItem(){
-
         return cartItemsList;
     }
 
@@ -94,12 +140,20 @@ public class CartService {
 //        return cartItemsList.isEmpty();
 //    }
 
-    public void deleteCartItem(String dressId) {
-        for(int i=0; i<cartItemsList.size();i++){
-            if(cartItemsList.get(i).getProductId().equals(dressId)){
-                cartItemsList.remove(i);
+    public void deleteCartItem(final long dressId) {
+        CartItemsDataRepository.DeleteCartItem(dressId, new CartItemsDataRepository.CartItemDeleteDoneListener() {
+            @Override
+            public void onCartItemDeleteDone(int rowsUpdated) {
+                for(int i=0; i<cartItemsList.size();i++){
+                    if(cartItemsList.get(i).getProductId().equals(dressId)){
+                        cartItemsList.remove(i);
+                    }
+                }
+                updateUIOnItemDelete(cartItemsList);
+
             }
-        }
+        });
+
     }
 
 //    public void deleteAllCartItem(){
@@ -152,6 +206,18 @@ public class CartService {
     private void updateUIOnItemInsert(double totalPriceBeforeChange) {
         for(int i=0;i<this.updateUIListeners.size();i++) {
             this.updateUIListeners.get(i).onItemPriceUpdated(totalPriceBeforeChange);
+        }
+    }
+
+    private void updateUIOnItemDelete(List<CartItem> cartItems) {
+        for(int i=0;i<this.updateUIListeners.size();i++) {
+            this.updateUIListeners.get(i).onItemDeleted(cartItems);
+        }
+    }
+
+    private void updateUIOnItemTotalPriceAndQuantityChanged() {
+        for(int i=0;i<this.updateUIListeners.size();i++) {
+            this.updateUIListeners.get(i).onTotalPriceAndQuantityIndicatorUpdated();
         }
     }
 }

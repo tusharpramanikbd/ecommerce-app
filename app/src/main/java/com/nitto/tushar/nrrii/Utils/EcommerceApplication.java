@@ -30,6 +30,7 @@ public class EcommerceApplication extends Application {
         AppDatabase.AppDatabaseInitializer(getApplicationContext());
         CartService.InitCart(getApplicationContext());
         OrderService.getInstance().InitializeOrderService();
+        CartService.getInstance().InitializeOrderService();
         ProductService.getInstance().InitializeProductService();
 
         SharedPreferences.Editor editor = getSharedPreferences("shipping_methods", MODE_PRIVATE).edit();

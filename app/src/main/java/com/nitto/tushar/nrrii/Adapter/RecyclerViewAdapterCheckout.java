@@ -25,16 +25,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerViewAdapterCheckout.ViewHolder> {
 
-    public interface OnDeleteCartItemListener{
-        void onDeleteCartItem(String dressID);
-    }
-
-    public void SetOnDeleteCartItemListener(OnDeleteCartItemListener listener) {
-        this.onDeleteCartItemListener = listener;
-    }
-
-    private OnDeleteCartItemListener onDeleteCartItemListener;
-
     private static final String TAG = "MyRecyclerView";
 
     private ArrayList<CartItem> cartItems = new ArrayList<>();
@@ -83,7 +73,8 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
         holder.removeProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDeleteCartItemListener.onDeleteCartItem(cartItem.getProductId());
+                //onDeleteCartItemListener.onDeleteCartItem(cartItem.getProductId());
+                CartService.getInstance().deleteCartItem(cartItem.getCartId());
             }
         });
 
@@ -95,6 +86,7 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
                     tmpQuantity++;
                     holder.editQuantity.setText("0"+String.valueOf(tmpQuantity));
                     holder.productQuantity.setText(String.valueOf(tmpQuantity));
+                    CartService.getInstance().increaseQuantity(cartItem.getProductId());
                     CartService.getInstance().changeTotalPrice(cartItem.getProductId(), tmpQuantity);
                 }
             }
@@ -108,6 +100,7 @@ public class RecyclerViewAdapterCheckout extends RecyclerView.Adapter<RecyclerVi
                     tmpQuantity--;
                     holder.editQuantity.setText("0"+String.valueOf(tmpQuantity));
                     holder.productQuantity.setText(String.valueOf(tmpQuantity));
+                    CartService.getInstance().decreaseQuantity(cartItem.getProductId());
                     CartService.getInstance().changeTotalPrice(cartItem.getProductId(), tmpQuantity);
                 }
             }

@@ -32,8 +32,9 @@ import com.nitto.tushar.nrrii.Services.CartService;
 import com.nitto.tushar.nrrii.Services.ProductService;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ProductDetailsActivity extends AppCompatActivity {
+public class ProductDetailsActivity extends AppCompatActivity implements CartService.OnUpdateUIListener {
 
     private ViewPager mPager;
     private MyPagerAdapter myPagerAdapter;
@@ -180,12 +181,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText(ProductDetailsActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
-
-                totalPriceAfterAddToCart.setText(String.valueOf(CartService.getInstance().getTotalPrice()));
-
-                btnQuantityIndicator.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
-
-                btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
             }
         });
     }
@@ -193,6 +188,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private void initializeUI() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        CartService.getInstance().AddOnUpdateUIListener(this);
 
         pager_indicator = findViewById(R.id.viewPagerCountDots);
 
@@ -339,7 +336,26 @@ public class ProductDetailsActivity extends AppCompatActivity {
         super.onStart();
         closeDrawerWithOutAnimation();
     }
-    
+
+    @Override
+    public void onItemPriceUpdated(double totalPriceBeforeChange) {
+
+    }
+
+    @Override
+    public void onItemDeleted(List<CartItem> cartItems) {
+
+    }
+
+    @Override
+    public void onTotalPriceAndQuantityIndicatorUpdated() {
+        totalPriceAfterAddToCart.setText(String.valueOf(CartService.getInstance().getTotalPrice()));
+
+        btnQuantityIndicator.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+
+        btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+    }
+
     public class HamburgerDrawable extends DrawerArrowDrawable {
 
         HamburgerDrawable(Context context){
@@ -355,5 +371,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
             setBarThickness(10.0f);
             setGapSize(10.0f);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        CartService.getInstance().RemoveOnUpdateUIListener(this);
+        super.onDestroy();
     }
 }

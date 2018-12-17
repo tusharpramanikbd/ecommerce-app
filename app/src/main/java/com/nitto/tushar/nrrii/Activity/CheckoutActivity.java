@@ -27,6 +27,7 @@ import com.nitto.tushar.nrrii.Services.CartService;
 import com.nitto.tushar.nrrii.Services.OrderService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CheckoutActivity extends AppCompatActivity implements CartService.OnUpdateUIListener{
 
@@ -47,13 +48,13 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
         initializeUI();
 
 
-        //Button Event to Delete Cart Item..........
-        myAdapter.SetOnDeleteCartItemListener(new RecyclerViewAdapterCheckout.OnDeleteCartItemListener() {
-            @Override
-            public void onDeleteCartItem(String dressID) {
-                new CheckoutActivity.DeleteCartItem(dressID).execute();
-            }
-        });
+//        //Button Event to Delete Cart Item..........
+//        myAdapter.SetOnDeleteCartItemListener(new RecyclerViewAdapterCheckout.OnDeleteCartItemListener() {
+//            @Override
+//            public void onDeleteCartItem(String dressID) {
+//                //new CheckoutActivity.DeleteCartItem(dressID).execute();
+//            }
+//        });
 
 
         //Button Event For Menu Drawer..........
@@ -210,6 +211,19 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
     }
 
     @Override
+    public void onItemDeleted(List<CartItem> cartItemsList) {
+        cartItems.clear();
+        cartItems.addAll(cartItemsList);
+        myAdapter.notifyDataSetChanged();
+        refreshTotalPriceInUI();
+    }
+
+    @Override
+    public void onTotalPriceAndQuantityIndicatorUpdated() {
+
+    }
+
+    @Override
     protected void onDestroy() {
         CartService.getInstance().RemoveOnUpdateUIListener(this);
         super.onDestroy();
@@ -234,31 +248,31 @@ public class CheckoutActivity extends AppCompatActivity implements CartService.O
     }
 
 
-    @SuppressLint("StaticFieldLeak")
-    class DeleteCartItem extends AsyncTask<Void, Void, Void> {
-        private String  dressId;
-
-        DeleteCartItem(String  dressId) {
-            this.dressId = dressId;
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            CartService.getInstance().deleteCartItem(dressId);
-            return null;
-        }
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    cartItems.clear();
-                    cartItems.addAll(CartService.getInstance().getProductCart());
-                    myAdapter.notifyDataSetChanged();
-                    refreshTotalPriceInUI();
-                }
-            });
-        }
-    }
+//    @SuppressLint("StaticFieldLeak")
+//    class DeleteCartItem extends AsyncTask<Void, Void, Void> {
+//        private String  dressId;
+//
+//        DeleteCartItem(String  dressId) {
+//            this.dressId = dressId;
+//        }
+//
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//            CartService.getInstance().deleteCartItem(dressId);
+//            return null;
+//        }
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            super.onPostExecute(result);
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    cartItems.clear();
+//                    cartItems.addAll(CartService.getInstance().getAllCartItem());
+//                    myAdapter.notifyDataSetChanged();
+//                    refreshTotalPriceInUI();
+//                }
+//            });
+//        }
+//    }
 }

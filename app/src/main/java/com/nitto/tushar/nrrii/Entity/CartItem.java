@@ -1,18 +1,34 @@
 package com.nitto.tushar.nrrii.Entity;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "CartItem")
 public class CartItem {
 
+    @PrimaryKey(autoGenerate = true)
+    private long cartId;
+
     private String productId;
+
     private String productTitle;
+
     private String productPhoto;
+
     private int productQuantity;
+
     private double productPrice;
+
     private String productSize;
+
     private String productColor;
 
     public CartItem() {
     }
 
+    @Ignore
     public CartItem(String productId,String productPhoto,int productQuantity, double productPrice, String productSize, String productColor) {
         this.productId = productId;
         this.productPhoto = productPhoto;
@@ -22,6 +38,7 @@ public class CartItem {
         this.productColor = productColor;
     }
 
+    @Ignore
     public CartItem(String productId, String productTitle, String productPhoto, int productQuantity, double productPrice, String productSize, String productColor) {
         this.productId = productId;
         this.productTitle = productTitle;
@@ -30,6 +47,14 @@ public class CartItem {
         this.productPrice = productPrice;
         this.productSize = productSize;
         this.productColor = productColor;
+    }
+
+    public long getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(long cartId) {
+        this.cartId = cartId;
     }
 
     public String getProductId() {

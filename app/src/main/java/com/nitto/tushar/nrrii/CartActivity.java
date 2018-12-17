@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+import com.nitto.tushar.nrrii.Entity.CartItem;
 import com.nitto.tushar.nrrii.Entity.ProductItem;
 import com.nitto.tushar.nrrii.Services.CartService;
 
@@ -143,6 +144,16 @@ public class CartActivity extends AppCompatActivity implements CartService.OnUpd
     @Override
     public void onItemPriceUpdated(double totalPriceBeforeChange) {
         this.tvTotalAmount.setText(String.valueOf(totalPriceBeforeChange));
+    }
+
+    @Override
+    public void onItemDeleted(List<CartItem> cartItems) {
+
+    }
+
+    @Override
+    public void onTotalPriceAndQuantityIndicatorUpdated() {
+
     }
 
 //    @SuppressLint("StaticFieldLeak")
