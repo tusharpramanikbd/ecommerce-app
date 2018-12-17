@@ -145,12 +145,11 @@ public class CartService {
             @Override
             public void onCartItemDeleteDone(int rowsUpdated) {
                 for(int i=0; i<cartItemsList.size();i++){
-                    if(cartItemsList.get(i).getProductId().equals(dressId)){
+                    if(cartItemsList.get(i).getCartId() == dressId){
                         cartItemsList.remove(i);
                     }
                 }
                 updateUIOnItemDelete(cartItemsList);
-
             }
         });
 
