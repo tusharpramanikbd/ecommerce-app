@@ -16,15 +16,15 @@ public interface ApiSearchProduct {
 
     @GET("products")
     Call<List<ProductItem>> searchProductByCategory(
-            @Query("per_page") int quantity,
+            @Query("page") int quantity,
             @Query("consumer_key") String consumer_key,
             @Query("consumer_secret") String consumer_secret);
 
 
-//    @GET("search")
-//    Call<List<ProductItem>> searchProduct(
-//            @Query("qstr") String searchTerms,
-//            @Query("offset") int offset,
-//            @Query("limit") int limit);
+    @GET("products")
+    Call<List<ProductItem>> searchProduct(
+            @Query("qstr") String searchTerms,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
     
 }

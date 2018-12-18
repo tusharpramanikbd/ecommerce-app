@@ -3,6 +3,7 @@ package com.nitto.tushar.nrrii.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,7 +15,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterDress;
@@ -33,13 +36,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DressViewActivity extends AppCompatActivity {
+public class DressViewActivity extends AppCompatActivity implements ProductService.UpdateUIOnProductRetrieveListener {
 
     private DrawerLayout drawer;
     private ArrayList<Dress> dressArrayList;
     private AppCompatButton btnCartBag, btnQuantityIndicator, btnQuantityIndicatorDrawer;
     private ActionBarDrawerToggle toggle;
     private RecyclerViewAdapterDress myAdapter;
+    private RecyclerView recyclerView;
+    private boolean isScrolling = false;
+    private GridLayoutManager manager;
+    private int currentItems, totalItems, scrolledItems, pageNumber = 1;
+    private ProgressBar circularProgressBarDressView;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
 
     @Override
@@ -113,11 +121,42 @@ public class DressViewActivity extends AppCompatActivity {
                 startActivity(new Intent(DressViewActivity.this, LoginActivity.class) );
             }
         });
+
+        //new code
+        this.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+                    isScrolling = true;
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                currentItems = manager.getChildCount();
+                totalItems = manager.getItemCount();
+                scrolledItems = manager.findFirstVisibleItemPosition();
+
+                if(isScrolling && (currentItems + scrolledItems == totalItems)){
+                    circularProgressBarDressView.setVisibility(View.VISIBLE);
+
+                    pageNumber++;
+
+                    ProductService.getInstance().getProductItemsFromServer(pageNumber);
+
+                    isScrolling = false;
+                }
+
+            }
+        });
     }
 
     private void initializeUI() {
         //Initializing the service calls.........
-        //ProductService.getInstance().AddUpdateUIOnProductRetrieveListener(this);
+        ProductService.getInstance().AddUpdateUIOnProductRetrieveListener(this);
 
         dressArrayList = new ArrayList<>();
         //dressArrayList.addAll(ProductService.getInstance().getAllDress());
@@ -156,6 +195,10 @@ public class DressViewActivity extends AppCompatActivity {
         btnQuantityIndicatorDrawer = findViewById(R.id.btnQuantityIndicatorDrawer);
         btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
 
+
+        circularProgressBarDressView = findViewById(R.id.progressBarDressView);
+        circularProgressBarDressView.getIndeterminateDrawable().setColorFilter(Color.parseColor("#9357C1"), android.graphics.PorterDuff.Mode.MULTIPLY);
+        circularProgressBarDressView.setVisibility(View.GONE);
         //ProductService.getInstance().getProductItemsFromServer();
     }
 
@@ -167,11 +210,13 @@ public class DressViewActivity extends AppCompatActivity {
     }
 
     private void initializeRecyclerView() {
+        dressArrayList.clear();
         dressArrayList.addAll(ProductService.getInstance().getAllDress());
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewDress);
+        recyclerView = findViewById(R.id.recyclerViewDress);
         myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        manager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(myAdapter);
     }
 
@@ -210,6 +255,14 @@ public class DressViewActivity extends AppCompatActivity {
         closeDrawerWithOutAnimation();
     }
 
+
+    @Override
+    public void onProductRetrieve(ArrayList<Dress> newDressArrayList) {
+        dressArrayList.addAll(newDressArrayList);
+        myAdapter.notifyDataSetChanged();
+        circularProgressBarDressView.setVisibility(View.GONE);
+    }
+
 //    @Override
 //    public void onProductRetrieve(List<ProductItem> productItems) {
 //
@@ -246,7 +299,7 @@ public class DressViewActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        //ProductService.getInstance().RemoveUpdateUIOnProductRetrieveListener();
+        ProductService.getInstance().RemoveUpdateUIOnProductRetrieveListener();
         super.onDestroy();
     }
 }

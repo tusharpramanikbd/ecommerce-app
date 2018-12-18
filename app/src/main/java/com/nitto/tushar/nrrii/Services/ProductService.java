@@ -39,7 +39,7 @@ public class ProductService {
     }
 
     public interface UpdateUIOnProductRetrieveListener{
-        void onProductRetrieve();
+        void onProductRetrieve(ArrayList<Dress> dressArrayList);
     }
 
     public void AddUpdateUIOnProductRetrieveListener(UpdateUIOnProductRetrieveListener listener){
@@ -50,14 +50,14 @@ public class ProductService {
         this.updateUIOnProductRetrieveListener = null;
     }
 
-    public void getProductItemsFromServer() {
+    public void getProductItemsFromServer(final int quantity) {
 
 
         ApiSearchProduct ApiSearchProduct = RetrofitInstance.getInstance().create(ApiSearchProduct.class);
 
         Call<List<ProductItem>> result;
 
-        result = ApiSearchProduct.searchProductByCategory(10,consumer_key,consumer_secret);
+        result = ApiSearchProduct.searchProductByCategory(quantity,consumer_key,consumer_secret);
 
         result.enqueue(new Callback<List<ProductItem>>()
         {
@@ -65,8 +65,10 @@ public class ProductService {
             public void onResponse(Call<List<ProductItem>> call, Response<List<ProductItem>> response)
             {
                 List<ProductItem> productItems = response.body();
+                ArrayList<Dress> tmpDressList = new ArrayList<>();
 
                 for (int i = 0; i < productItems.size(); i++){
+
                     Dress dress = new Dress();
                     dress.setDressId(String.valueOf(productItems.get(i).getUid()));
                     dress.setDressTitle(productItems.get(i).getName());
@@ -74,9 +76,11 @@ public class ProductService {
                     dress.setActualPrice(String.valueOf(productItems.get(i).getPrice()));
                     dress.setDressDetails(productItems.get(i).getProductDescription());
                     dressItems.add(dress);
+                    tmpDressList.add(dress);
                 }
 
-                updateViewOnProductRetrieve();
+
+                    updateViewOnProductRetrieve(tmpDressList);
 
                 //Toast.makeText(DressViewActivity.this, "Api called Successfully ", Toast.LENGTH_SHORT).show();
             }
@@ -89,8 +93,8 @@ public class ProductService {
         });
     }
 
-    private void updateViewOnProductRetrieve() {
-        this.updateUIOnProductRetrieveListener.onProductRetrieve();
+    private void updateViewOnProductRetrieve(ArrayList<Dress> dressItems) {
+        this.updateUIOnProductRetrieveListener.onProductRetrieve(dressItems);
     }
 
     // Constructor
