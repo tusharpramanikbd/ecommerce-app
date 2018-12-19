@@ -1,6 +1,7 @@
 package com.nitto.tushar.nrrii.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -8,9 +9,11 @@ import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.nitto.tushar.nrrii.Activity.FullScreenImageActivity;
 import com.nitto.tushar.nrrii.Entity.ImageItem;
 import com.nitto.tushar.nrrii.R;
 
@@ -39,7 +42,7 @@ public class MyPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         View view = inflater.inflate(R.layout.layout_image_slide, container, false);
 
         AppCompatImageView slideImage = view.findViewById(R.id.slideImage);
@@ -55,6 +58,18 @@ public class MyPagerAdapter extends PagerAdapter {
                 .into(slideImage);
 
         container.addView(view);
+
+        final String link = imageItems.get(position).getSrc();
+
+        slideImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, FullScreenImageActivity.class);
+                i.putExtra("imageLink", link);
+                mContext.startActivity(i);
+            }
+        });
+
         return view;
     }
 

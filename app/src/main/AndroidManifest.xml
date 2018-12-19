@@ -16,7 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-
         <activity
             android:name=".Activity.SplashScreenActivity"
             android:screenOrientation="portrait"
@@ -44,24 +43,35 @@
             android:name=".Activity.DressViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.MenuItemsActivity" />
-        <activity android:name=".Activity.MyProfileActivity"
+        <activity
+            android:name=".Activity.MyProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.ProductDetailsActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activity.CheckoutActivity"
+        <activity
+            android:name=".Activity.ProductDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.ShippingAddressActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activity.PaymentMethodActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activity.CongratulationScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activity.ResetPasswordActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activity.LoggedInShippingAddressActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activity.ProductCategoryActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activity.CheckoutActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.ShippingAddressActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.PaymentMethodActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.CongratulationScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.ResetPasswordActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.LoggedInShippingAddressActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.ProductCategoryActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.FullScreenImageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
