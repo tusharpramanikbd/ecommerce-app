@@ -27,6 +27,7 @@ import com.nitto.tushar.nrrii.Adapter.MyPagerAdapter;
 import com.nitto.tushar.nrrii.Adapter.RecyclerViewAdapterDress;
 import com.nitto.tushar.nrrii.Entity.CartItem;
 import com.nitto.tushar.nrrii.Entity.Dress;
+import com.nitto.tushar.nrrii.Entity.ImageItem;
 import com.nitto.tushar.nrrii.R;
 import com.nitto.tushar.nrrii.Services.CartService;
 import com.nitto.tushar.nrrii.Services.ProductService;
@@ -250,7 +251,30 @@ public class ProductDetailsActivity extends AppCompatActivity implements CartSer
 
     private void initializeViewPager() {
         mPager = findViewById(R.id.viewpager);
-        myPagerAdapter = new MyPagerAdapter(ProductService.getInstance().getDressDetails().getImages(), this);
+        ArrayList<ImageItem> imageItems = ProductService.getInstance().getDressDetails().getImages();
+
+        ArrayList<ImageItem> newImageItems = new ArrayList<>();
+
+        //In this loop,it is checking that whether the link is small image or big image
+        // by checking the last 5th and 6th character
+        for(int i = 0; i < imageItems.size(); i++){
+
+            String image = imageItems.get(i).getSrc();
+
+            char x = image.charAt(image.length() - 5);
+
+            if(x == 'B' || x == 'b'){
+                newImageItems.add(imageItems.get(i));
+            }
+            else {
+                char y = image.charAt(image.length() - 6);
+                if(y == 'B' || y == 'b'){
+                    newImageItems.add(imageItems.get(i));
+                }
+            }
+        }
+
+        myPagerAdapter = new MyPagerAdapter(newImageItems, this);
         mPager.setAdapter(myPagerAdapter);
         mPager.setOffscreenPageLimit(2);
 
