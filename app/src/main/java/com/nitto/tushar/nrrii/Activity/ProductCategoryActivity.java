@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +28,7 @@ public class ProductCategoryActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private AppCompatButton btnCartBag, btnQuantityIndicator, btnQuantityIndicatorDrawer;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
+    private AppCompatImageView iv_dress, iv_dress2, iv_bag, iv_shoes, iv_perfume, iv_cosmetics, iv_accessories;
 
     private int[] images = {R.mipmap.cat_1, R.mipmap.cat_2, R.mipmap.cat_3, R.mipmap.cat_4};
     private String[] categoryNames = {"Category Name 1", "Category Name 2", "Category Name 3", "Category Name 4",};
@@ -102,6 +104,64 @@ public class ProductCategoryActivity extends AppCompatActivity {
                 startActivity(new Intent(ProductCategoryActivity.this, LoginActivity.class) );
             }
         });
+
+
+
+
+        iv_dress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProductCategoryActivity.this, DressViewActivity.class) );
+            }
+        });
+
+        iv_dress2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProductCategoryActivity.this, DressViewActivity.class) );
+            }
+        });
+
+        iv_shoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(ProductCategoryActivity.this, LoginActivity.class) );
+                Toast.makeText(ProductCategoryActivity.this, "Coming Soon...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        iv_perfume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(ProductCategoryActivity.this, LoginActivity.class) );
+                Toast.makeText(ProductCategoryActivity.this, "Coming Soon...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        iv_cosmetics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(ProductCategoryActivity.this, LoginActivity.class) );
+                Toast.makeText(ProductCategoryActivity.this, "Coming Soon...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        iv_accessories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(ProductCategoryActivity.this, LoginActivity.class) );
+                Toast.makeText(ProductCategoryActivity.this, "Coming Soon...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        iv_bag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(ProductCategoryActivity.this, LoginActivity.class) );
+                Toast.makeText(ProductCategoryActivity.this, "Coming Soon...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void initializeUI() {
@@ -123,7 +183,7 @@ public class ProductCategoryActivity extends AppCompatActivity {
 
         btnCartBag = findViewById(R.id.btnCartBag);
 
-        initializeRecyclerView();
+        //initializeRecyclerView();
 
         layoutMyProfile = findViewById(R.id.layoutMyProfile);
         layoutCategory = findViewById(R.id.layoutCategory);
@@ -131,6 +191,14 @@ public class ProductCategoryActivity extends AppCompatActivity {
         layoutCart = findViewById(R.id.layoutCart);
         layoutSettings = findViewById(R.id.layoutSettings);
         layoutLogout = findViewById(R.id.layoutLogout);
+
+        iv_dress = findViewById(R.id.dress1);
+        iv_dress2 = findViewById(R.id.dress2);
+        iv_bag = findViewById(R.id.bag);
+        iv_accessories = findViewById(R.id.accessories);
+        iv_cosmetics = findViewById(R.id.cosmatics);
+        iv_perfume = findViewById(R.id.perfume);
+        iv_shoes = findViewById(R.id.shoes);
 
         btnQuantityIndicator = findViewById(R.id.btnQuantityIndicator);
         btnQuantityIndicator.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));

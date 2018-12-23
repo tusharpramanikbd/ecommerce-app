@@ -70,7 +70,8 @@
         <activity
             android:name=".Activity.ProductCategoryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.FullScreenImageActivity"
+        <activity
+            android:name=".Activity.FullScreenImageActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

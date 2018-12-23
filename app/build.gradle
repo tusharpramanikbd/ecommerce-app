@@ -50,4 +50,5 @@ dependencies {
 
     //Read More Text
     implementation 'com.borjabravo:readmoretextview:2.1.0'
+
 }

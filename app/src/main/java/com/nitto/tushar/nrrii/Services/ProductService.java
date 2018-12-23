@@ -2,6 +2,8 @@ package com.nitto.tushar.nrrii.Services;
 
 
 
+import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.nitto.tushar.nrrii.Activity.DressViewActivity;
@@ -50,7 +52,7 @@ public class ProductService {
         this.updateUIOnProductRetrieveListener = null;
     }
 
-    public void getProductItemsFromServer(final int quantity) {
+    public void getProductItemsFromServer(final int quantity, final Context context) {
 
 
         ApiSearchProduct ApiSearchProduct = RetrofitInstance.getInstance().create(ApiSearchProduct.class);
@@ -79,16 +81,16 @@ public class ProductService {
                     tmpDressList.add(dress);
                 }
 
-
                     updateViewOnProductRetrieve(tmpDressList);
 
-                //Toast.makeText(DressViewActivity.this, "Api called Successfully ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Api called Successfully ", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<List<ProductItem>> call, Throwable t)
             {
-                //Toast.makeText(DressViewActivity.this, "Failed to call", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Failed to call", Toast.LENGTH_SHORT).show();
+                //Log.d("tushar", "Failed to call");
             }
         });
     }

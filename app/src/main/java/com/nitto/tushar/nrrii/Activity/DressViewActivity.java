@@ -145,7 +145,7 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
 
                     pageNumber++;
 
-                    ProductService.getInstance().getProductItemsFromServer(pageNumber);
+                    ProductService.getInstance().getProductItemsFromServer(pageNumber, DressViewActivity.this);
 
                     isScrolling = false;
                 }

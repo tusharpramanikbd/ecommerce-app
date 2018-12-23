@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.nitto.tushar.nrrii.R;
 
-public class FullScreenImageActivity extends AppCompatActivity {
+public class FullScreenImageActivity extends AppCompatActivity{
 
     private AppCompatImageView imageView, imageArrow;
 

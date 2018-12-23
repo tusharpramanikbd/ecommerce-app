@@ -26,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity implements ProductSe
         circularProgressBar = findViewById(R.id.progressBar);
         circularProgressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#9357C1"), android.graphics.PorterDuff.Mode.MULTIPLY);
 
-        ProductService.getInstance().getProductItemsFromServer(1);
+        ProductService.getInstance().getProductItemsFromServer(4, this);
         //just waiting for 1 sec on the splash screen then going to main activity
 //        Handler handler = new Handler();
 //        handler.postDelayed(new Runnable() {
