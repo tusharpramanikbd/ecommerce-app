@@ -15,6 +15,7 @@ import com.nitto.tushar.nrrii.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,15 +69,48 @@ public class ProductService {
             {
                 List<ProductItem> productItems = response.body();
                 ArrayList<Dress> tmpDressList = new ArrayList<>();
+                Random r = new Random();
+
 
                 for (int i = 0; i < productItems.size(); i++){
 
                     Dress dress = new Dress();
-                    dress.setDressId(String.valueOf(productItems.get(i).getUid()));
-                    dress.setDressTitle(productItems.get(i).getName());
-                    dress.setImages(productItems.get(i).getImages());
-                    dress.setActualPrice(String.valueOf(productItems.get(i).getPrice()));
-                    dress.setDressDetails(productItems.get(i).getProductDescription());
+                    if(String.valueOf(productItems.get(i).getUid()).isEmpty()){
+                        long randomNumber = r.nextInt(20000);
+                        dress.setDressId(String.valueOf(randomNumber));
+                    }
+                    else {
+                        dress.setDressId(String.valueOf(productItems.get(i).getUid()));
+                    }
+
+                    if(productItems.get(i).getName().isEmpty()){
+                        dress.setDressTitle("");
+                    }
+                    else {
+                        dress.setDressTitle(productItems.get(i).getName());
+                    }
+
+                    if(productItems.get(i).getImages().isEmpty()){
+                        dress.setImages(null);
+                    }
+                    else {
+                        dress.setImages(productItems.get(i).getImages());
+                    }
+
+                    if(String.valueOf(productItems.get(i).getPrice()).isEmpty()){
+                        dress.setActualPrice("");
+                    }
+                    else {
+                        dress.setActualPrice(String.valueOf(productItems.get(i).getPrice()));
+                    }
+
+                    if(productItems.get(i).getProductDescription().isEmpty()){
+                        dress.setDressDetails("");
+                    }
+                    else {
+                        dress.setDressDetails(productItems.get(i).getProductDescription());
+                    }
+
                     dressItems.add(dress);
                     tmpDressList.add(dress);
                 }

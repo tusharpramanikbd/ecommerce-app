@@ -47,7 +47,7 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
     private boolean isScrolling = false;
     private GridLayoutManager manager;
     private int currentItems, totalItems, scrolledItems, pageNumber = 1;
-    private ProgressBar circularProgressBarDressView;
+    private ProgressBar circularProgressBarDressView, progressBarDressViewFirstTime;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
 
     @Override
@@ -199,6 +199,10 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
         circularProgressBarDressView = findViewById(R.id.progressBarDressView);
         circularProgressBarDressView.getIndeterminateDrawable().setColorFilter(Color.parseColor("#9357C1"), android.graphics.PorterDuff.Mode.MULTIPLY);
         circularProgressBarDressView.setVisibility(View.GONE);
+
+        progressBarDressViewFirstTime = findViewById(R.id.progressBarDressViewFirstTime);
+        progressBarDressViewFirstTime.getIndeterminateDrawable().setColorFilter(Color.parseColor("#9357C1"), android.graphics.PorterDuff.Mode.MULTIPLY);
+
         //ProductService.getInstance().getProductItemsFromServer();
     }
 
@@ -211,7 +215,9 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
 
     private void initializeRecyclerView() {
         dressArrayList.clear();
-        dressArrayList.addAll(ProductService.getInstance().getAllDress());
+        //dressArrayList.addAll(ProductService.getInstance().getAllDress());
+
+        ProductService.getInstance().getProductItemsFromServer(1, this);
 
         recyclerView = findViewById(R.id.recyclerViewDress);
         myAdapter = new RecyclerViewAdapterDress(this,dressArrayList);
@@ -261,6 +267,7 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
         dressArrayList.addAll(newDressArrayList);
         myAdapter.notifyDataSetChanged();
         circularProgressBarDressView.setVisibility(View.GONE);
+        progressBarDressViewFirstTime.setVisibility(View.GONE);
     }
 
 //    @Override

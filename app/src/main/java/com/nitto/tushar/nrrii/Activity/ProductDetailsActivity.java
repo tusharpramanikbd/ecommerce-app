@@ -262,15 +262,16 @@ public class ProductDetailsActivity extends AppCompatActivity implements CartSer
             String image = imageItems.get(i).getSrc();
 
             char x = image.charAt(image.length() - 5);
+            char y = image.charAt(image.length() - 6);
 
             if(x == 'B' || x == 'b'){
                 newImageItems.add(imageItems.get(i));
             }
+            else if(y == 'B' || y == 'b'){
+                newImageItems.add(imageItems.get(i));
+            }
             else {
-                char y = image.charAt(image.length() - 6);
-                if(y == 'B' || y == 'b'){
-                    newImageItems.add(imageItems.get(i));
-                }
+                newImageItems.addAll(imageItems);
             }
         }
 
