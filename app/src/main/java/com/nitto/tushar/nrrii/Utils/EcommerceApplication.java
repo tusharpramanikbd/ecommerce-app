@@ -8,6 +8,7 @@ import com.nitto.tushar.nrrii.Database.AppDatabase;
 import com.nitto.tushar.nrrii.Services.CartService;
 import com.nitto.tushar.nrrii.Services.OrderService;
 import com.nitto.tushar.nrrii.Services.ProductService;
+import com.nitto.tushar.nrrii.Services.UserService;
 
 
 /**
@@ -32,6 +33,7 @@ public class EcommerceApplication extends Application {
         OrderService.getInstance().InitializeOrderService();
         CartService.getInstance().InitializeOrderService();
         ProductService.getInstance().InitializeProductService();
+        UserService.getInstance().InitializeUserService();
 
         SharedPreferences.Editor editor = getSharedPreferences("shipping_methods", MODE_PRIVATE).edit();
         editor.putBoolean("isSameAsShippingAddress", false);

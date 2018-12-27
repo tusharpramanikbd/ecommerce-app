@@ -143,7 +143,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:background="@drawable/custom_button_oval"
+                android:background="@drawable/custom_button_oval_purple"
                 android:enabled="false"
                 android:text="0"
                 android:textColor="@color/white"

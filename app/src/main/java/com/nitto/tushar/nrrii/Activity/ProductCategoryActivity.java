@@ -1,5 +1,7 @@
 package com.nitto.tushar.nrrii.Activity;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -26,8 +28,10 @@ public class ProductCategoryActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
+    private ObjectAnimator flipAnimation;
     private AppCompatButton btnCartBag, btnQuantityIndicator, btnQuantityIndicatorDrawer;
     private LinearLayout layoutMyProfile, layoutCategory, layoutOrders, layoutCart, layoutSettings, layoutLogout;
+    private View imageToAnimate;
     private AppCompatImageView iv_dress, iv_dress2, iv_bag, iv_shoes, iv_perfume, iv_cosmetics, iv_accessories;
 
     private int[] images = {R.mipmap.cat_1, R.mipmap.cat_2, R.mipmap.cat_3, R.mipmap.cat_4};
@@ -40,6 +44,8 @@ public class ProductCategoryActivity extends AppCompatActivity {
 
 
         initializeUI();
+
+
 
 
         //Button event to go to cart............
@@ -164,6 +170,27 @@ public class ProductCategoryActivity extends AppCompatActivity {
 
     }
 
+
+    private void startFlipAnimation() {
+        this.flipAnimation.setDuration(4000);
+        this.flipAnimation.setRepeatCount(ValueAnimator.INFINITE);
+        this.imageToAnimate.setCameraDistance(10 * this.imageToAnimate.getWidth());
+        this.flipAnimation.start();
+    }
+
+    private void stopFlipAnimation() {
+        if(this.flipAnimation.isStarted()) {
+            if(this.flipAnimation.isRunning()) {
+                this.flipAnimation.cancel();
+                this.flipAnimation.setDuration(0);
+                this.flipAnimation.setRepeatCount(0);
+                this.flipAnimation.reverse();
+            }
+        } else {
+            Toast.makeText(this, "Start animation first!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void initializeUI() {
         //Initializing the menu toolbar..........
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -192,6 +219,9 @@ public class ProductCategoryActivity extends AppCompatActivity {
         layoutSettings = findViewById(R.id.layoutSettings);
         layoutLogout = findViewById(R.id.layoutLogout);
 
+
+        imageToAnimate = findViewById(R.id.imageToAnimate);
+
         iv_dress = findViewById(R.id.dress1);
         iv_dress2 = findViewById(R.id.dress2);
         iv_bag = findViewById(R.id.bag);
@@ -205,6 +235,17 @@ public class ProductCategoryActivity extends AppCompatActivity {
 
         btnQuantityIndicatorDrawer = findViewById(R.id.btnQuantityIndicatorDrawer);
         btnQuantityIndicatorDrawer.setText(String.valueOf(CartService.getInstance().getTotalQuantity()));
+
+//        initializeAnimator();
+//
+//        startFlipAnimation();
+    }
+
+    private void initializeAnimator() {
+        this.flipAnimation = ObjectAnimator.ofFloat(this.imageToAnimate, "rotationY", 0.0f, 1440f);
+//        enable lines of code given below to introudce a skew/scale animation
+//        Animation logoMoveAnimation = AnimationUtils.loadAnimation(this, R.anim.scale_animation);
+//        this.imageToAnimate.startAnimation(logoMoveAnimation);
     }
 
     @Override

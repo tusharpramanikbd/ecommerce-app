@@ -270,23 +270,6 @@ public class DressViewActivity extends AppCompatActivity implements ProductServi
         progressBarDressViewFirstTime.setVisibility(View.GONE);
     }
 
-//    @Override
-//    public void onProductRetrieve(List<ProductItem> productItems) {
-//
-//        for (int i = 0; i < productItems.size(); i++){
-//            Dress dress = new Dress();
-//            dress.setDressId(String.valueOf(productItems.get(i).getUid()));
-//            dress.setDressTitle(productItems.get(i).getName());
-//            dress.setImages(productItems.get(i).getImages());
-//            dress.setActualPrice(String.valueOf(productItems.get(i).getPrice()));
-//            dress.setDressDetails(productItems.get(i).getProductDescription());
-//            dressArrayList.add(dress);
-//        }
-//
-//        myAdapter.notifyDataSetChanged();
-//    }
-
-
     public class HamburgerDrawable extends DrawerArrowDrawable{
 
         HamburgerDrawable(Context context){

@@ -8,21 +8,24 @@ import android.content.Context;
 import com.nitto.tushar.nrrii.DAO.CartDao;
 import com.nitto.tushar.nrrii.DAO.OrderDao;
 import com.nitto.tushar.nrrii.DAO.ProductDao;
+import com.nitto.tushar.nrrii.DAO.UserDao;
 import com.nitto.tushar.nrrii.Entity.CartItem;
 import com.nitto.tushar.nrrii.Entity.OrderItem;
 import com.nitto.tushar.nrrii.Entity.ProductItem;
+import com.nitto.tushar.nrrii.Entity.User;
 
 
 /**
  * Created by masud on 2/17/2018.
  */
-@Database(entities = {ProductItem.class, OrderItem.class, CartItem.class}, version = 13,exportSchema = false)
+@Database(entities = {ProductItem.class, OrderItem.class, CartItem.class, User.class}, version = 14,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase{
     private static volatile AppDatabase INSTANCE;
 
     public abstract ProductDao productDao();
     public abstract OrderDao orderDao();
     public abstract CartDao cartDao();
+    public abstract UserDao userDao();
 
     //new methods
     public static synchronized void AppDatabaseInitializer(Context context) {

@@ -55,7 +55,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="20dp"
+            android:visibility="gone">
 
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
@@ -138,7 +139,25 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/cashOnDeliveryPaymentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
 
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You can pay after receive the product"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"/>
+
+
+
+        </LinearLayout>
 
 
         <android.support.v7.widget.AppCompatButton

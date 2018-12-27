@@ -61,7 +61,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_gravity="center"
                     android:layout_toEndOf="@+id/btnCartBag"
-                    android:background="@drawable/custom_button_oval"
+                    android:background="@drawable/custom_button_oval_purple"
                     android:enabled="false"
                     android:gravity="center"
                     android:text="0"
@@ -113,12 +113,53 @@
                     android:layout_weight="1"
                     android:gravity="bottom|right|end">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/accessories"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@mipmap/accesories"
-                        android:layout_marginStart="20dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/accessories"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/accesories"
+                            android:layout_marginStart="20dp"/>
+
+                        <LinearLayout
+                            android:id="@+id/imageToAnimate"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/custom_button_oval_purple">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Upto"
+                                android:textSize="12sp"
+                                android:textColor="@color/white"/>
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:text="25%"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"/>
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sale"
+                                android:textSize="12sp"
+                                android:textColor="@color/white"/>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
 
                 </LinearLayout>
 
@@ -129,12 +170,50 @@
                     android:layout_weight="1"
                     android:gravity="bottom|left|start">
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
                     <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/cosmatics"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/cosmatics"
-                        android:layout_marginEnd="20dp"/>
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="5dp"/>
+
+                        <LinearLayout
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal"
+                            android:background="@drawable/custom_button_oval_purple">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Upto"
+                                android:textSize="12sp"
+                                android:textColor="@color/white"/>
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:text="25%"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"/>
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sale"
+                                android:textSize="12sp"
+                                android:textColor="@color/white"/>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -153,11 +232,53 @@
                     android:gravity="center"
                     android:layout_marginTop="5dp">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/bag"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:background="@mipmap/bags"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/bag"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="@mipmap/bags" />
+
+                        <LinearLayout
+                            android:layout_width="62dp"
+                            android:layout_height="62dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/bag"
+                            android:background="@drawable/custom_button_oval_purple"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Upto"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sale"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -168,11 +289,48 @@
                     android:gravity="center"
                     android:layout_marginTop="5dp">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/dress1"
-                        android:layout_width="300dp"
-                        android:layout_height="120dp"
-                        android:background="@mipmap/dress_1"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/dress1"
+                            android:layout_width="300dp"
+                            android:layout_height="120dp"
+                            android:background="@mipmap/dress_1"/>
+
+                        <LinearLayout
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:background="@drawable/custom_button_oval_purple"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Upto"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="25%"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sale"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -205,6 +363,80 @@
                     android:background="@mipmap/shoes"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
+
+                <LinearLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/custom_button_oval_purple"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_below="@id/perfume"
+                    android:layout_marginStart="5dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Upto"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:minHeight="0dp"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25%"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:minHeight="0dp"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sale"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:minHeight="0dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/custom_button_oval_purple"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/shoes"
+                    android:layout_marginEnd="5dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Upto"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:minHeight="0dp"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25%"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:minHeight="0dp"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sale"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:minHeight="0dp"/>
+
+                </LinearLayout>
 
             </RelativeLayout>
 

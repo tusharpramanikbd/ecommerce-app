@@ -14,7 +14,7 @@ import com.nitto.tushar.nrrii.R;
 public class PaymentMethodActivity extends AppCompatActivity {
 
     private AppCompatSpinner paymentSpinner;
-    private LinearLayout cardPaymentLayout, bkashPaymentLayout;
+    private LinearLayout cardPaymentLayout, bkashPaymentLayout, cashOnDeliveryPaymentLayout;
     private AppCompatButton btnDone;
 
     @Override
@@ -39,10 +39,17 @@ public class PaymentMethodActivity extends AppCompatActivity {
                 if(paymentSpinner.getSelectedItem().toString().equals("Pay by card")){
                     cardPaymentLayout.setVisibility(View.VISIBLE);
                     bkashPaymentLayout.setVisibility(View.GONE);
+                    cashOnDeliveryPaymentLayout.setVisibility(View.GONE);
+                }
+                else if(paymentSpinner.getSelectedItem().toString().equals("Bkash")) {
+                    cardPaymentLayout.setVisibility(View.GONE);
+                    cashOnDeliveryPaymentLayout.setVisibility(View.GONE);
+                    bkashPaymentLayout.setVisibility(View.VISIBLE);
                 }
                 else {
                     cardPaymentLayout.setVisibility(View.GONE);
-                    bkashPaymentLayout.setVisibility(View.VISIBLE);
+                    cashOnDeliveryPaymentLayout.setVisibility(View.VISIBLE);
+                    bkashPaymentLayout.setVisibility(View.GONE);
                 }
             }
 
@@ -50,6 +57,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 cardPaymentLayout.setVisibility(View.VISIBLE);
                 bkashPaymentLayout.setVisibility(View.GONE);
+                cashOnDeliveryPaymentLayout.setVisibility(View.GONE);
             }
         });
     }
@@ -59,5 +67,6 @@ public class PaymentMethodActivity extends AppCompatActivity {
         bkashPaymentLayout = findViewById(R.id.bkashPaymentLayout);
         paymentSpinner = findViewById(R.id.paymentSpinner);
         btnDone = findViewById(R.id.btnDone);
+        cashOnDeliveryPaymentLayout = findViewById(R.id.cashOnDeliveryPaymentLayout);
     }
 }
