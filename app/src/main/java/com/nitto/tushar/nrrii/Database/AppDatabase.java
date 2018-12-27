@@ -18,7 +18,7 @@ import com.nitto.tushar.nrrii.Entity.User;
 /**
  * Created by masud on 2/17/2018.
  */
-@Database(entities = {ProductItem.class, OrderItem.class, CartItem.class, User.class}, version = 14,exportSchema = false)
+@Database(entities = {ProductItem.class, OrderItem.class, CartItem.class, User.class}, version = 15,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase{
     private static volatile AppDatabase INSTANCE;
 

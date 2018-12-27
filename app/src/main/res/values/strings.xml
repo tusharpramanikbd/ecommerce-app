@@ -11,8 +11,8 @@
     <string name="full_name">Full Name:</string>
 
     <string-array name="array_name">
-        <item>Pay by card</item>
-        <item>Bkash</item>
+        <!--<item>Pay by card</item>-->
+        <!--<item>Bkash</item>-->
         <item>Cash On Delivery</item>
     </string-array>
 

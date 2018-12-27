@@ -26,6 +26,12 @@ public class OrderItem
     @ColumnInfo(name = "order_status")
     private boolean isOrderComplete;
 
+    @ColumnInfo(name = "server_order_id")
+    private String serverOrderId;
+
+    @ColumnInfo(name = "image_link")
+    private String imageLink;
+
 
     public OrderItem()
     {
@@ -94,5 +100,21 @@ public class OrderItem
 
     public void setOrderTitle(String orderTitle) {
         this.orderTitle = orderTitle;
+    }
+
+    public String getServerOrderId() {
+        return serverOrderId;
+    }
+
+    public void setServerOrderId(String serverOrderId) {
+        this.serverOrderId = serverOrderId;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 }

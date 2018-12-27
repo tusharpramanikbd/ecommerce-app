@@ -34,6 +34,9 @@ public interface CartDao
     @Query("DELETE FROM CartItem WHERE cartId=:cid")
     int delete(long cid);
 
+    @Query("DELETE FROM CartItem")
+    int deleteAll();
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     int updateCartItem(List<CartItem> cartItemList);
 }

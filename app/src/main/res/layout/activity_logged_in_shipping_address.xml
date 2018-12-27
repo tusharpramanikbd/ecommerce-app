@@ -1,106 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Activity.LoggedInShippingAddressActivity">
-
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
+    android:fillViewport="true">
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Shipping Address"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
         android:orientation="vertical"
-        android:background="@color/ash"/>
+        tools:context=".Activity.LoggedInShippingAddressActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Details"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="20dp"/>
 
-        <LinearLayout
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@color/ash"/>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<android.support.v7.widget.AppCompatTextView-->
+        <!--android:id="@+id/userName"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Your Name is here"-->
+        <!--android:textAllCaps="false" />-->
+
+        <!--<android.support.v7.widget.AppCompatTextView-->
+        <!--android:id="@+id/userMobile"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Phone Number"-->
+        <!--android:textAllCaps="false" />-->
+
+        <!--<android.support.v7.widget.AppCompatTextView-->
+        <!--android:id="@+id/userAddress"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Address is here"-->
+        <!--android:textAllCaps="false" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@color/ash"/>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center">-->
+
+        <!--<android.support.v7.widget.AppCompatButton-->
+        <!--android:id="@+id/btnAddNew"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Add New"-->
+        <!--android:minHeight="0dp"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:background="@drawable/custom_rect_button_ash"/>-->
+
+
+        <!--</LinearLayout>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@color/ash"/>-->
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/firstName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:hint="First Name"
+            android:layout_marginBottom="10dp"/>
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your Name is here"
-                android:textAllCaps="false" />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phone Number"
-                android:textAllCaps="false" />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address is here"
-                android:textAllCaps="false" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/ash"/>
-
-        <LinearLayout
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/lastName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center">
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:layout_marginBottom="10dp"/>
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btnAddNew"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add New"
-                android:minHeight="0dp"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:background="@drawable/custom_rect_button_ash"/>
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/address1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address 1"
+            android:layout_marginBottom="10dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/address2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address 2"
+            android:layout_marginBottom="10dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City"
+            android:layout_marginBottom="10dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="State"
+            android:layout_marginBottom="10dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/postcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Postcode"
+            android:layout_marginBottom="10dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Country"
+            android:layout_marginBottom="10dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:layout_marginBottom="10dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:layout_marginBottom="10dp"/>
 
 
-        </LinearLayout>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:minHeight="0dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_button_purple"/>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="vertical"
-        android:background="@color/ash"/>
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:minHeight="0dp"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="40dp"
-        android:background="@drawable/custom_button_purple"/>
-
-</LinearLayout>
+</ScrollView>

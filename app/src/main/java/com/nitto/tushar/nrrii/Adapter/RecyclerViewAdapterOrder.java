@@ -13,12 +13,16 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.nitto.tushar.nrrii.Entity.OrderItem;
 import com.nitto.tushar.nrrii.R;
 import com.nitto.tushar.nrrii.Services.OrderService;
 
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewAdapterOrder.ViewHolder> {
 
@@ -49,6 +53,8 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
 
         orderItem1 = orderItems.get(position);
 
+        holder.product_title.setText(orderItem1.getOrderTitle());
+
         holder.itemQuantity.setText(String.valueOf(orderItem1.getQuantity()));
 
         holder.orderDate.setText(orderItem1.getOrderDate());
@@ -64,6 +70,14 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
 
         holder.deliverStatus.setText(tmp_status);
 
+        Glide
+                .with(mContext)
+                .load(orderItem1.getImageLink())
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.ic_default_product_image)
+                        .error(R.drawable.ic_default_product_image))
+                .into(holder.profile_image);
+
     }
 
     @Override
@@ -73,13 +87,16 @@ public class RecyclerViewAdapterOrder extends RecyclerView.Adapter<RecyclerViewA
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        AppCompatTextView deliverStatus, itemQuantity, orderDate;
+        AppCompatTextView deliverStatus, itemQuantity, orderDate, product_title;
+        CircleImageView profile_image;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.deliverStatus = itemView.findViewById(R.id.deliverStatus);
+            this.product_title = itemView.findViewById(R.id.product_title);
             this.itemQuantity = itemView.findViewById(R.id.itemQuantity);
             this.orderDate = itemView.findViewById(R.id.orderDate);
+            this.profile_image = itemView.findViewById(R.id.profile_image);
         }
     }
 }

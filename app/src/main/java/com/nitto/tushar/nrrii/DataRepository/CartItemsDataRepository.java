@@ -41,6 +41,10 @@ public class CartItemsDataRepository {
         new DeleteCartItemTask(cartId, listener).execute();
     }
 
+    public static void DeleteAllCartItem(CartItemDeleteDoneListener listener) {
+        new DeleteAllCartItemTask(listener).execute();
+    }
+
     private static class InsertCartItemTask extends AsyncTask<Void, Void, Long>{
         private CartItem cartItem;
         private CartItemInsertionDoneListener cartItemInsertionDoneListener;
@@ -113,6 +117,27 @@ public class CartItemsDataRepository {
         @Override
         protected Integer doInBackground(Void... voids) {
             return AppDatabase.getInstance().cartDao().delete(cartId);
+        }
+
+        @Override
+        protected void onPostExecute(Integer numberOfDeletedRows) {
+            super.onPostExecute(numberOfDeletedRows);
+            this.CartItemDeleteDoneListener.onCartItemDeleteDone(numberOfDeletedRows);
+        }
+    }
+
+
+    private static class DeleteAllCartItemTask extends AsyncTask<Void, Void, Integer>{
+
+        private CartItemDeleteDoneListener CartItemDeleteDoneListener;
+
+        public DeleteAllCartItemTask( CartItemDeleteDoneListener listener) {
+            this.CartItemDeleteDoneListener = listener;
+        }
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            return AppDatabase.getInstance().cartDao().deleteAll();
         }
 
         @Override

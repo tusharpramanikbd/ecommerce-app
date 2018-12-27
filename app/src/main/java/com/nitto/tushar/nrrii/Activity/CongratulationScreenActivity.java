@@ -22,7 +22,7 @@ public class CongratulationScreenActivity extends AppCompatActivity {
         btnSignupNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CongratulationScreenActivity.this, SignUpActivity.class) );
+                startActivity(new Intent(CongratulationScreenActivity.this, ProductCategoryActivity.class) );
 
             }
         });

@@ -94,7 +94,7 @@ public class OrderService {
             public void onOrderInsertionDone(Long insertID) {
                 orderItem.setOid(insertID);
                 orderItemsList.add(orderItem);
-                updateUIOnItemInsert();
+                //updateUIOnItemInsert();
             }
         });
     }
@@ -119,6 +119,10 @@ public class OrderService {
         for(int i=0;i<this.updateUIListeners.size();i++) {
             this.updateUIListeners.get(i).onItemDeleted(this.orderItemsList);
         }
+    }
+
+    public ArrayList<OrderItem> getOrderItemsList() {
+        return orderItemsList;
     }
 
     public void insertTmpOrderForDetails(OrderItem orderItem){

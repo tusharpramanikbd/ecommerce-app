@@ -1,7 +1,10 @@
 package com.nitto.tushar.nrrii.Activity;
 
+import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,13 +45,15 @@ public class MyOrdersActivity extends AppCompatActivity implements OrderService.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Order List");
 
-        orderItems = new ArrayList<>();
-        orderItems.add(new OrderItem(2, "2/5/18", true));
-        orderItems.add(new OrderItem(1, "8/8/18", false));
-        orderItems.add(new OrderItem(3, "22/6/18", true));
-        orderItems.add(new OrderItem(5, "2/8/18", false));
-        orderItems.add(new OrderItem(2, "6/6/18", true));
-        orderItems.add(new OrderItem(3, "5/5/18", true));
+        orderItems = OrderService.getInstance().getOrderItemsList();
+
+
+//        orderItems.add(new OrderItem(2, "2/5/18", true));
+//        orderItems.add(new OrderItem(1, "8/8/18", false));
+//        orderItems.add(new OrderItem(3, "22/6/18", true));
+//        orderItems.add(new OrderItem(5, "2/8/18", false));
+//        orderItems.add(new OrderItem(2, "6/6/18", true));
+//        orderItems.add(new OrderItem(3, "5/5/18", true));
 
         initRecyclerView();
     }
@@ -71,9 +76,18 @@ public class MyOrdersActivity extends AppCompatActivity implements OrderService.
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_delete:
-                Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show();
-                OrderService.getInstance().deleteAllOrderFromDb();
+                showMessageOKCancel("Are you sure?",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MyOrdersActivity.this, "delete", Toast.LENGTH_SHORT).show();
+                                OrderService.getInstance().deleteAllOrderFromDb();
+
+                            }
+                        });
+
                 break;
+
         }
         if (item.getItemId() == android.R.id.home) // Press Back Icon
         {
@@ -108,5 +122,14 @@ public class MyOrdersActivity extends AppCompatActivity implements OrderService.
     protected void onDestroy() {
         OrderService.getInstance().RemoveOnUpdateUIListener(this);
         super.onDestroy();
+    }
+
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(MyOrdersActivity.this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
     }
 }

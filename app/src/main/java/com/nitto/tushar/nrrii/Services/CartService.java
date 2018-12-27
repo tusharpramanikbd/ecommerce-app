@@ -155,6 +155,16 @@ public class CartService {
 
     }
 
+    public void deleteAllCartItem() {
+        CartItemsDataRepository.DeleteAllCartItem(new CartItemsDataRepository.CartItemDeleteDoneListener() {
+            @Override
+            public void onCartItemDeleteDone(int rowsUpdated) {
+                cartItemsList.clear();
+            }
+        });
+
+    }
+
 //    public void deleteAllCartItem(){
 //        cartItemsList.clear();
 //    }

@@ -13,6 +13,6 @@ import retrofit2.http.POST;
 
 
 public interface ApiSendOrder {
-    @POST("order")
+    @POST("orders?per_page=50&consumer_key=ck_c8a5753c20021f7f009633b32eaec7be5535b025&consumer_secret=cs_4700d25eb3d82d4bfeafa1c0d7a785da797d15af")
     Call<ResponseBody> sendOrder(@Body RequestBody order);
 }
