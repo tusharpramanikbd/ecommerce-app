@@ -1,7 +1,5 @@
 package com.nitto.tushar.nrrii.Network.ApiCalls;
 
-
-
 import com.nitto.tushar.nrrii.Entity.ProductItem;
 
 import java.util.ArrayList;

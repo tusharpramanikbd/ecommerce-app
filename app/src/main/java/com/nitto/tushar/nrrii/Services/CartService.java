@@ -12,10 +12,6 @@ import com.nitto.tushar.nrrii.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by masud on 2/24/2018.
- */
-
 public class CartService {
 
     //Listener.........................

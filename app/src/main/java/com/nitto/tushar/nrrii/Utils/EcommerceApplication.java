@@ -10,11 +10,6 @@ import com.nitto.tushar.nrrii.Services.OrderService;
 import com.nitto.tushar.nrrii.Services.ProductService;
 import com.nitto.tushar.nrrii.Services.UserService;
 
-
-/**
- * Created by masud on 2/23/2018.
- */
-
 public class EcommerceApplication extends Application {
     static{
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
